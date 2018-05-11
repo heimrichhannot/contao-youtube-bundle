@@ -1,0 +1,41 @@
+<!-- indexer::stop -->
+<?php if ($this->fullsizeLink): ?>
+    <div class="youtube_modal">
+        <?= $this->fullsizeLink ?>
+    </div>
+<?php else: ?>
+    <div class="youtube_default">
+        <?php if ($this->addPreviewImage): ?>
+            <div class="video-thumbnail" data-media="youtube"
+                 title="<?= $this->playTitle; ?>"<?php if ($this->youtubePrivacy): ?> data-privacy="true"<?php endif; ?><?php if ($this->autoplay): ?> data-autoplay="true"<?php endif; ?>>
+                <figure class="image_container">
+                    <?php if ($this->skipImageCaching): ?>
+                        <img src="<?= $this->previewImageUrl ?>">
+                    <?php else: ?>
+                        <?php $this->insert('picture_default', $this->picture); ?>
+                    <?php endif; ?>
+                    <?php if ($this->videoDuration): ?>
+                        <span class="duration">
+                            <?= is_numeric($this->videoDuration) ? (($this->videoDuration / 3600 >= 1) ? gmdate("H:i:s", $this->videoDuration) : gmdate("i:s", $this->videoDuration)) : $this->videoDuration; ?>
+                        </span>
+                    <?php endif; ?>
+                    <?php if ($this->addPlayButton): ?>
+                        <span class="play-button"></span>
+                    <?php endif; ?>
+                </figure>
+            </div>
+        <?php endif; ?>
+
+        <div class="video-container"<?php if ($this->addPreviewImage): ?> style="display: none;"<?php endif; ?>>
+            <?php if ($this->addPreviewImage): ?>
+                <iframe src="about:blank" data-src="<?= $this->youtubeSrc; ?>" allowfullscreen frameborder="0"></iframe>
+            <?php else: ?>
+                <iframe src="<?= $this->youtubeSrc; ?>" allowfullscreen frameborder="0"></iframe>
+            <?php endif; ?>
+        </div>
+        <?php if ($this->youtubePrivacy): ?>
+            <?= $this->privacy; ?>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+<!-- indexer::continue -->

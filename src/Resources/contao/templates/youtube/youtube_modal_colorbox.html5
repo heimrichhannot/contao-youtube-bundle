@@ -1,0 +1,14 @@
+<!-- j_colorbox.html5 has to be adjusted:
+	$(".youtube.cBoxElement").colorbox({
+		iframe: true,
+		innerWidth: 640,
+		innerHeight: 390
+	});
+-->
+<a class="youtube cBoxElement hidden-xs" href="<?= $this->youtubeSrc ?>">
+    <?php echo $this->youtubeLinkText; ?>
+</a>
+
+<a class="youtube visible-xs" href="<?= $this->youtubeSrc ?>">
+    <?= $this->youtubeLinkText; ?>
+</a>

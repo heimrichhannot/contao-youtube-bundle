@@ -1,0 +1,14 @@
+<!-- indexer::stop -->
+<div class="youtube_player">
+    <div class="video-container">
+        <?php if ($this->addPreviewImage): ?>
+            <iframe src="about:blank" data-src="<?= $this->youtubeSrc; ?>" allowfullscreen frameborder="0"></iframe>
+        <?php else: ?>
+            <iframe src="<?= $this->youtubeSrc; ?>" allowfullscreen frameborder="0"></iframe>
+        <?php endif; ?>
+    </div>
+    <?php if ($this->youtubePrivacy): ?>
+        <?= $this->privacy; ?>
+    <?php endif; ?>
+</div>
+<!-- indexer::continue -->

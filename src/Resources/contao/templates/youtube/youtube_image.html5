@@ -1,0 +1,28 @@
+<!-- indexer::stop -->
+<div class="youtube_image">
+    <?php if ($this->addImage): ?>
+        <div class="video-thumbnail" data-media="youtube"
+             title="<?= $this->playTitle; ?>"<?php if ($this->youtubePrivacy): ?> data-privacy="true"<?php endif; ?><?php if ($this->autoplay): ?> data-autoplay="true"<?php endif; ?>>
+            <figure class="image_container">
+                <?php if ($this->skipImageCaching): ?>
+                    <img src="<?= $this->previewImageUrl ?>">
+                <?php else: ?>
+                    <?php $this->insert('picture_default', $this->picture); ?>
+                <?php endif; ?>
+                <span class="play-button"></span>
+            </figure>
+        </div>
+    <?php else: ?>
+        <div class="video-container">
+            <?php if ($this->addPreviewImage): ?>
+                <iframe src="about:blank" data-src="<?= $this->youtubeSrc; ?>" allowfullscreen frameborder="0"></iframe>
+            <?php else: ?>
+                <iframe src="<?= $this->youtubeSrc; ?>" allowfullscreen frameborder="0"></iframe>
+            <?php endif; ?>
+        </div>
+        <?php if ($this->youtubePrivacy): ?>
+            <?= $this->privacy; ?>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+<!-- indexer::continue -->

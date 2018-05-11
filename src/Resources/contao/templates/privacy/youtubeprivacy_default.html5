@@ -1,0 +1,22 @@
+<div class="modal fade youtube-privacy" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title"><?= $this->title; ?></h4>
+			</div>
+			<div class="modal-body">
+				<p><?= $this->text; ?></p>
+				<form>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="youtubePrivacyAuto"> <?= $this->autoLabel; ?>
+						</label>
+					</div>
+					<button type="submit" class="btn btn-default"><?= $this->playButtonLabel; ?></button>
+					<button type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close"><?= $this->cancelButtonLabel; ?></button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
