@@ -1,14 +1,21 @@
 {
   "name": "heimrichhannot/contao-youtube-bundle",
   "type": "contao-bundle",
-  "description":"Youtube Content Element, with responsive support, preview image, play button and many more.",
-  "keywords":["contao", "youtube", "responsive", "video", "content"],
+  "description": "Youtube Content Element, with responsive support, preview image, play button and many more.",
+  "keywords": [
+    "contao",
+    "youtube",
+    "responsive",
+    "video",
+    "content"
+  ],
   "license": "LGPL-3.0-or-later",
   "require": {
     "php": "^7.1",
     "symfony/framework-bundle": "^3.4",
     "contao/core-bundle": "^4.4",
-    "heimrichhannot/contao-utils-bundle": "^2.10"
+    "heimrichhannot/contao-utils-bundle": "^2.10",
+    "heimrichhannot/contao-request-bundle": "^1.0"
   },
   "require-dev": {
     "contao/test-case": "^1.1",

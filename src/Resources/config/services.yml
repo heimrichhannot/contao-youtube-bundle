@@ -1,0 +1,9 @@
+services:
+    huh.youtube.config:
+        class: HeimrichHannot\YoutubeBundle\Configuration\YoutubeConfig
+        arguments:
+          - "@contao.framework"
+    huh.youtube.video:
+        class: HeimrichHannot\YoutubeBundle\Video\YoutubeVideo
+        arguments:
+          - "@contao.framework"

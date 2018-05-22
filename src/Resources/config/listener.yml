@@ -1,0 +1,6 @@
+services:
+  huh.youtube.listener.hooks:
+      class: HeimrichHannot\YoutubeBundle\EventListener\HookListener
+          arguments:
+              - "@contao.framework"
+          public: true
