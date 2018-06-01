@@ -12,7 +12,7 @@
 /**
  * Content elements
  */
-$GLOBALS['TL_CTE']['media']['youtube'] = '\\HeimrichHannot\\YouTube\\ContentYouTube';
+$GLOBALS['TL_CTE']['media']['youtube'] = 'HeimrichHannot\YoutubeBundle\ContentElement\ContentYouTube';
 
 /**
  * Assets

@@ -15,13 +15,6 @@ use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 interface YoutubeConfigInterface
 {
     /**
-     * Get all config data.
-     *
-     * @return array
-     */
-    public function getData(): array;
-
-    /**
      * Set all config data.
      *
      * @param array $data The whole configuration data

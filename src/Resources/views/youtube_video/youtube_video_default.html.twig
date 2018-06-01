@@ -6,7 +6,7 @@
 {% else %}
 <div class="youtube_default">
     {% if addPreviewImage %}
-        <div class="video-thumbnail" data-media="youtube" title="{{ playTitle  }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}
+        <div class="video-thumbnail" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans  }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}
             <figure class="image_container">
                 {% if skipImageCaching|default() %}
                     <img src="{{ previewImageUrl  }}">
@@ -25,13 +25,13 @@
     {% endif %}
     <div class="video-container"{% if addPreviewImage|default() %} style="display: none;"{% endif %}>
         {% if addPreviewImage|default() %}
-            <iframe src="about:blank" data-src="{{ youtubeSrc }}" allowfullscreen frameborder="0"></iframe>
+            <iframe src="about:blank" data-src="{{ src }}" allowfullscreen frameborder="0"></iframe>
         {% else %}
-            <iframe src="{{ youtubeSrc }}" allowfullscreen frameborder="0"></iframe>
+            <iframe src="{{ src }}" allowfullscreen frameborder="0"></iframe>
         {% endif %}
     </div>
     {% if  youtubePrivacy|default() %}
-        {{ privacy  }}
+        {{ privacy|raw  }}
     {% endif %}
 </div>
 {% endif %}

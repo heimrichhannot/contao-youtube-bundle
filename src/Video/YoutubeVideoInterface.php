@@ -30,13 +30,6 @@ interface YoutubeVideoInterface
     public function addToTemplate(Template $template): void;
 
     /**
-     * Get all template data.
-     *
-     * @return array
-     */
-    public function getTemplateData(): array;
-
-    /**
      * Set current template name.
      *
      * @param string $template
