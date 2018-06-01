@@ -9,7 +9,6 @@ namespace HeimrichHannot\YoutubeBundle\Configuration;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\Frontend;
-use Contao\System;
 
 /**
  * Class YoutubeConfig.
@@ -19,82 +18,82 @@ class YoutubeConfig implements YoutubeConfigInterface
     /**
      * @var string
      */
-    protected $type;
+    protected $type = '';
 
     /**
      * @var bool
      */
-    protected $addYouTube;
+    protected $addYouTube = false;
 
     /**
      * @var bool
      */
-    protected $autoplay;
+    protected $autoplay = false;
 
     /**
      * @var string
      */
-    protected $youtube;
+    protected $youtube = '';
 
     /**
      * @var string
      */
-    protected $size;
+    protected $size = '';
 
     /**
      * @var string
      */
-    protected $videoDuration;
+    protected $videoDuration = '';
 
     /**
      * @var bool
      */
-    protected $showRelated;
+    protected $showRelated = false;
 
     /**
      * @var bool
      */
-    protected $modestBranding;
+    protected $modestBranding = false;
 
     /**
      * @var bool
      */
-    protected $showInfo;
+    protected $showInfo = false;
 
     /**
      * @var bool
      */
-    protected $fullSize;
+    protected $fullSize = false;
 
     /**
      * @var string
      */
-    protected $linkText;
+    protected $linkText = '';
 
     /**
      * @var bool
      */
-    protected $addPreviewImage;
+    protected $addPreviewImage = false;
 
     /**
      * @var string
      */
-    protected $previewImage;
+    protected $previewImage = '';
 
     /**
      * @var bool
      */
-    protected $addPlayButton;
+    protected $addPlayButton = false;
 
     /**
      * @var bool
      */
-    protected $youtubePrivacy;
+    protected $youtubePrivacy = false;
 
     /**
      * @var string
      */
-    protected $youtubePrivacyTemplate;
+    protected $youtubePrivacyTemplate = '';
 
     /**
      * Current config data.
@@ -185,31 +184,7 @@ class YoutubeConfig implements YoutubeConfigInterface
     public function hasVideo(): bool
     {
         // tl_content type youtube or addYoutube for tl_news must be set
-        return ('youtube' === $this->type || true === (bool) $this->addYouTube) && !empty($this->youtube);
-    }
-
-    /**
-     * Get all youtube setting, considering root page and content element & module config.
-     *
-     * @return array the settings
-     */
-    public function getData(): array
-    {
-        $data = [];
-
-        /* @var Frontend $frontend */
-        $frontend = $this->framework->getAdapter(Frontend::class);
-
-        if (null === ($root = $frontend->getRootPageFromUrl())) {
-            return $data;
-        }
-
-        $rootPageData = System::getContainer()->get('huh.utils.array')->filterByPrefixes($root->row(), array_keys(get_object_vars($this)));
-
-        // array_filter() : do not overwrite empty values
-        $data = array_merge(array_filter($rootPageData, 'strval'), array_filter($this->data, 'strval'));
-
-        return $data;
+        return ('youtube' === $this->getType() || true === (bool) $this->isAddYouTube()) && !empty($this->getYoutube());
     }
 
     /**
@@ -217,7 +192,19 @@ class YoutubeConfig implements YoutubeConfigInterface
      */
     public function setData(array $data = []): YoutubeConfigInterface
     {
-        $this->data = System::getContainer()->get('huh.utils.array')->filterByPrefixes($data, array_keys(get_object_vars($this)));
+        /* @var Frontend $frontend */
+        $frontend = $this->framework->getAdapter(Frontend::class);
+
+        if (null === ($root = $frontend->getRootPageFromUrl())) {
+            return $this;
+        }
+
+        // array_filter() : do not overwrite empty values
+        $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, 'strval'));
+
+        foreach (get_object_vars($this) as $property => $default) {
+            $this->{$property} = $data[$property] ?? $default;
+        }
 
         return $this;
     }
@@ -227,7 +214,7 @@ class YoutubeConfig implements YoutubeConfigInterface
      */
     public function getType(): string
     {
-        return $this->getType();
+        return $this->type;
     }
 
     /**

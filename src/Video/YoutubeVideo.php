@@ -16,6 +16,7 @@ use HeimrichHannot\YoutubeBundle\Exception\InvalidVideoConfigException;
 class YoutubeVideo implements YoutubeVideoInterface
 {
     use YoutubeVideoTemplateDataTrait;
+
     const PRIVACY_EMBED_URL = '//www.youtube-nocookie.com/embed/';
 
     const DEFAULT_EMBED_URL = '//www.youtube.com/embed/';
@@ -56,14 +57,14 @@ class YoutubeVideo implements YoutubeVideoInterface
      */
     public function generate(): string
     {
-        if ($this->config->hasVideo()) {
+        if (false === $this->config->hasVideo()) {
             throw new InvalidVideoConfigException('Invalid video configuration, no video data present');
         }
 
         return System::getContainer()->get('twig')->render(
             System::getContainer()->get('huh.utils.template')->getTemplate($this->getTemplate()),
-                $this->getTemplateData()
-            );
+            $this->getTemplateData()
+        );
     }
 
     /**
@@ -71,8 +72,11 @@ class YoutubeVideo implements YoutubeVideoInterface
      */
     public function addToTemplate(Template $template): void
     {
-        $template->setData(array_merge($template->getData(), ['youtubeVideoData' => $this->getTemplateData()]));
-        $template->youtubeVideo = $this->generate();
+        $youtube = new \stdClass();
+        $youtube->data = $this->getTemplateData();
+        $youtube->video = $this->generate();
+
+        $template->setData(array_merge($template->getData(), ['youtube' => $youtube]));
     }
 
     /**
@@ -117,5 +121,13 @@ class YoutubeVideo implements YoutubeVideoInterface
     public function startPlay(): bool
     {
         return $this->getConfig()->isAutoplay() || $this->getConfig()->getYoutube() === System::getContainer()->get('huh.request')->getGet('autoplay');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getTemplateData(): array
+    {
+        return System::getContainer()->get('huh.utils.class')->jsonSerialize($this, System::getContainer()->get('huh.utils.class')->jsonSerialize($this->getConfig()));
     }
 }
