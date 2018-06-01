@@ -38,22 +38,30 @@ $arrFields = [
         'default'          => 'youtube_default',
         'exclude'          => true,
         'inputType'        => 'select',
-        'options_callback' => ['\\HeimrichHannot\\YouTube\\YouTubeBackend', 'getYouTubeTemplates'],
+        'options_callback' => function (\Contao\DataContainer $dc) {
+            return System::getContainer()->get('huh.utils.choice.twig_template')->setContext(['youtube_video_'])->getCachedChoices();
+        },
         'eval'             => ['tl_class' => 'w50'],
-        'sql'              => "varchar(64) NOT NULL default ''",],
+        'sql'              => "varchar(64) NOT NULL default ''",
+    ],
     'youtubePrivacy'         => [
         'label'     => &$GLOBALS['TL_LANG']['tl_page']['youtubePrivacy'],
         'exclude'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['submitOnChange' => true, 'tl_class' => 'clr'],
-        'sql'       => "char(1) NOT NULL default ''",],
+        'sql'       => "char(1) NOT NULL default ''",
+    ],
     'youtubePrivacyTemplate' => [
         'label'            => &$GLOBALS['TL_LANG']['tl_page']['youtubePrivacyTemplate'],
         'exclude'          => true,
         'inputType'        => 'select',
-        'default'          => 'youtubeprivacy_default',
-        'options_callback' => ['\\HeimrichHannot\\YouTube\\YouTubeBackend', 'getPrivacyTemplates'],
+        'default'          => 'youtube_privacy_default',
+        'options_callback' => function (\Contao\DataContainer $dc) {
+            return System::getContainer()->get('huh.utils.choice.twig_template')->setContext(['youtube_privacy_'])->getCachedChoices();
+        },
         'eval'             => ['tl_class' => 'w50', 'mandatory' => true],
-        'sql'              => "varchar(64) NOT NULL default ''",],];
+        'sql'              => "varchar(64) NOT NULL default ''",
+    ],
+];
 
 $arrDca['fields'] = array_merge($arrDca['fields'], $arrFields);

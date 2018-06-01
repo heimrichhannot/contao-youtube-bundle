@@ -115,7 +115,9 @@ $arrFields = [
         'default'          => 'youtube_default',
         'exclude'          => true,
         'inputType'        => 'select',
-        'options_callback' => ['\\HeimrichHannot\\YouTube\\YouTubeBackend', 'getYouTubeTemplates'],
+        'options_callback' => function(\Contao\DataContainer $dc){
+            return System::getContainer()->get('huh.utils.choice.twig_template')->setContext(['youtube_video_'])->getCachedChoices();
+        },
         'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true],
         'sql'              => "varchar(64) NOT NULL default ''",
     ],
