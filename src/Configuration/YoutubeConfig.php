@@ -149,33 +149,7 @@ class YoutubeConfig implements YoutubeConfigInterface
                 break;
         }
 
-        $this->data[$key] = $value;
-    }
-
-    /**
-     * Return an object property.
-     *
-     * @param string $key
-     *
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        if (isset($this->data[$key])) {
-            return $this->data[$key];
-        }
-    }
-
-    /**
-     * Check whether a property is set.
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
-    public function __isset($key)
-    {
-        return isset($this->data[$key]);
+        $this->{$key} = $value;
     }
 
     /**
@@ -202,8 +176,8 @@ class YoutubeConfig implements YoutubeConfigInterface
         // array_filter() : do not overwrite empty values
         $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, 'strval'));
 
-        foreach (get_object_vars($this) as $property => $default) {
-            $this->{$property} = $data[$property] ?? $default;
+        foreach ($data as $key => $default) {
+            $this->{$key} = $data[$key] ?? $default;
         }
 
         return $this;

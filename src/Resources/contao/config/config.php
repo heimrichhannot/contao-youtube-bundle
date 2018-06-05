@@ -4,8 +4,9 @@
  * Contao Open Source CMS
  *
  * Copyright (c) 2015 Heimrich & Hannot GmbH
+ *
  * @package youtube
- * @author Rico Kaltofen <r.kaltofen@heimrich-hannot.de>
+ * @author  Rico Kaltofen <r.kaltofen@heimrich-hannot.de>
  * @license http://www.gnu.org/licences/lgpl-3.0.html LGPL
  */
 
@@ -17,13 +18,13 @@ $GLOBALS['TL_CTE']['media']['youtube'] = 'HeimrichHannot\YoutubeBundle\ContentEl
 /**
  * Assets
  */
-if (TL_MODE == 'FE')
-{
-	$GLOBALS['TL_JAVASCRIPT']['jquery.youtube'] = '/system/modules/youtube/assets/js/jquery.youtube'. (!$GLOBALS['TL_CONFIG']['debugMode'] ? '.min' : '') . '.js|static';
-	$GLOBALS['TL_CSS']['youtube_default'] = 'system/modules/youtube/assets/css/youtube_default.css';
+if (System::getContainer()->get('huh.utils.container')->isFrontend()) {
+    $GLOBALS['TL_JAVASCRIPT']['umbrellajs']            = '/assets/umbrellajs/js/umbrella.min.js|static';
+    $GLOBALS['TL_JAVASCRIPT']['contao-youtube-bundle'] = 'bundles/heimrichhannotcontaoyoutube/js/contao-youtube-bundle.min.js|static';
+    $GLOBALS['TL_CSS']['contao-youtube-bundle']        = 'bundles/heimrichhannotcontaoyoutube/css/contao-youtube-bundle.min.css|static';
 }
 
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['parseArticles'][] = ['\\HeimrichHannot\\YouTube\\YouTubeHooks', 'parseNewsArticlesHook'];
+$GLOBALS['TL_HOOKS']['parseArticles'][] = ['huh.youtube.listener.hooks', 'parseNewsArticlesHook'];

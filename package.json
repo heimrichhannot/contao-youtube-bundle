@@ -1,9 +1,7 @@
 {
-  "name": "contao-bootstrap-hover-dropdown-bundle",
-  "version": "1.0.1",
-  "dependencies": {
-    "jquery": "^3.3.1",
-    "bootstrap": "^4.0.0",
-    "popper.js": "^1.14.2"
-  }
+    "name": "contao-youtube-bundle",
+    "version": "1.0.0",
+    "dependencies": {
+        "umbrellajs": "^2.10.2"
+    }
 }

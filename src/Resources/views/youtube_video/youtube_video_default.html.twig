@@ -1,40 +1,44 @@
 <!-- indexer::stop -->
-{% if fullsizeLink|default()  %}
+{% if fullsizeLink|default() %}
 <div class="youtube_modal">
     {{ fullsizeLink }}
 </div>
 {% else %}
 <div class="youtube_default">
-    {% if addPreviewImage %}
-        <div class="video-thumbnail" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans  }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}
-            <figure class="image_container">
-                {% if skipImageCaching|default() %}
-                    <img src="{{ previewImageUrl  }}">
-                {% else %}
-                    {#<?php $this->insert('picture_default', $this->picture); ?>#}
-                    {% if videoDuration|default() %}
-                        <span class="duration">
-                            {#<?= is_numeric($this->videoDuration) ? (($this->videoDuration / 3600 >= 1) ? gmdate("H:i:s", $this->videoDuration) : gmdate("i:s", $this->videoDuration)) : $this->videoDuration; ?>#}
-                        </span>
+    {% if hasPreviewImage|default() and previewImage|default() %}
+    <div class="video-thumbnail{% if hasPreviewImage|default() %} video-hidden{% endif %}" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}>
+        <figure class="image_container">
+            <img src="{{ previewImage }}" alt="{{ youtube }}">
+            {% if videoDuration|default() %}
+                <span class="duration">
+                    {% if videoDuration matches '/^\\d+$/' %}
+                        {% if videoDuration/3600 >=1 %}
+                            {{ videoDuration|date('H:i:s') }}
+                        {% else %}
+                            {{ videoDuration|date('i:s') }}
+                        {% endif %}
+                    {% else %}
+                        {{ videoDuration }}
                     {% endif %}
-                    {% if addPlayButton|default() %}
-                        <span class="play-button"></span>
-                    {% endif %}
-                {% endif %}
-            </figure>
-    {% endif %}
-    <div class="video-container"{% if addPreviewImage|default() %} style="display: none;"{% endif %}>
-        {% if addPreviewImage|default() %}
-            <iframe src="about:blank" data-src="{{ src }}" allowfullscreen frameborder="0"></iframe>
-        {% else %}
-            <iframe src="{{ src }}" allowfullscreen frameborder="0"></iframe>
+                    </span>
+            {% endif %}
+            {% if playButton|default() %}
+                <span class="play-button"></span>
+            {% endif %}
+        </figure>
+        {% if youtubePrivacy|default() %}
+            {{ privacy|raw }}
         {% endif %}
+        {% endif %}
+        <div class="video-container">
+            {% if hasPreviewImage|default() %}
+                <iframe src="about:blank" data-src="{{ src }}" allowfullscreen frameborder="0"></iframe>
+            {% else %}
+                <iframe src="{{ src }}" allowfullscreen frameborder="0"></iframe>
+            {% endif %}
+        </div>
     </div>
-    {% if  youtubePrivacy|default() %}
-        {{ privacy|raw  }}
     {% endif %}
+    <!-- indexer::continue -->
 </div>
-{% endif %}
-<!-- indexer::continue -->
-
 

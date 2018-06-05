@@ -2,6 +2,8 @@
 
 <?php $this->block('content'); ?>
 
-<?= $this->youtubeVideo; ?>
+<?php if($this->youtube && $this->youtube->video): ?>
+	<?= $this->youtube->video; ?>
+<?php endif; ?>
 
 <?php $this->endblock(); ?>

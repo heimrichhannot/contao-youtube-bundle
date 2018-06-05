@@ -1,0 +1,9 @@
+huh:
+    encore:
+        entries:
+            - { name: contao-youtube-bundle, file: "vendor/heimrichhannot/contao-youtube-bundle/src/Resources/public/js/contao-youtube-bundle.es6.js" , requiresCss: true }
+        legacy:
+            js:
+                - contao-youtube-bundle
+            css:
+                - contao-youtube-bundle

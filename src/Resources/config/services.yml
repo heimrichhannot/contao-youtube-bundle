@@ -3,7 +3,9 @@ services:
         class: HeimrichHannot\YoutubeBundle\Configuration\YoutubeConfig
         arguments:
           - "@contao.framework"
+        public: true
     huh.youtube.video:
         class: HeimrichHannot\YoutubeBundle\Video\YoutubeVideo
         arguments:
           - "@contao.framework"
+        public: true

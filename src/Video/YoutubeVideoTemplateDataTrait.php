@@ -7,25 +7,17 @@
 
 namespace HeimrichHannot\YoutubeBundle\Video;
 
+use Contao\Config;
+use Contao\CoreBundle\Monolog\ContaoContext;
+use Contao\Environment;
+use Contao\FilesModel;
+use Contao\Folder;
 use Contao\System;
+use HeimrichHannot\YoutubeBundle\Exception\InvalidYoutubeApiKeyException;
+use Psr\Log\LogLevel;
 
 trait YoutubeVideoTemplateDataTrait
 {
-    /**
-     * Get all template data.
-     *
-     * @return array
-     */
-//    public function getTemplateData(): array
-//    {
-//        $data = [];
-//
-//        $data['addPreviewImage'] = true === $this->getConfig()->isAddPreviewImage() || true === $this->getConfig()->isYoutubePrivacy();
-//        $data['playTitle'] = $this->getYouTubeSrc();
-//
-//        return $data;
-//    }
-
     /**
      * Get the youtube src url.
      */
@@ -51,13 +43,115 @@ trait YoutubeVideoTemplateDataTrait
      *
      * @return bool
      */
-    public function isAddPreviewImage(): bool
+    public function hasPreviewImage(): bool
     {
         return true === $this->getConfig()->isAddPreviewImage() || true === $this->config->isYoutubePrivacy();
     }
 
     /**
+     * Get the preview image.
+     *
+     * @return null|string
+     */
+    public function getPreviewImage(): string
+    {
+        $path = '';
+
+        if (false === $this->hasPreviewImage()) {
+            return $path;
+        }
+
+        if (true === $this->getConfig()->isAddPreviewImage() && '' !== $this->getConfig()->getPreviewImage()) {
+            /* @var FilesModel $model */
+            $model = $this->framework->getAdapter(FilesModel::class);
+
+            if (null !== ($model = $model->findByUuid($this->getConfig()->getPreviewImage()))) {
+                return $model->path;
+            }
+        }
+
+        $path = $this->getYoutubePreviewImage(false === (bool) Config::get('youtubeSkipImageCaching'));
+
+        return $path;
+    }
+
+    /**
+     * Get the preview image from youtube.
+     *
+     * @param bool $cache Enable/disable image caching
+     *
+     * @return string
+     */
+    public function getYoutubePreviewImage(bool $cache = true): string
+    {
+        if (!($apiKey = Config::get('youtubeApiKey'))) {
+            if (\BackendUser::getInstance()->isAdmin) {
+                throw new InvalidYoutubeApiKeyException('Please specify your API key in the settings if you want to retrieve youtube thumbnails.');
+            }
+
+            System::getContainer()->get('monolog.logger.contao')->log(LogLevel::ERROR, 'Please specify your API key in the settings if you want to retrieve youtube thumbnails.', ['contao' => new ContaoContext(__METHOD__, TL_ERROR)]);
+
+            return '';
+        }
+
+        $cacheName = $this->config->getYoutube().'.jpg';
+        $cachePath = rtrim(static::VIDEO_IMAGE_CACHE_DIR, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$cacheName;
+        $cachePathAbs = System::getContainer()->get('huh.utils.container')->getProjectDir().DIRECTORY_SEPARATOR.$cachePath;
+        $cacheDirAbs = System::getContainer()->get('huh.utils.container')->getProjectDir().DIRECTORY_SEPARATOR.static::VIDEO_IMAGE_CACHE_DIR;
+
+        if ($cache && file_exists($cachePathAbs) && filesize($cachePathAbs) > 0 && time() < filemtime($cachePathAbs) + static::VIDEO_IMAGE_CACHE_EXPIRE) {
+            return $cachePath;
+        }
+
+        $url = sprintf(static::VIDEO_IMAGE_URL, $this->config->getYoutube(), $apiKey);
+
+        $result = System::getContainer()->get('huh.utils.request.curl')->request($url);
+
+        try {
+            $response = json_decode($result);
+
+            if ($response->error || !is_array($response->items) || empty($response->items)) {
+                return '';
+            }
+
+            foreach (['maxres', 'standard', 'high', 'medium', 'default'] as $quality) {
+                if (property_exists($response->items[0]->snippet->thumbnails, $quality)) {
+                    $image = System::getContainer()->get('huh.utils.request.curl')->request($response->items[0]->snippet->thumbnails->{$quality}->url);
+
+                    if (!$image) {
+                        return '';
+                    }
+
+                    $type = pathinfo($response->items[0]->snippet->thumbnails->{$quality}->url, PATHINFO_EXTENSION);
+
+                    if ($cache) {
+                        if (!file_exists($cacheDirAbs)) {
+                            new Folder(static::VIDEO_IMAGE_CACHE_DIR);
+                        }
+
+                        $file = new \File($cachePath);
+                        $file->write($image);
+                        $file->close();
+
+                        return $file->value;
+                    }
+
+                    return 'data:image/'.$type.';base64,'.base64_encode($image);
+                }
+            }
+        } catch (\Exception $e) {
+            return '';
+        }
+
+        return '';
+    }
+
+    /**
      * Render the privacy template.
+     *
+     * @throws \Twig_Error_Loader  When the template cannot be found
+     * @throws \Twig_Error_Syntax  When an error occurred during compilation
+     * @throws \Twig_Error_Runtime When an error occurred during rendering
      *
      * @return string
      */
@@ -67,11 +161,21 @@ trait YoutubeVideoTemplateDataTrait
             return '';
         }
 
-        $data = [];
+        $data = ['host' => Environment::get('host')];
 
         return System::getContainer()->get('twig')->render(
             System::getContainer()->get('huh.utils.template')->getTemplate($this->getConfig()->getYoutubePrivacyTemplate()),
             $data
         );
+    }
+
+    /**
+     * Check add play button.
+     *
+     * @return bool
+     */
+    public function hasPlayButton(): bool
+    {
+        return true === $this->config->isYoutubePrivacy() || $this->config->isAddPlayButton();
     }
 }

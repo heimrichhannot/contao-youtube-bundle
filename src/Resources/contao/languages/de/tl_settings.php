@@ -3,8 +3,8 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_settings']['youtubeApiKey'] = ['YouTube-Api-Key', 'Geben Sie hier den API-Key ein.'];
-
+$GLOBALS['TL_LANG']['tl_settings']['youtubeApiKey']           = ['YouTube-Api-Key', 'Geben Sie hier den API-Key ein.'];
+$GLOBALS['TL_LANG']['tl_settings']['youtubeSkipImageCaching'] = ['Youtube-Vorschaubilder nicht zwischenspeichern', 'Vorschaubilder für Videos von Youtube nicht zwischenspeichern.'];
 /**
  * Legends
  */

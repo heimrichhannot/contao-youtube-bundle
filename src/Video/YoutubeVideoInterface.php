@@ -17,6 +17,9 @@ interface YoutubeVideoInterface
      * Generate the youtube player.
      *
      * @throws InvalidVideoConfigException
+     * @throws \Twig_Error_Loader          When the template cannot be found
+     * @throws \Twig_Error_Syntax          When an error occurred during compilation
+     * @throws \Twig_Error_Runtime         When an error occurred during rendering
      *
      * @return mixed
      */

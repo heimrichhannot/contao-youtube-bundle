@@ -18,8 +18,11 @@ class YoutubeVideo implements YoutubeVideoInterface
     use YoutubeVideoTemplateDataTrait;
 
     const PRIVACY_EMBED_URL = '//www.youtube-nocookie.com/embed/';
-
     const DEFAULT_EMBED_URL = '//www.youtube.com/embed/';
+
+    const VIDEO_IMAGE_URL = 'https://www.googleapis.com/youtube/v3/videos?id=%s&key=%s&fields=items(snippet(thumbnails))&part=snippet';
+    const VIDEO_IMAGE_CACHE_DIR = 'files/media/youtube';
+    const VIDEO_IMAGE_CACHE_EXPIRE = 604800; // 7 days
 
     /**
      * Youtube twig template name.

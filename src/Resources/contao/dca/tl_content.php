@@ -43,7 +43,6 @@ $arrFields = [
         'eval'      => ['submitOnChange' => true, 'tl_class' => 'clr'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-
     'addPlayButton' => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['addPlayButton'],
         'exclude'   => true,
@@ -94,7 +93,6 @@ $arrFields = [
         'eval'      => ['tl_class' => 'w50'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-
     'youtubeFullsize' => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['youtubeFullsize'],
         'exclude'   => true,
