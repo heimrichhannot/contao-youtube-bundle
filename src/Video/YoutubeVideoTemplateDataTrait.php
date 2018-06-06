@@ -126,9 +126,9 @@ trait YoutubeVideoTemplateDataTrait
         }
 
         $cacheName = $this->config->getYoutube().'.jpg';
-        $cachePath = rtrim(static::VIDEO_IMAGE_CACHE_DIR, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$cacheName;
-        $cachePathAbs = System::getContainer()->get('huh.utils.container')->getProjectDir().DIRECTORY_SEPARATOR.$cachePath;
-        $cacheDirAbs = System::getContainer()->get('huh.utils.container')->getProjectDir().DIRECTORY_SEPARATOR.static::VIDEO_IMAGE_CACHE_DIR;
+        $cachePath = rtrim(static::VIDEO_IMAGE_CACHE_DIR, \DIRECTORY_SEPARATOR).\DIRECTORY_SEPARATOR.$cacheName;
+        $cachePathAbs = System::getContainer()->get('huh.utils.container')->getProjectDir().\DIRECTORY_SEPARATOR.$cachePath;
+        $cacheDirAbs = System::getContainer()->get('huh.utils.container')->getProjectDir().\DIRECTORY_SEPARATOR.static::VIDEO_IMAGE_CACHE_DIR;
 
         if ($cache && file_exists($cachePathAbs) && filesize($cachePathAbs) > 0 && time() < filemtime($cachePathAbs) + static::VIDEO_IMAGE_CACHE_EXPIRE) {
             return $cachePath;
