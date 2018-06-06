@@ -22,6 +22,9 @@ $GLOBALS['TL_LANG']['tl_page']['youtubePrivacyTemplate'][1] = 'Wählen Sie ein T
 $GLOBALS['TL_LANG']['tl_page']['youtube_template'][0] = 'Youtube-Template';
 $GLOBALS['TL_LANG']['tl_page']['youtube_template'][1] = 'Wählen Sie das Standard-Template für Youtube-Videos aus.';
 
+$GLOBALS['TL_LANG']['tl_page']['youtube_modal_template'] = ['Youtube-Template für Großansicht/Neues Fenster', 'Wählen Sie das Standard-Template für Youtube-Videos zur Anzeige in der Großansicht/Neues Fenster.'];
+
+
 /**
  * Legends
  */

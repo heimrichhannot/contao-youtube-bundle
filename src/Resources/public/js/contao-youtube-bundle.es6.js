@@ -36,6 +36,16 @@ let ajax = umbrellajs.ajax;
                 $video = $this.parent().find('.video-container'),
                 $iframe = $video.find('iframe');
 
+            // stop playing video on closing any modal window
+            $('body').on('click', '[data-dismiss="modal"]', function () {
+                $iframe.attr('src', $iframe.data('src'));
+            })
+
+            // stop playing video on closing any bootstrap modal
+            $('body').on('hidden.bs.modal', function (e) {
+                $iframe.attr('src', $iframe.data('src'));
+            })
+
             if ($this.data('privacy')) {
                 // auto load privacy videos if set within cookie
                 if (YouTubeVideo.getPrivacyAuto() == YouTubeVideo.config.cookies.privacy.value) {
@@ -81,8 +91,10 @@ let ajax = umbrellajs.ajax;
 
             function showVideo() {
                 $this.addClass('initialize');
+                $video.addClass('initialize');
                 $iframe.attr('src', $iframe.attr('src') + '&autoplay=1');
                 $this.removeClass(['initialize', 'video-hidden']);
+                $video.removeClass(['initialize', 'video-hidden']);
             }
         },
         setPrivacyAuto: function () {

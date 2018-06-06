@@ -33,22 +33,6 @@ interface YoutubeVideoInterface
     public function addToTemplate(Template $template): void;
 
     /**
-     * Set current template name.
-     *
-     * @param string $template
-     *
-     * @return YoutubeVideoInterface
-     */
-    public function setTemplate(string $template): self;
-
-    /**
-     * Get current template name.
-     *
-     * @return string
-     */
-    public function getTemplate(): string;
-
-    /**
      * Set current config.
      *
      * @return YoutubeVideoInterface

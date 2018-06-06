@@ -19,7 +19,7 @@ $arrDca['palettes']['__selector__'][] = 'youtubePrivacy';
 /**
  * Palettes
  */
-$replace = 'adminEmail;{youtube_legend},youtube_template,youtubePrivacy;';
+$replace = 'adminEmail;{youtube_legend},youtube_template,youtube_modal_template,youtubePrivacy,overrideYoutubeApiKey,overrideYoutubeSkipImageCaching;';
 
 $arrDca['palettes']['root'] = str_replace('adminEmail;', $replace, $arrDca['palettes']['root']);
 
@@ -35,7 +35,7 @@ $arrDca['subpalettes']['youtubePrivacy'] = 'youtubePrivacyTemplate';
 $arrFields = [
     'youtube_template'       => [
         'label'            => &$GLOBALS['TL_LANG']['tl_page']['youtube_template'],
-        'default'          => 'youtube_default',
+        'default'          => 'youtube_video_default',
         'exclude'          => true,
         'inputType'        => 'select',
         'options_callback' => function (\Contao\DataContainer $dc) {
@@ -44,9 +44,21 @@ $arrFields = [
         'eval'             => ['tl_class' => 'w50'],
         'sql'              => "varchar(64) NOT NULL default ''",
     ],
+    'youtube_modal_template'       => [
+        'label'            => &$GLOBALS['TL_LANG']['tl_page']['youtube_modal_template'],
+        'default'          => 'youtube_modalvideo_default',
+        'exclude'          => true,
+        'inputType'        => 'select',
+        'options_callback' => function (\Contao\DataContainer $dc) {
+            return System::getContainer()->get('huh.utils.choice.twig_template')->setContext(['youtube_modalvideo_'])->getCachedChoices();
+        },
+        'eval'             => ['tl_class' => 'w50'],
+        'sql'              => "varchar(64) NOT NULL default ''",
+    ],
     'youtubePrivacy'         => [
         'label'     => &$GLOBALS['TL_LANG']['tl_page']['youtubePrivacy'],
         'exclude'   => true,
+        'default'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['submitOnChange' => true, 'tl_class' => 'clr'],
         'sql'       => "char(1) NOT NULL default ''",
@@ -65,3 +77,5 @@ $arrFields = [
 ];
 
 $arrDca['fields'] = array_merge($arrDca['fields'], $arrFields);
+
+System::getContainer()->get('huh.utils.dca')->addOverridableFields(['youtubeApiKey', 'youtubeSkipImageCaching'], 'tl_settings', 'tl_page');

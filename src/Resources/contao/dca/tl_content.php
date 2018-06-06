@@ -20,11 +20,10 @@ $dc['palettes']['__selector__'][] = 'addPreviewImage';
 /**
  * Palettes
  */
-$dc['palettes']['youtube'] =
-    '{title_legend},type,name,headline;
+$dc['palettes']['youtube'] = '{title_legend},type,name,headline;
 	{video_legend},youtube,autoplay,videoDuration,ytHd,ytShowRelated,ytModestBranding,ytShowInfo,youtubeFullsize,youtubeLinkText;
 	{previewImage_legend},addPreviewImage;
-	{expert_legend:hide},youtube_template,cssID,space;';
+	{expert_legend:hide},youtube_template,youtube_modal_template,cssID,space;';
 
 /**
  * Subpalettes
@@ -43,14 +42,13 @@ $arrFields = [
         'eval'      => ['submitOnChange' => true, 'tl_class' => 'clr'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-    'addPlayButton' => [
+    'addPlayButton'   => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['addPlayButton'],
         'exclude'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['tl_class' => 'w50'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-
     'videoDuration' => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['videoDuration'],
         'exclude'   => true,
@@ -60,15 +58,6 @@ $arrFields = [
         'inputType' => 'text',
         'eval'      => ['maxlength' => 255, 'tl_class' => 'w50 clr'],
         'sql'       => "varchar(255) NOT NULL default ''",
-    ],
-
-    'ytHd' => [
-        'label'     => &$GLOBALS['TL_LANG']['tl_content']['ytHd'],
-        'exclude'   => true,
-        'inputType' => 'select',
-        'options'   => ['240', '360', '480', '720', '1080'],
-        'eval'      => ['includeBlankOption' => true, 'tl_class' => 'w50'],
-        'sql'       => "int(16) NOT NULL default '0'",
     ],
     'ytShowRelated' => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['ytShowRelated'],
@@ -85,36 +74,49 @@ $arrFields = [
         'eval'      => ['tl_class' => 'w50'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-
-    'ytShowInfo' => [
+    'ytShowInfo'             => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['ytShowInfo'],
         'exclude'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['tl_class' => 'w50'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-    'youtubeFullsize' => [
+    'youtubeFullsize'        => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['youtubeFullsize'],
         'exclude'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['tl_class' => 'w50'],
-        'sql'       => "char(1) NOT NULL default ''"
+        'sql'       => "char(1) NOT NULL default ''",
     ],
-
-    'youtubeLinkText'  => [
-        'label'     => &$GLOBALS['TL_LANG']['tl_content']['youtubeLinkText'],
-        'exclude'   => true,
-        'inputType' => 'text',
-        'eval'      => ['maxlength' => 255, 'tl_class' => 'w50'],
-        'sql'       => "varchar(255) NOT NULL default ''"
+    'youtubeLinkText'        => [
+        'label'            => &$GLOBALS['TL_LANG']['tl_content']['youtubeLinkText'],
+        'exclude'          => true,
+        'inputType'        => 'select',
+        'default'          => 'huh.youtube.modal.link.default',
+        'options_callback' => function (\DataContainer $dc) {
+            return \Contao\System::getContainer()->get('huh.utils.choice.message')->getCachedChoices('huh.youtube.modal.link');
+        },
+        'eval'             => ['maxlength' => 255, 'tl_class' => 'w50'],
+        'sql'              => "varchar(255) NOT NULL default ''",
     ],
-    'youtube_template' => [
+    'youtube_template'       => [
         'label'            => &$GLOBALS['TL_LANG']['tl_content']['youtube_template'],
         'default'          => 'youtube_default',
         'exclude'          => true,
         'inputType'        => 'select',
-        'options_callback' => function(\Contao\DataContainer $dc){
+        'options_callback' => function (\Contao\DataContainer $dc) {
             return System::getContainer()->get('huh.utils.choice.twig_template')->setContext(['youtube_video_'])->getCachedChoices();
+        },
+        'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true],
+        'sql'              => "varchar(64) NOT NULL default ''",
+    ],
+    'youtube_modal_template' => [
+        'label'            => &$GLOBALS['TL_LANG']['tl_content']['youtube_modal_template'],
+        'default'          => 'youtube_modalvideo_default',
+        'exclude'          => true,
+        'inputType'        => 'select',
+        'options_callback' => function (\Contao\DataContainer $dc) {
+            return System::getContainer()->get('huh.utils.choice.twig_template')->setContext(['youtube_modalvideo_'])->getCachedChoices();
         },
         'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true],
         'sql'              => "varchar(64) NOT NULL default ''",

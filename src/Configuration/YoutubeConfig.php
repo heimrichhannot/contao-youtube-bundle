@@ -9,6 +9,8 @@ namespace HeimrichHannot\YoutubeBundle\Configuration;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\Frontend;
+use Contao\PageModel;
+use Contao\StringUtil;
 
 /**
  * Class YoutubeConfig.
@@ -93,7 +95,22 @@ class YoutubeConfig implements YoutubeConfigInterface
     /**
      * @var string
      */
-    protected $youtubePrivacyTemplate = '';
+    protected $template = 'youtube_video_default';
+
+    /**
+     * @var string
+     */
+    protected $privacyTemplate = 'youtube_privacy_default';
+
+    /**
+     * @var string
+     */
+    protected $modalTemplate = 'youtube_modalvideo_default';
+
+    /**
+     * @var string
+     */
+    protected $headline = '';
 
     /**
      * Current config data.
@@ -101,6 +118,13 @@ class YoutubeConfig implements YoutubeConfigInterface
      * @var array
      */
     protected $data = [];
+
+    /**
+     * Current root page.
+     *
+     * @var PageModel
+     */
+    protected $rootPage;
 
     /**
      * @var ContaoFrameworkInterface
@@ -147,6 +171,15 @@ class YoutubeConfig implements YoutubeConfigInterface
             case 'posterSRC':
                 $key = 'previewImage';
                 break;
+            case 'youtube_template':
+                $key = 'template';
+                break;
+            case 'youtube_modal_template':
+                $key = 'modalTemplate';
+                break;
+            case 'youtubePrivacyTemplate':
+                $key = 'privacyTemplate';
+                break;
         }
 
         $this->{$key} = $value;
@@ -172,6 +205,8 @@ class YoutubeConfig implements YoutubeConfigInterface
         if (null === ($root = $frontend->getRootPageFromUrl())) {
             return $this;
         }
+
+        $this->rootPage = $root;
 
         // array_filter() : do not overwrite empty values
         $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, 'strval'));
@@ -306,9 +341,55 @@ class YoutubeConfig implements YoutubeConfigInterface
     /**
      * {@inheritdoc}
      */
-    public function getYoutubePrivacyTemplate(): string
+    public function getTemplate(): string
     {
-        return $this->youtubePrivacyTemplate;
+        return $this->template ?: 'youtube_video_default';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPrivacyTemplate(): string
+    {
+        return $this->privacyTemplate ?: 'youtube_privacy_default';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModalTemplate(): string
+    {
+        return $this->modalTemplate ?: 'youtube_modalvideo_default';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadline(): array
+    {
+        return StringUtil::deserialize($this->headline, true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadlineText(): string
+    {
+        $headline = $this->getHeadline();
+
+        if (!empty($headline) && isset($headline['value'])) {
+            return $headline['value'];
+        }
+
+        return '';
+    }
+
+    /**
+     * @return PageModel
+     */
+    public function getRootPage(): PageModel
+    {
+        return $this->rootPage;
     }
 
     /**

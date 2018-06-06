@@ -7,7 +7,6 @@
 
 namespace HeimrichHannot\YoutubeBundle\Video;
 
-use Contao\Config;
 use Contao\CoreBundle\Monolog\ContaoContext;
 use Contao\Environment;
 use Contao\FilesModel;
@@ -51,11 +50,12 @@ trait YoutubeVideoTemplateDataTrait
     /**
      * Get the preview image.
      *
-     * @return null|string
+     * @return string|array
      */
-    public function getPreviewImage(): string
+    public function getPreviewImage()
     {
         $path = '';
+        $cache = true;
 
         if (false === $this->hasPreviewImage()) {
             return $path;
@@ -66,11 +66,42 @@ trait YoutubeVideoTemplateDataTrait
             $model = $this->framework->getAdapter(FilesModel::class);
 
             if (null !== ($model = $model->findByUuid($this->getConfig()->getPreviewImage()))) {
-                return $model->path;
+                $path = $model->path;
             }
+        } else {
+            $cache = false === (bool) System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeSkipImageCaching', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]);
+            $path = $this->getYoutubePreviewImage($cache);
         }
 
-        $path = $this->getYoutubePreviewImage(false === (bool) Config::get('youtubeSkipImageCaching'));
+        if ('' !== $path) {
+            $imageData = [];
+
+            // local image
+            if (true === $cache) {
+                System::getContainer()->get('huh.utils.image')->addToTemplateData(
+                    'singleSRC',
+                    'addImage',
+                    $imageData,
+                    [
+                        'singleSRC' => $path,
+                        'addImage' => true,
+                        'size' => $this->getConfig()->getSize(),
+                        'alt' => $this->getConfig()->getYoutube(),
+                    ]
+                );
+            } // base64 image
+            else {
+                $imageData['picture']['lazyload'] = false;
+                $imageData['picture']['img']['src'] = $path;
+                $imageData['picture']['img']['srcset'] = false;
+                $imageData['picture']['sources'] = false;
+                $imageData['picture']['alt'] = $this->getConfig()->getYoutube();
+                $imageData['picture']['img']['width'] = ''; // no dimensions can be set
+                $imageData['picture']['img']['height'] = ''; // no dimensions can be set
+            }
+
+            return $imageData;
+        }
 
         return $path;
     }
@@ -84,7 +115,7 @@ trait YoutubeVideoTemplateDataTrait
      */
     public function getYoutubePreviewImage(bool $cache = true): string
     {
-        if (!($apiKey = Config::get('youtubeApiKey'))) {
+        if (!($apiKey = System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeApiKey', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]))) {
             if (\BackendUser::getInstance()->isAdmin) {
                 throw new InvalidYoutubeApiKeyException('Please specify your API key in the settings if you want to retrieve youtube thumbnails.');
             }
@@ -164,7 +195,7 @@ trait YoutubeVideoTemplateDataTrait
         $data = ['host' => Environment::get('host')];
 
         return System::getContainer()->get('twig')->render(
-            System::getContainer()->get('huh.utils.template')->getTemplate($this->getConfig()->getYoutubePrivacyTemplate()),
+            System::getContainer()->get('huh.utils.template')->getTemplate($this->getConfig()->getPrivacyTemplate()),
             $data
         );
     }

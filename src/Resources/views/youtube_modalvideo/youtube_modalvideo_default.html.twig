@@ -1,0 +1,19 @@
+<div class="youtube_modal">
+    <a data-toggle="modal" href="{{ '{{env::request}}' }}#youtube-modal-{{ id }}" data-target="#youtube-modal-{{ id }}">{{ linkText|trans }}</a>
+
+    <div class="modal fade" id="youtube-modal-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel_{{ id }}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel_{{ id }}">{{ headlineText }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'huh.youtube.button.modal.close'|trans }}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ include('@HeimrichHannotContaoYoutube/partials/partial_youtube_video.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

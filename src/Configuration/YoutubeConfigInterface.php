@@ -8,6 +8,7 @@
 namespace HeimrichHannot\YoutubeBundle\Configuration;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
+use Contao\PageModel;
 
 /**
  * Interface YoutubeConfigInterface.
@@ -106,9 +107,34 @@ interface YoutubeConfigInterface
     public function isYoutubePrivacy(): bool;
 
     /**
+     * @return PageModel|null
+     */
+    public function getRootPage(): ?PageModel;
+
+    /**
      * @return string
      */
-    public function getYoutubePrivacyTemplate(): string;
+    public function getTemplate(): string;
+
+    /**
+     * @return string
+     */
+    public function getPrivacyTemplate(): string;
+
+    /**
+     * @return string
+     */
+    public function getModalTemplate(): string;
+
+    /**
+     * @return array
+     */
+    public function getHeadline(): array;
+
+    /**
+     * @return sting
+     */
+    public function getHeadlineText(): string;
 
     /**
      * @return ContaoFrameworkInterface

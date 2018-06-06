@@ -28,6 +28,7 @@ $play-button-height: 48px;
         height: 100%;
         width: 100%;
         border: 0;
+        z-index: -1;
     }
 
     .video-thumbnail {
@@ -57,15 +58,16 @@ $play-button-height: 48px;
                 }
             }
 
-            .duration{
+            .duration {
                 position: absolute;
                 right: 0;
-                bottom:0;
-                background-color: rgba(0,0,0,.8);
+                bottom: 0;
+                background-color: rgba(0, 0, 0, .8);
                 color: #fff;
                 font-family: "Lucida Console", Monaco, monospace;
                 font-size: .75rem;
                 padding: 4px 7px;
+                border: 1px solid #000;
             }
         }
 
@@ -77,34 +79,32 @@ $play-button-height: 48px;
                 }
             }
         }
+    }
 
-        .video-container {
-            padding-bottom: 56.25%;
-            padding-top: 0;
-            height: 0;
-            iframe {
-                height: 100%;
-                opacity: 1;
-                transition: 500ms opacity linear;
-            }
+    .video-container {
+        padding-bottom: 56.25%;
+        padding-top: 0;
+        height: 0;
+        iframe {
+            height: 100%;
+            opacity: 1;
+            transition: 500ms opacity linear;
+            z-index: 1;
         }
 
         &.video-hidden {
-            .video-container {
-                display: none;
+            display: none;
 
-                iframe {
-                    opacity: 0;
-                }
+            iframe {
+                opacity: 0;
             }
         }
 
         &.initialize {
-            .video-container {
-                height: 0;
-                padding: 0;
-                display: block;
-            }
+            height: 0;
+            padding: 0;
+            display: block;
+
             iframe {
                 height: 0;
             }
@@ -117,7 +117,7 @@ $play-button-height: 48px;
         right: 0;
         bottom: 0;
         left: 0;
-        z-index: 1050;
+        z-index: 999999;
         overflow: hidden;
         outline: 0;
         opacity: 0;

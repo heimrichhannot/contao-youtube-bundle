@@ -38,14 +38,15 @@
   height: 100%;
   width: 100%;
   border: 0;
+  z-index: -1;
 }
-/* line 33, contao-youtube-bundle.scss */
+/* line 34, contao-youtube-bundle.scss */
 .youtube_default .video-thumbnail,
 .youtube_player .video-thumbnail,
 .youtube_image .video-thumbnail {
   cursor: pointer;
 }
-/* line 36, contao-youtube-bundle.scss */
+/* line 37, contao-youtube-bundle.scss */
 .youtube_default .video-thumbnail .image_container,
 .youtube_player .video-thumbnail .image_container,
 .youtube_image .video-thumbnail .image_container {
@@ -53,7 +54,7 @@
   margin: 0;
   display: inline-block;
 }
-/* line 41, contao-youtube-bundle.scss */
+/* line 42, contao-youtube-bundle.scss */
 .youtube_default .video-thumbnail .image_container .play-button,
 .youtube_player .video-thumbnail .image_container .play-button,
 .youtube_image .video-thumbnail .image_container .play-button {
@@ -70,14 +71,14 @@
   transition: opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
 }
 @media print {
-  /* line 41, contao-youtube-bundle.scss */
+  /* line 42, contao-youtube-bundle.scss */
   .youtube_default .video-thumbnail .image_container .play-button,
   .youtube_player .video-thumbnail .image_container .play-button,
   .youtube_image .video-thumbnail .image_container .play-button {
     display: none;
   }
 }
-/* line 60, contao-youtube-bundle.scss */
+/* line 61, contao-youtube-bundle.scss */
 .youtube_default .video-thumbnail .image_container .duration,
 .youtube_player .video-thumbnail .image_container .duration,
 .youtube_image .video-thumbnail .image_container .duration {
@@ -89,54 +90,56 @@
   font-family: "Lucida Console", Monaco, monospace;
   font-size: .75rem;
   padding: 4px 7px;
+  border: 1px solid #000;
 }
-/* line 74, contao-youtube-bundle.scss */
+/* line 76, contao-youtube-bundle.scss */
 .youtube_default .video-thumbnail:hover .image_container .play-button,
 .youtube_player .video-thumbnail:hover .image_container .play-button,
 .youtube_image .video-thumbnail:hover .image_container .play-button {
   opacity: 1;
   background-image: url(/bundles/heimrichhannotcontaoyoutube/img/yt_icon_rgb.svg);
 }
-/* line 81, contao-youtube-bundle.scss */
-.youtube_default .video-thumbnail .video-container,
-.youtube_player .video-thumbnail .video-container,
-.youtube_image .video-thumbnail .video-container {
+/* line 84, contao-youtube-bundle.scss */
+.youtube_default .video-container,
+.youtube_player .video-container,
+.youtube_image .video-container {
   padding-bottom: 56.25%;
   padding-top: 0;
   height: 0;
 }
-/* line 85, contao-youtube-bundle.scss */
-.youtube_default .video-thumbnail .video-container iframe,
-.youtube_player .video-thumbnail .video-container iframe,
-.youtube_image .video-thumbnail .video-container iframe {
+/* line 88, contao-youtube-bundle.scss */
+.youtube_default .video-container iframe,
+.youtube_player .video-container iframe,
+.youtube_image .video-container iframe {
   height: 100%;
   opacity: 1;
   transition: 500ms opacity linear;
+  z-index: 1;
 }
-/* line 93, contao-youtube-bundle.scss */
-.youtube_default .video-thumbnail.video-hidden .video-container,
-.youtube_player .video-thumbnail.video-hidden .video-container,
-.youtube_image .video-thumbnail.video-hidden .video-container {
+/* line 95, contao-youtube-bundle.scss */
+.youtube_default .video-container.video-hidden,
+.youtube_player .video-container.video-hidden,
+.youtube_image .video-container.video-hidden {
   display: none;
 }
-/* line 96, contao-youtube-bundle.scss */
-.youtube_default .video-thumbnail.video-hidden .video-container iframe,
-.youtube_player .video-thumbnail.video-hidden .video-container iframe,
-.youtube_image .video-thumbnail.video-hidden .video-container iframe {
+/* line 98, contao-youtube-bundle.scss */
+.youtube_default .video-container.video-hidden iframe,
+.youtube_player .video-container.video-hidden iframe,
+.youtube_image .video-container.video-hidden iframe {
   opacity: 0;
 }
 /* line 103, contao-youtube-bundle.scss */
-.youtube_default .video-thumbnail.initialize .video-container,
-.youtube_player .video-thumbnail.initialize .video-container,
-.youtube_image .video-thumbnail.initialize .video-container {
+.youtube_default .video-container.initialize,
+.youtube_player .video-container.initialize,
+.youtube_image .video-container.initialize {
   height: 0;
   padding: 0;
   display: block;
 }
 /* line 108, contao-youtube-bundle.scss */
-.youtube_default .video-thumbnail.initialize iframe,
-.youtube_player .video-thumbnail.initialize iframe,
-.youtube_image .video-thumbnail.initialize iframe {
+.youtube_default .video-container.initialize iframe,
+.youtube_player .video-container.initialize iframe,
+.youtube_image .video-container.initialize iframe {
   height: 0;
 }
 /* line 114, contao-youtube-bundle.scss */
@@ -148,7 +151,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 999999;
   overflow: hidden;
   outline: 0;
   opacity: 0;

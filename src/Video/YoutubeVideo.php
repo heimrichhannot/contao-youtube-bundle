@@ -8,6 +8,7 @@
 namespace HeimrichHannot\YoutubeBundle\Video;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
+use Contao\StringUtil;
 use Contao\System;
 use Contao\Template;
 use HeimrichHannot\YoutubeBundle\Configuration\YoutubeConfigInterface;
@@ -25,11 +26,11 @@ class YoutubeVideo implements YoutubeVideoInterface
     const VIDEO_IMAGE_CACHE_EXPIRE = 604800; // 7 days
 
     /**
-     * Youtube twig template name.
+     * Current template data.
      *
-     * @var string
+     * @var array
      */
-    protected $template = 'youtube_video_default';
+    protected $templateData = [];
 
     /**
      * Youtube config.
@@ -64,8 +65,10 @@ class YoutubeVideo implements YoutubeVideoInterface
             throw new InvalidVideoConfigException('Invalid video configuration, no video data present');
         }
 
+        $template = $this->getConfig()->isFullSize() ? $this->getConfig()->getModalTemplate() : $this->getConfig()->getTemplate();
+
         return System::getContainer()->get('twig')->render(
-            System::getContainer()->get('huh.utils.template')->getTemplate($this->getTemplate()),
+            System::getContainer()->get('huh.utils.template')->getTemplate($template),
             $this->getTemplateData()
         );
     }
@@ -85,27 +88,12 @@ class YoutubeVideo implements YoutubeVideoInterface
     /**
      * {@inheritdoc}
      */
-    public function setTemplate(string $template): YoutubeVideoInterface
-    {
-        $this->template = $template;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTemplate(): string
-    {
-        return $this->template;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setConfig(YoutubeConfigInterface $config): YoutubeVideoInterface
     {
         $this->config = $config;
+
+        $this->templateData = System::getContainer()->get('huh.utils.class')->jsonSerialize($this, System::getContainer()->get('huh.utils.class')->jsonSerialize($config));
+        $this->templateData['id'] = StringUtil::standardize($config->getYoutube());
 
         return $this;
     }
@@ -131,6 +119,6 @@ class YoutubeVideo implements YoutubeVideoInterface
      */
     protected function getTemplateData(): array
     {
-        return System::getContainer()->get('huh.utils.class')->jsonSerialize($this, System::getContainer()->get('huh.utils.class')->jsonSerialize($this->getConfig()));
+        return $this->templateData;
     }
 }

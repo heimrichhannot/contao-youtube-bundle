@@ -19,7 +19,7 @@ $dc = &$GLOBALS['TL_DCA']['tl_news'];
  */
 $dc['palettes']['default']        = str_replace('{image_legend}', '{youtube_legend},addYouTube,relatedYoutubeNews;{image_legend}', $dc['palettes']['default']);
 $dc['subpalettes']['addYouTube']  =
-    'youtube,autoplay,videoDuration,ytHd,ytShowRelated,ytModestBranding,ytShowInfo,youtubeFullsize,youtubeLinkText,addPreviewImage,posterSRC,addPlayButton';
+    'youtube,autoplay,videoDuration,ytShowRelated,ytModestBranding,ytShowInfo,youtubeFullsize,youtubeLinkText,addPreviewImage,posterSRC,addPlayButton';
 $dc['palettes']['__selector__'][] = 'addYouTube';
 
 /**
