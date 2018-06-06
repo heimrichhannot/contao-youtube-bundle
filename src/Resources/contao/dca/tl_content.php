@@ -12,6 +12,8 @@
 
 $dc = &$GLOBALS['TL_DCA']['tl_content'];
 
+$dc['config']['onload_callback'][] = ['huh.youtube.backend.content', 'modifyDca'];
+
 /**
  * Selectors
  */
@@ -22,6 +24,7 @@ $dc['palettes']['__selector__'][] = 'addPreviewImage';
  */
 $dc['palettes']['youtube'] = '{title_legend},type,name,headline;
 	{video_legend},youtube,autoplay,videoDuration,ytHd,ytShowRelated,ytModestBranding,ytShowInfo,youtubeFullsize,youtubeLinkText;
+	{text_legend},text;
 	{previewImage_legend},addPreviewImage;
 	{expert_legend:hide},youtube_template,youtube_modal_template,cssID,space;';
 
@@ -35,21 +38,21 @@ $dc['subpalettes']['addPreviewImage'] = 'posterSRC,size,addPlayButton';
  * Fields
  */
 $arrFields = [
-    'addPreviewImage' => [
+    'addPreviewImage'        => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['addPreviewImage'],
         'exclude'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['submitOnChange' => true, 'tl_class' => 'clr'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-    'addPlayButton'   => [
+    'addPlayButton'          => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['addPlayButton'],
         'exclude'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['tl_class' => 'w50'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-    'videoDuration' => [
+    'videoDuration'          => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['videoDuration'],
         'exclude'   => true,
         'search'    => true,
@@ -59,15 +62,14 @@ $arrFields = [
         'eval'      => ['maxlength' => 255, 'tl_class' => 'w50 clr'],
         'sql'       => "varchar(255) NOT NULL default ''",
     ],
-    'ytShowRelated' => [
+    'ytShowRelated'          => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['ytShowRelated'],
         'exclude'   => true,
         'inputType' => 'checkbox',
         'eval'      => ['tl_class' => 'w50'],
         'sql'       => "char(1) NOT NULL default ''",
     ],
-
-    'ytModestBranding' => [
+    'ytModestBranding'       => [
         'label'     => &$GLOBALS['TL_LANG']['tl_content']['ytModestBranding'],
         'exclude'   => true,
         'inputType' => 'checkbox',

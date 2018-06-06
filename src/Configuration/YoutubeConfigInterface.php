@@ -132,9 +132,14 @@ interface YoutubeConfigInterface
     public function getHeadline(): array;
 
     /**
-     * @return sting
+     * @return string
      */
     public function getHeadlineText(): string;
+
+    /**
+     * @return string
+     */
+    public function getText(): string;
 
     /**
      * @return ContaoFrameworkInterface

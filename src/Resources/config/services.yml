@@ -9,3 +9,8 @@ services:
         arguments:
           - "@contao.framework"
         public: true
+    huh.youtube.backend.content:
+        class: HeimrichHannot\YoutubeBundle\Backend\Content
+        arguments:
+          - "@contao.framework"
+        public: true

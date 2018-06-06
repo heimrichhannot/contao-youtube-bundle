@@ -4,31 +4,34 @@ $play-button-height: 48px;
 .youtube_default,
 .youtube_player,
 .youtube_image {
-    position: relative;
-    display: block;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    padding-bottom: 56.25%; /* 16:9 */
 
-    @media print {
-        padding-bottom: 0;
-        height: auto;
-        width: auto;
-        overflow: visible;
-    }
+    .video-wrapper {
+        position: relative;
+        display: block;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%; /* 16:9 */
 
-    iframe,
-    object,
-    embed {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        height: 100%;
-        width: 100%;
-        border: 0;
-        z-index: -1;
+        @media print {
+            padding-bottom: 0;
+            height: auto;
+            width: auto;
+            overflow: visible;
+        }
+
+        iframe,
+        object,
+        embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            z-index: -1;
+        }
     }
 
     .video-thumbnail {
@@ -129,5 +132,9 @@ $play-button-height: 48px;
             opacity: 1;
             height: auto;
         }
+    }
+
+    .video-text {
+        margin-top: 1rem;
     }
 }

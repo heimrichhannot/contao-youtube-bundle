@@ -113,11 +113,9 @@ class YoutubeConfig implements YoutubeConfigInterface
     protected $headline = '';
 
     /**
-     * Current config data.
-     *
-     * @var array
+     * @var string
      */
-    protected $data = [];
+    protected $text = '';
 
     /**
      * Current root page.
@@ -368,6 +366,14 @@ class YoutubeConfig implements YoutubeConfigInterface
     public function getHeadline(): array
     {
         return StringUtil::deserialize($this->headline, true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getText(): string
+    {
+        return $this->text;
     }
 
     /**

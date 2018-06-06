@@ -1,15 +1,16 @@
 <!-- indexer::stop -->
 <div class="youtube_default">
-    {% if hasPreviewImage|default() and previewImage|default() %}
-        <div class="video-thumbnail{% if hasPreviewImage|default() %} video-hidden{% endif %}" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}>
-            <figure class="image_container">
-                {% if previewImage.picture|default() %}
-                    {{ include('@HeimrichHannotContaoUtils/picture.html.twig', previewImage.picture) }}
-                {% else %}
-                    <img src="{{ previewImage }}" alt="youtube-preview-image">
-                {% endif %}
-                {% if videoDuration|default() %}
-                    <span class="duration">
+    <div class="video-wrapper">
+        {% if hasPreviewImage|default() and previewImage|default() %}
+            <div class="video-thumbnail{% if hasPreviewImage|default() %} video-hidden{% endif %}" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}>
+                <figure class="image_container">
+                    {% if previewImage.picture|default() %}
+                        {{ include('@HeimrichHannotContaoUtils/picture.html.twig', previewImage.picture) }}
+                    {% else %}
+                        <img src="{{ previewImage }}" alt="youtube-preview-image">
+                    {% endif %}
+                    {% if videoDuration|default() %}
+                        <span class="duration">
                     {% if videoDuration matches '/^\\d+$/' %}
                         {% if videoDuration/3600 >=1 %}
                             {{ videoDuration|date('H:i:s') }}
@@ -20,22 +21,28 @@
                         {{ videoDuration }}
                     {% endif %}
                     </span>
+                    {% endif %}
+                    {% if playButton|default() %}
+                        <span class="play-button"></span>
+                    {% endif %}
+                </figure>
+                {% if youtubePrivacy|default() %}
+                    {{ privacy|raw }}
                 {% endif %}
-                {% if playButton|default() %}
-                    <span class="play-button"></span>
-                {% endif %}
-            </figure>
-            {% if youtubePrivacy|default() %}
-                {{ privacy|raw }}
+            </div>
+        {% endif %}
+        <div class="video-container{% if hasPreviewImage|default() %} video-hidden{% endif %}">
+            {% if hasPreviewImage|default() %}
+                <iframe src="about:blank" data-src="{{ src }}" allowfullscreen frameborder="0"></iframe>
+            {% else %}
+                <iframe src="{{ src }}" allowfullscreen frameborder="0"></iframe>
             {% endif %}
         </div>
-    {% endif %}
-    <div class="video-container{% if hasPreviewImage|default() %} video-hidden{% endif %}">
-        {% if hasPreviewImage|default() %}
-            <iframe src="about:blank" data-src="{{ src }}" allowfullscreen frameborder="0"></iframe>
-        {% else %}
-            <iframe src="{{ src }}" allowfullscreen frameborder="0"></iframe>
-        {% endif %}
     </div>
+    {% if text|default() %}
+        <div class="video-text">
+            {{ text|raw }}
+        </div>
+    {% endif %}
 </div>
 <!-- indexer::continue -->
