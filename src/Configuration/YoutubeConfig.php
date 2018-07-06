@@ -207,7 +207,15 @@ class YoutubeConfig implements YoutubeConfigInterface
         $this->rootPage = $root;
 
         // array_filter() : do not overwrite empty values
-        $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, 'strval'));
+        $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, function ($value) {
+            try {
+                if ((string) $value) {
+                    return true;
+                }
+            } catch (\Exception $e) {
+                return false;
+            }
+        }));
 
         foreach ($data as $key => $default) {
             $this->{$key} = $data[$key] ?? $default;

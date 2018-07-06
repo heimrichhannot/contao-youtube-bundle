@@ -1,7 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.2.0] - 2018-07-04
+## [1.2.1] - 2018-07-06
+
+#### Fixed
+- error when data array added to youtube config containing element can't be converted to string
+
+## [1.2.0] - 2018-07-06
 
 #### Added 
 - ConfigElement for ListBundle and ReaderBundle
