@@ -7,6 +7,7 @@
 
 namespace HeimrichHannot\YoutubeBundle\Video;
 
+use Contao\BackendUser;
 use Contao\CoreBundle\Monolog\ContaoContext;
 use Contao\Environment;
 use Contao\FilesModel;
@@ -116,7 +117,7 @@ trait YoutubeVideoTemplateDataTrait
     public function getYoutubePreviewImage(bool $cache = true): string
     {
         if (!($apiKey = System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeApiKey', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]))) {
-            if (\BackendUser::getInstance()->isAdmin) {
+            if (BackendUser::getInstance()->isAdmin) {
                 throw new InvalidYoutubeApiKeyException('Please specify your API key in the settings if you want to retrieve youtube thumbnails.');
             }
 

@@ -1,13 +1,34 @@
-huh.youtube.title.play: Video abspielen
-huh.youtube.title.privacy: Datenschutzhinweis
-huh.youtube.text.privacy: Wenn Sie unsere YouTube-Videos abspielen, werden Informationen über Ihre Nutzung von YouTube an den Betreiber in den USA übertragen und unter Umständen gespeichert.
-huh.youtube.label.privacy.autoplay: Diese Entscheidung für die Nutzung von Youtube-Videos auf %host% dauerhaft speichern.
-huh.youtube.button.privacy.cancel: abbrechen
-huh.youtube.button.modal.close: Schließen
-
+huh.youtube:
+  title:
+    play: Video abspielen
+    privacy: Datenschutzhinweis
+  text.privacy: Wenn Sie unsere YouTube-Videos abspielen, werden Informationen über Ihre Nutzung von YouTube an den Betreiber in den USA übertragen und unter Umständen gespeichert.
+  label.privacy.autoplay: Diese Entscheidung für die Nutzung von Youtube-Videos auf %host% dauerhaft speichern.
+  button:
+    privacy.cancel: abbrechen
+    modal.close: Schließen
 
 # modal link text
-huh.youtube.modal.link.default: Video anzeigen
-huh.youtube.modal.link.play: Video abspielen
-huh.youtube.modal.link.window: Video in neuen Fenster öffnen
-huh.youtube.modal.link.article: Videobeitrag
+  modal.link:
+    default: Video anzeigen
+    play: Video abspielen
+    window: Video in neuen Fenster öffnen
+    article: Videobeitrag
+
+# DCA
+huh.list:
+  tl_list_config_element.field:
+    typeSelectorField.youtube:
+      name: YouTube Selektor Element
+      desc: Wählen Sie hier das Feld aus, welches den boolschen Selektor für das YouTube Feld enthält.
+    typeField.youtube:
+      name: YouTube Feld
+      desc: Wählen Sie hier das Feld aus, welches die ID des YouTube Video enthält.
+huh.reader:
+  tl_reader_config_element.field:
+    typeSelectorField.youtube:
+      name: YouTube Selektor Element
+      desc: Wählen Sie hier das Feld aus, welches den boolschen Selektor für das YouTube Feld enthält.
+    typeField.youtube:
+      name: YouTube Feld
+      desc: Wählen Sie hier das Feld aus, welches die ID des YouTube Video enthält.

@@ -5,9 +5,9 @@
             <div class="video-thumbnail{% if hasPreviewImage|default() %} video-hidden{% endif %}" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}>
                 <figure class="image_container">
                     {% if previewImage.picture|default() %}
-                        {{ include('@HeimrichHannotContaoUtils/picture.html.twig', previewImage.picture) }}
+                        {{ include('@HeimrichHannotContaoUtils/picture.html.twig', previewImage) }}
                     {% else %}
-                        <img src="{{ previewImage }}" alt="youtube-preview-image">
+                        <img src="{{ previewImage.src }}" alt="youtube-preview-image">
                     {% endif %}
                     {% if videoDuration|default() %}
                         <span class="duration">

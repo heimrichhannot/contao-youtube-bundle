@@ -1,0 +1,34 @@
+huh.youtube:
+  title:
+    play: Play video
+    privacy: Privacy notice
+  text.privacy: When you play our YouTube videos, information about your usage of YouTube is transmitted to the operator in the USA and may be stored.
+  label.privacy.autoplay: Save this decision for using YouTube video on %host% permanently.
+  button:
+    privacy.cancel: cancel
+    modal.close: Close
+
+# modal link text
+  modal.link:
+    default: Show video
+    play: Play video
+    window: Open video in new window
+    article: video post
+
+# DCA
+huh.list:
+  tl_list_config_element.field:
+    typeSelectorField.youtube:
+      name: YouTube selector element
+      desc: Choose the field containing the boolean selector for the youtube field.
+    typeField.youtube:
+      name: YouTube field
+      desc: Choose the field containing the Youtube Video ID.
+huh.reader:
+  tl_reader_config_element.field:
+    typeSelectorField.youtube:
+      name: YouTube selector element
+      desc: Choose the field containing the boolean selector for the youtube field.
+    typeField.youtube:
+      name: YouTube field
+      desc: Choose the field containing the Youtube Video ID.

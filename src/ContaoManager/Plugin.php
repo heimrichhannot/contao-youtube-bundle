@@ -39,11 +39,25 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface
      */
     public function getExtensionConfig($extensionName, array $extensionConfigs, ContainerBuilder $container)
     {
-        return ContainerUtil::mergeConfigFile(
+        $extensionConfigs = ContainerUtil::mergeConfigFile(
             'huh_encore',
             $extensionName,
             $extensionConfigs,
             __DIR__.'/../Resources/config/config_encore.yml'
         );
+        $extensionConfigs = ContainerUtil::mergeConfigFile(
+            'huh_list',
+            $extensionName,
+            $extensionConfigs,
+            __DIR__.'/../Resources/config/huh_list.yml'
+        );
+        $extensionConfigs = ContainerUtil::mergeConfigFile(
+            'huh_reader',
+            $extensionName,
+            $extensionConfigs,
+            __DIR__.'/../Resources/config/huh_reader.yml'
+        );
+
+        return $extensionConfigs;
     }
 }

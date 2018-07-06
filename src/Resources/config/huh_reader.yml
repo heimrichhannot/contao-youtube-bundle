@@ -1,0 +1,4 @@
+huh:
+  reader:
+    config_element_types:
+      - { name: youtube, class: HeimrichHannot\YoutubeBundle\ConfigElementType\YoutubeReaderConfigElementType }

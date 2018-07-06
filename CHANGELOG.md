@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2018-07-04
+
+#### Added 
+- ConfigElement for ListBundle and ReaderBundle
+- some english translation 
+
 ## [1.1.2] - 2018-06-29
 
 #### Fixed
