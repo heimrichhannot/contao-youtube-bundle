@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.3] - 2018-07-25
+
+#### Fixed
+- reader config element localization issue
+
+## [1.2.2] - 2018-07-25
+
+#### Fixed
+- reader config element localization issue
+
 ## [1.2.1] - 2018-07-06
 
 #### Fixed
