@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.4] - 2018-07-30
+
+#### Fixed
+- php cs fixer config
+- gitignore -> vendor
+
 ## [1.2.3] - 2018-07-25
 
 #### Fixed
