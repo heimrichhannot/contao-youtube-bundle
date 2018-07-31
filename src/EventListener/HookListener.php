@@ -65,6 +65,17 @@ class HookListener
             return;
         }
 
-        System::getContainer()->get('huh.youtube.video')->setConfig(System::getContainer()->get('huh.youtube.config')->setData($module->getModel()->row()))->addToTemplate($template);
+        $data = $module->getModel()->row();
+
+        $data['addYouTube'] = $news['addYouTube'];
+        $data['youtube'] = $news['youtube'];
+        $data['autoplay'] = $news['autoplay'];
+        $data['videoDuration'] = $news['videoDuration'];
+        $data['youtubeFullsize'] = $news['youtubeFullsize'];
+        $data['addPreviewImage'] = $news['addPreviewImage'];
+        $data['posterSRC'] = $news['posterSRC'];
+        $data['addPlayButton'] = $news['addPlayButton'];
+
+        System::getContainer()->get('huh.youtube.video')->setConfig(System::getContainer()->get('huh.youtube.config')->setData($data))->addToTemplate($template);
     }
 }
