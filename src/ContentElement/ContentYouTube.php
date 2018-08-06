@@ -11,6 +11,7 @@ namespace HeimrichHannot\YoutubeBundle\ContentElement;
 use Contao\BackendTemplate;
 use Contao\ContentElement;
 use Contao\System;
+use HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory;
 
 class ContentYouTube extends ContentElement
 {
@@ -38,8 +39,8 @@ class ContentYouTube extends ContentElement
      */
     protected function compile()
     {
-        System::getContainer()->get('huh.youtube.video')->setConfig(
-            System::getContainer()->get('huh.youtube.config')->setData($this->objModel->row())
-        )->addToTemplate($this->Template);
+        System::getContainer()->get('huh.youtube.videocreator')
+            ->createVideo(ConfigFactory::CONTEXT_CONTENT_ELEMENT, $this->objModel->row())
+            ->addToTemplate($this->Template);
     }
 }

@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2018-08-06
+
+#### Changes
+* refactored config- and videocreation to factory services
+* removed config and video services
+
 ## [1.2.5] - 2018-07-31
 
 #### Fixed

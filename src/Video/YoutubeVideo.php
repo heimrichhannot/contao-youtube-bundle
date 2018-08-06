@@ -10,10 +10,13 @@ namespace HeimrichHannot\YoutubeBundle\Video;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\StringUtil;
-use Contao\System;
 use Contao\Template;
+use HeimrichHannot\RequestBundle\Component\HttpFoundation\Request;
+use HeimrichHannot\UtilsBundle\Classes\ClassUtil;
+use HeimrichHannot\UtilsBundle\Template\TemplateUtil;
 use HeimrichHannot\YoutubeBundle\Configuration\YoutubeConfigInterface;
 use HeimrichHannot\YoutubeBundle\Exception\InvalidVideoConfigException;
+use Twig_Environment;
 
 class YoutubeVideo implements YoutubeVideoInterface
 {
@@ -46,15 +49,43 @@ class YoutubeVideo implements YoutubeVideoInterface
      * @var ContaoFrameworkInterface
      */
     private $framework;
+    /**
+     * @var Twig_Environment
+     */
+    private $twig;
+    /**
+     * @var TemplateUtil
+     */
+    private $templateUtil;
+    /**
+     * @var ClassUtil
+     */
+    private $classUtil;
+    /**
+     * @var Request
+     */
+    private $request;
 
     /**
      * Constructor.
      *
-     * @param ContaoFrameworkInterface $framework
+     * @param ContaoFrameworkInterface    $framework
+     * @param Twig_Environment            $twig
+     * @param Request                     $request
+     * @param TemplateUtil                $templateUtil
+     * @param ClassUtil                   $classUtil
+     * @param YoutubeConfigInterface|null $config
      */
-    public function __construct(ContaoFrameworkInterface $framework)
+    public function __construct(ContaoFrameworkInterface $framework, Twig_Environment $twig, Request $request, TemplateUtil $templateUtil, ClassUtil $classUtil, YoutubeConfigInterface $config = null)
     {
         $this->framework = $framework;
+        $this->twig = $twig;
+        $this->templateUtil = $templateUtil;
+        $this->classUtil = $classUtil;
+        $this->request = $request;
+        if ($config) {
+            $this->setConfig($config);
+        }
     }
 
     /**
@@ -68,8 +99,8 @@ class YoutubeVideo implements YoutubeVideoInterface
 
         $template = $this->getConfig()->isFullSize() ? $this->getConfig()->getModalTemplate() : $this->getConfig()->getTemplate();
 
-        return System::getContainer()->get('twig')->render(
-            System::getContainer()->get('huh.utils.template')->getTemplate($template),
+        return $this->twig->render(
+            $this->templateUtil->getTemplate($template),
             $this->getTemplateData()
         );
     }
@@ -93,7 +124,7 @@ class YoutubeVideo implements YoutubeVideoInterface
     {
         $this->config = $config;
 
-        $this->templateData = System::getContainer()->get('huh.utils.class')->jsonSerialize($this, System::getContainer()->get('huh.utils.class')->jsonSerialize($config));
+        $this->templateData = $this->classUtil->jsonSerialize($this, $this->classUtil->jsonSerialize($config));
         $this->templateData['id'] = StringUtil::standardize($config->getYoutube());
 
         return $this;
@@ -112,7 +143,7 @@ class YoutubeVideo implements YoutubeVideoInterface
      */
     public function startPlay(): bool
     {
-        return $this->getConfig()->isAutoplay() || $this->getConfig()->getYoutube() === System::getContainer()->get('huh.request')->getGet('autoplay');
+        return $this->getConfig()->isAutoplay() || $this->getConfig()->getYoutube() === $this->request->getGet('autoplay');
     }
 
     /**

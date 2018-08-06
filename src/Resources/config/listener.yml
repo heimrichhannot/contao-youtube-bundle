@@ -1,6 +1,6 @@
 services:
+    _defaults:
+        autowire: true
+        public: true
     huh.youtube.listener.hooks:
         class: HeimrichHannot\YoutubeBundle\EventListener\HookListener
-        arguments:
-          - "@contao.framework"
-        public: true

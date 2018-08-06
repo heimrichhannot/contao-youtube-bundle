@@ -10,11 +10,11 @@ namespace HeimrichHannot\YoutubeBundle\ConfigElementType;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\FrontendTemplate;
+use Contao\System;
 use HeimrichHannot\ReaderBundle\ConfigElementType\ConfigElementType;
 use HeimrichHannot\ReaderBundle\Item\ItemInterface;
 use HeimrichHannot\ReaderBundle\Model\ReaderConfigElementModel;
-use HeimrichHannot\YoutubeBundle\Configuration\YoutubeTwigConfig;
-use HeimrichHannot\YoutubeBundle\Video\YoutubeVideo;
+use HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory;
 
 class YoutubeReaderConfigElementType implements ConfigElementType
 {
@@ -44,10 +44,7 @@ class YoutubeReaderConfigElementType implements ConfigElementType
             'youtube' => $typeData,
         ];
 
-        $video = new YoutubeVideo($this->framework);
-        $videoConfig = new YoutubeTwigConfig($this->framework);
-        $videoConfig->setData(array_merge($item->getRaw(), $configData));
-        $video->setConfig($videoConfig);
+        $video = System::getContainer()->get('huh.youtube.videocreator')->createVideo(ConfigFactory::CONTEXT_LIST_BUNDLE, array_merge($item->getRaw(), $configData));
         $template = new FrontendTemplate();
         $video->addToTemplate($template);
         $templateData = $template->getData();

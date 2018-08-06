@@ -1,13 +1,10 @@
 services:
-    huh.youtube.config:
-        class: HeimrichHannot\YoutubeBundle\Configuration\YoutubeConfig
-        arguments:
-          - "@contao.framework"
-        public: true
-    huh.youtube.video:
-        class: HeimrichHannot\YoutubeBundle\Video\YoutubeVideo
-        arguments:
-          - "@contao.framework"
+    huh.youtube.configurator:
+        class: HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory
+        autowire: true
+    huh.youtube.videocreator:
+        class: HeimrichHannot\YoutubeBundle\Video\VideoFactory
+        autowire: true
         public: true
     huh.youtube.backend.content:
         class: HeimrichHannot\YoutubeBundle\Backend\Content

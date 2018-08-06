@@ -135,9 +135,12 @@ class YoutubeConfig implements YoutubeConfigInterface
      *
      * @param ContaoFrameworkInterface $framework
      */
-    public function __construct(ContaoFrameworkInterface $framework)
+    public function __construct(ContaoFrameworkInterface $framework, array $config = null)
     {
         $this->framework = $framework;
+        if ($config) {
+            $this->setData($config);
+        }
     }
 
     /**
@@ -213,6 +216,8 @@ class YoutubeConfig implements YoutubeConfigInterface
                 if ((string) $value) {
                     return true;
                 }
+
+                return false;
             } catch (\Exception $e) {
                 return false;
             }

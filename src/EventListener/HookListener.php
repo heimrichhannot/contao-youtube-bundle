@@ -12,8 +12,9 @@ use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\Date;
 use Contao\Module;
 use Contao\NewsModel;
-use Contao\System;
 use Contao\Template;
+use HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory;
+use HeimrichHannot\YoutubeBundle\Video\VideoFactory;
 
 class HookListener
 {
@@ -21,15 +22,25 @@ class HookListener
      * @var ContaoFrameworkInterface
      */
     private $framework;
+    /**
+     * @var ConfigFactory
+     */
+    private $configFactory;
+    /**
+     * @var VideoFactory
+     */
+    private $videoFactory;
 
     /**
      * Constructor.
      *
      * @param ContaoFrameworkInterface $framework
      */
-    public function __construct(ContaoFrameworkInterface $framework)
+    public function __construct(ContaoFrameworkInterface $framework, VideoFactory $videoFactory, ConfigFactory $configFactory)
     {
         $this->framework = $framework;
+        $this->configFactory = $configFactory;
+        $this->videoFactory = $videoFactory;
     }
 
     public function parseNewsArticlesHook(Template $template, array $news, Module $module)
@@ -76,6 +87,7 @@ class HookListener
         $data['posterSRC'] = $news['posterSRC'];
         $data['addPlayButton'] = $news['addPlayButton'];
 
-        System::getContainer()->get('huh.youtube.video')->setConfig(System::getContainer()->get('huh.youtube.config')->setData($data))->addToTemplate($template);
+        $this->videoFactory->createVideo(ConfigFactory::CONTEXT_FRONTEND_MODULE, $data)
+            ->addToTemplate($template);
     }
 }

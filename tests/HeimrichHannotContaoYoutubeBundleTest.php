@@ -6,7 +6,7 @@
  * @license LGPL-3.0-or-later
  */
 
-namespace HeimrichHannot\YoutubeBundle\Tests;
+namespace HeimrichHannot\YoutubeBundle\Test;
 
 use Contao\TestCase\ContaoTestCase;
 use HeimrichHannot\YoutubeBundle\DependencyInjection\HeimrichHannotContaoYoutubeExtension;
