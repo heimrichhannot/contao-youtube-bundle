@@ -93,7 +93,7 @@ class YoutubeVideo implements YoutubeVideoInterface
      */
     public function generate(): string
     {
-        if (false === $this->config->hasVideo()) {
+        if (false === $this->getConfig()->hasVideo()) {
             throw new InvalidVideoConfigException('Invalid video configuration, no video data present');
         }
 

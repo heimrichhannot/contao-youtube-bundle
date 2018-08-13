@@ -72,7 +72,7 @@ class HookListener
             $template->addPlayButton = $relatedNews->addPlayButton;
         }
 
-        if (!$news['addYouTube']) {
+        if (!$news['addYouTube'] || $news['youtube']) {
             return;
         }
 

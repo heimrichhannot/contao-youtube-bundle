@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2018-08-13
+
+#### Fixed
+* check on video in `HeimrichHannot\YoutubeBundle\Video\YoutubeVideo::generate`
+* check if youtube id is set in `HeimrichHannot\YoutubeBundle\EventListener\HookListener`
+
 ## [1.3.0] - 2018-08-06
 
 #### Changes
