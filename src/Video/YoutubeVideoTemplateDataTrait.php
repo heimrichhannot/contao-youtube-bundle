@@ -19,6 +19,8 @@ use Psr\Log\LogLevel;
 
 trait YoutubeVideoTemplateDataTrait
 {
+    protected static $privacyCount = 0;
+
     /**
      * Get the youtube src url.
      */
@@ -194,7 +196,7 @@ trait YoutubeVideoTemplateDataTrait
             return '';
         }
 
-        $data = ['host' => Environment::get('host')];
+        $data = ['host' => Environment::get('host'), 'count' => static::$privacyCount++];
 
         return System::getContainer()->get('twig')->render(
             System::getContainer()->get('huh.utils.template')->getTemplate($this->getConfig()->getPrivacyTemplate()),

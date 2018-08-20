@@ -1,17 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] - 2018-08-20
+
+#### Fixed
+- privacy modal template
+
+#### Added
+- privacy modal custom bs4 controls template
+
 ## [1.3.1] - 2018-08-13
 
 #### Fixed
-* check on video in `HeimrichHannot\YoutubeBundle\Video\YoutubeVideo::generate`
-* check if youtube id is set in `HeimrichHannot\YoutubeBundle\EventListener\HookListener`
+- check on video in `HeimrichHannot\YoutubeBundle\Video\YoutubeVideo::generate`
+- check if youtube id is set in `HeimrichHannot\YoutubeBundle\EventListener\HookListener`
 
 ## [1.3.0] - 2018-08-06
 
 #### Changes
-* refactored config- and videocreation to factory services
-* removed config and video services
+- refactored config- and videocreation to factory services
+- removed config and video services
 
 ## [1.2.5] - 2018-07-31
 
