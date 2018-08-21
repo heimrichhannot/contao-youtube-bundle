@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.3] - 2018-08-21
+
+#### Fixed
+- event listener issue in news lists
+
 ## [1.3.2] - 2018-08-20
 
 #### Fixed
