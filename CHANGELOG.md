@@ -1,10 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.3.3] - 2018-08-21
+## [2.0.1] - 2018-08-22
 
 #### Fixed
-- event listener issue in news lists
+- issue in privacy modal
 
 ## [2.0.0] - 2018-08-22
 
