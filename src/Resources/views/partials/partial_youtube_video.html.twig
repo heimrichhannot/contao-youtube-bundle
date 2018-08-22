@@ -2,7 +2,7 @@
 <div class="youtube_default">
     <div class="video-wrapper">
         {% if hasPreviewImage|default() and previewImage|default() %}
-            <div class="video-thumbnail{% if hasPreviewImage|default() %} video-hidden{% endif %}" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans }}"{% if youtubePrivacy|default() %} data-privacy="true"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}>
+            <div class="video-thumbnail{% if hasPreviewImage|default() %} video-hidden{% endif %}" data-media="youtube" title="{{ 'huh.youtube.title.play'|trans }}"{% if youtubePrivacy|default() %} data-privacy="true" data-privacy-html="{{ privacy }}"{% endif %}{% if autoplay|default() %} data-autoplay="true"{% endif %}>
                 <figure class="image_container">
                     {% if previewImage.picture|default() %}
                         {{ include('@HeimrichHannotContaoUtils/picture.html.twig', previewImage.picture) }}
@@ -26,9 +26,6 @@
                         <span class="play-button"></span>
                     {% endif %}
                 </figure>
-                {% if youtubePrivacy|default() %}
-                    {{ privacy|raw }}
-                {% endif %}
             </div>
         {% endif %}
         <div class="video-container{% if hasPreviewImage|default() %} video-hidden{% endif %}">

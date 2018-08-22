@@ -198,10 +198,10 @@ trait YoutubeVideoTemplateDataTrait
 
         $data = ['host' => Environment::get('host'), 'count' => static::$privacyCount++];
 
-        return System::getContainer()->get('twig')->render(
+        return addslashes(System::getContainer()->get('twig')->render(
             System::getContainer()->get('huh.utils.template')->getTemplate($this->getConfig()->getPrivacyTemplate()),
             $data
-        );
+        ));
     }
 
     /**

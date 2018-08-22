@@ -13,14 +13,14 @@
         },
         onReady: function () {
             // autoplay videos
-            $('[data-media=youtube]').each(function () {
+            $('[data-media="youtube"]').each(function () {
                 if ($(this).data('autoplay')) {
                     YouTubeVideo.initVideo(this);
                 }
             });
 
             // handle click event
-            $('body').on('click', '[data-media=youtube]', function () {
+            $('body').on('click', '[data-media="youtube"]', function () {
                 YouTubeVideo.initVideo(this);
             })
         },
@@ -32,12 +32,12 @@
             // stop playing video on closing any modal window
             $('body').on('click', '[data-dismiss="modal"]', function () {
                 $iframe.attr('src', $iframe.data('src'));
-            })
+            });
 
             // stop playing video on closing any bootstrap modal
             $('body').on('hidden.bs.modal', function (e) {
                 $iframe.attr('src', $iframe.data('src'));
-            })
+            });
 
             if ($this.data('privacy')) {
                 // auto load privacy videos if set within cookie
@@ -47,32 +47,24 @@
                     return false;
                 }
 
-                var $modal = $this.parent().find('.modal.youtube-privacy');
+                var dialog = bootbox.dialog({
+                    message: $this.data('privacy-html').replace(/\\"/g, '"')
+                });
 
-                if ($('body').find('.youtube-privacy-backdrop').length < 1) {
-                    $('body').append('<div class="youtube-privacy-backdrop modal-backdrop fade show"></div>');
-                }
+                dialog.init(function() {
+                    dialog.find('form').on('submit', function (e) {
+                        e.preventDefault();
 
-                $modal.addClass('show');
+                        if ($(this).find('[name=' + YouTubeVideo.config.privacyAutoFieldName + ']').is(':checked')) {
+                            YouTubeVideo.setPrivacyAuto();
+                        }
 
-                $modal.on('click', '[data-dismiss="modal"]', function () {
-                    $modal.removeClass('show');
-                    $('body').find('.youtube-privacy-backdrop').remove();
-                })
+                        $iframe.attr('src', $iframe.data('src'));
 
-                $modal.find('form').on('submit', function (e) {
-                    e.preventDefault();
+                        showVideo();
 
-                    if ($(this).find('[name=' + YouTubeVideo.config.privacyAutoFieldName + ']').is(':checked')) {
-                        YouTubeVideo.setPrivacyAuto();
-                    }
-
-                    $iframe.attr('src', $iframe.data('src'));
-
-                    showVideo();
-
-                    $('body').find('.youtube-privacy-backdrop').remove();
-                    $modal.removeClass('show');
+                        dialog.modal('hide');
+                    });
                 });
 
                 return false;

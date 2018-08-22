@@ -1,9 +1,8 @@
 require('../../assets/scss/contao-youtube-bundle.scss');
 
-let umbrellajs = require('umbrellajs');
-let u = umbrellajs.u;
-
-let ajax = umbrellajs.ajax;
+let umbrellajs = require('umbrellajs'),
+    u = umbrellajs.u,
+    ajax = umbrellajs.ajax;
 
 (function ($) {
 
@@ -20,16 +19,16 @@ let ajax = umbrellajs.ajax;
         },
         onReady: function () {
             // autoplay videos
-            $('[data-media=youtube]').each(function () {
+            $('[data-media="youtube"]').each(function () {
                 if ($(this).data('autoplay')) {
                     YouTubeVideo.initVideo(this);
                 }
             });
 
             // handle click event
-            $('body').on('click', '[data-media=youtube]', function () {
+            $('body').on('click', '[data-media="youtube"]', function () {
                 YouTubeVideo.initVideo(this);
-            })
+            });
         },
         initVideo: function (el) {
             let $this = $(el),
@@ -39,12 +38,12 @@ let ajax = umbrellajs.ajax;
             // stop playing video on closing any modal window
             $('body').on('click', '[data-dismiss="modal"]', function () {
                 $iframe.attr('src', $iframe.data('src'));
-            })
+            });
 
             // stop playing video on closing any bootstrap modal
             $('body').on('hidden.bs.modal', function (e) {
                 $iframe.attr('src', $iframe.data('src'));
-            })
+            });
 
             if ($this.data('privacy')) {
                 // auto load privacy videos if set within cookie
@@ -54,32 +53,26 @@ let ajax = umbrellajs.ajax;
                     return false;
                 }
 
-                let $modal = $this.parent().find('.modal.youtube-privacy');
+                import(/* webpackChunkName: "bootbox" */ 'bootbox').then(bootbox => {
+                    var dialog = bootbox.dialog({
+                        message: $this.data('privacy-html').replace(/\\"/g, '"')
+                    });
 
-                if ($('body').find('.youtube-privacy-backdrop').length < 1) {
-                    $('body').append('<div class="youtube-privacy-backdrop modal-backdrop fade show"></div>');
-                }
+                    dialog.init(function() {
+                        dialog.find('form').on('submit', function (e) {
+                            e.preventDefault();
 
-                $modal.addClass('show');
+                            if ($(this).find('[name=' + YouTubeVideo.config.privacyAutoFieldName + ']').is(':checked')) {
+                                YouTubeVideo.setPrivacyAuto();
+                            }
 
-                $modal.on('click', '[data-dismiss="modal"]', function () {
-                    $modal.removeClass('show');
-                    $('body').find('.youtube-privacy-backdrop').remove();
-                })
+                            $iframe.attr('src', $iframe.data('src'));
 
-                $modal.find('form').on('submit', function (e) {
-                    e.preventDefault();
+                            showVideo();
 
-                    if ($(this).find('[name=' + YouTubeVideo.config.privacyAutoFieldName + ']').is(':checked')) {
-                        YouTubeVideo.setPrivacyAuto();
-                    }
-
-                    $iframe.attr('src', $iframe.data('src'));
-
-                    showVideo();
-
-                    $('body').find('.youtube-privacy-backdrop').remove();
-                    $modal.removeClass('show');
+                            dialog.modal('hide');
+                        });
+                    });
                 });
 
                 return false;
@@ -109,15 +102,15 @@ let ajax = umbrellajs.ajax;
             if (days) {
                 let date = new Date();
                 date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toGMTString();
+                expires = '; expires=' + date.toGMTString();
             }
             else {
-                expires = "";
+                expires = '';
             }
-            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+            document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=/';
         },
         readCookie: function (name) {
-            let nameEQ = encodeURIComponent(name) + "=";
+            let nameEQ = encodeURIComponent(name) + '=';
             let ca = document.cookie.split(';');
             for (let i = 0; i < ca.length; i++) {
                 let c = ca[i];
@@ -131,7 +124,7 @@ let ajax = umbrellajs.ajax;
             return null;
         },
         eraseCookie: function (name) {
-            this.createCookie(name, "", -1);
+            this.createCookie(name, '', -1);
         }
     };
 

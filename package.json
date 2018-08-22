@@ -2,6 +2,7 @@
     "name": "contao-youtube-bundle",
     "version": "1.0.0",
     "dependencies": {
-        "umbrellajs": "^2.10.2"
+        "umbrellajs": "^2.10.2",
+        "bootbox": "^4.4.0"
     }
 }
