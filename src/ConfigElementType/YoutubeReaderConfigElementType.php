@@ -42,6 +42,7 @@ class YoutubeReaderConfigElementType implements ConfigElementType
             'type' => 'youtube',
             'addYouTube' => true,
             'youtube' => $typeData,
+            'autoplay' => $readerConfigElement->autoplay,
         ];
 
         $video = System::getContainer()->get('huh.youtube.videocreator')->createVideo(ConfigFactory::CONTEXT_LIST_BUNDLE, array_merge($item->getRaw(), $configData));

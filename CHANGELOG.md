@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2018-09-10
+
+#### Added
+- autoplay feature for reader
+
 ## [2.0.1] - 2018-08-22
 
 #### Fixed

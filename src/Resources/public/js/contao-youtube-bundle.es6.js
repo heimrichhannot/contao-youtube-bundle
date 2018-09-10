@@ -19,9 +19,9 @@ let umbrellajs = require('umbrellajs'),
         },
         onReady: function () {
             // autoplay videos
-            $('[data-media="youtube"]').each(function () {
-                if ($(this).data('autoplay')) {
-                    YouTubeVideo.initVideo(this);
+            $('[data-media="youtube"]').each(function (node,i) {
+                if ($(node).data('autoplay')) {
+                    YouTubeVideo.initVideo(node);
                 }
             });
 
@@ -58,7 +58,7 @@ let umbrellajs = require('umbrellajs'),
                         message: $this.data('privacy-html').replace(/\\"/g, '"')
                     });
 
-                    dialog.init(function() {
+                    dialog.init(function () {
                         dialog.find('form').on('submit', function (e) {
                             e.preventDefault();
 

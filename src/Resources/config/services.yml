@@ -11,3 +11,8 @@ services:
         arguments:
           - "@contao.framework"
         public: true
+    huh.youtube.backend.news:
+        class: HeimrichHannot\YoutubeBundle\Backend\News
+        arguments:
+          - "@contao.framework"
+        public: true

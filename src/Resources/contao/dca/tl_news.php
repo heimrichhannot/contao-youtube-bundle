@@ -26,7 +26,7 @@ $dc['palettes']['__selector__'][] = 'addYouTube';
  * Callbacks
  */
 
-$dc['config']['onload_callback'][] = ['tl_news_youtube', 'modifyPalettes'];
+$dc['config']['onload_callback'][] = ['huh.youtube.backend.news', 'modifyPalettes'];
 
 /**
  * Fields
@@ -51,7 +51,7 @@ $arrFields = [
         'label'            => &$GLOBALS['TL_LANG']['tl_news']['relatedYoutubeNews'],
         'exclude'          => true,
         'inputType'        => 'tagsinput',
-        'options_callback' => ['tl_news_youtube', 'getRelatedYoutubeNews'],
+        'options_callback' => ['huh.youtube.backend.news', 'getRelatedYoutubeNews'],
         'sql'              => "int(10) unsigned NOT NULL default '0'",
         'eval'             => [
             'placeholder' => &$GLOBALS['TL_LANG']['tl_news']['placeholder']['relatedYoutubeNews'],
@@ -64,46 +64,46 @@ $dc['fields'] = array_merge($dc['fields'], $arrFields);
 $dc['fields']['posterSRC']['eval']['tl_class'] = 'clr';
 
 
-class tl_news_youtube extends Backend
-{
-
-    /**
-     * Modify the palette according to the checkboxes selected
-     *
-     * @param mixed
-     * @param DataContainer
-     *
-     * @return mixed
-     */
-    public function modifyPalettes()
-    {
-        $objNews = \NewsModel::findById($this->Input->get('id'));
-        $dc      = &$GLOBALS['TL_DCA']['tl_news'];
-        if (!$objNews->addPreviewImage) {
-            $dc['subpalettes']['addYouTube'] =
-                str_replace('imgHeader,imgPreview,addPlayButton,', '', $dc['subpalettes']['addYouTube']);
-        }
-    }
-
-    /**
-     * Get a list of related news that have a youtube video
-     * @param \Contao\DataContainer $dc
-     *
-     * @return array List of related youtube news
-     */
-    public function getRelatedYoutubeNews(\Contao\DataContainer $dc)
-    {
-        $options = [];
-        $news    = \Contao\NewsModel::findBy(['addYoutube = 1', 'youtube != ""'], null, ['order' => 'headline']);
-
-        if ($news === null) {
-            return $options;
-        }
-
-        while ($news->next()) {
-            $options[$news->id] = $news->headline . ' [ID: ' . $news->id . ']';
-        }
-
-        return $options;
-    }
-}
+//class tl_news_youtube extends Backend
+//{
+//
+//    /**
+//     * Modify the palette according to the checkboxes selected
+//     *
+//     * @param mixed
+//     * @param DataContainer
+//     *
+//     * @return mixed
+//     */
+//    public function modifyPalettes()
+//    {
+//        $objNews = \NewsModel::findById($this->Input->get('id'));
+//        $dc      = &$GLOBALS['TL_DCA']['tl_news'];
+//        if (!$objNews->addPreviewImage) {
+//            $dc['subpalettes']['addYouTube'] =
+//                str_replace('imgHeader,imgPreview,addPlayButton,', '', $dc['subpalettes']['addYouTube']);
+//        }
+//    }
+//
+//    /**
+//     * Get a list of related news that have a youtube video
+//     * @param \Contao\DataContainer $dc
+//     *
+//     * @return array List of related youtube news
+//     */
+//    public function getRelatedYoutubeNews(\Contao\DataContainer $dc)
+//    {
+//        $options = [];
+//        $news    = \Contao\NewsModel::findBy(['addYoutube = 1', 'youtube != ""'], null, ['order' => 'headline']);
+//
+//        if ($news === null) {
+//            return $options;
+//        }
+//
+//        while ($news->next()) {
+//            $options[$news->id] = $news->headline . ' [ID: ' . $news->id . ']';
+//        }
+//
+//        return $options;
+//    }
+//}
