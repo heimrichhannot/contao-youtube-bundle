@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2018-09-11
+
+#### Fixed
+- refactored news callbacks
+
 ## [2.1.0] - 2018-09-10
 
 #### Added

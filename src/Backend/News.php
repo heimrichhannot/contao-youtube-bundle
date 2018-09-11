@@ -10,6 +10,8 @@ namespace HeimrichHannot\YoutubeBundle\Backend;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\DataContainer;
+use Contao\NewsModel;
+use Contao\System;
 
 class News
 {
@@ -40,9 +42,16 @@ class News
      */
     public function modifyPalettes()
     {
-        $objNews = \NewsModel::findById($this->Input->get('id'));
+        if (!($id = System::getContainer()->get('huh.request')->getGet('id'))) {
+            return;
+        }
+
+        if (null === ($news = $this->framework->getAdapter(NewsModel::class)->findById($id))) {
+            return;
+        }
+
         $dc = &$GLOBALS['TL_DCA']['tl_news'];
-        if (!$objNews->addPreviewImage) {
+        if (!$news->addPreviewImage) {
             $dc['subpalettes']['addYouTube'] =
                 str_replace('imgHeader,imgPreview,addPlayButton,', '', $dc['subpalettes']['addYouTube']);
         }
@@ -58,9 +67,8 @@ class News
     public function getRelatedYoutubeNews(\Contao\DataContainer $dc)
     {
         $options = [];
-        $news = \Contao\NewsModel::findBy(['addYoutube = 1', 'youtube != ""'], null, ['order' => 'headline']);
 
-        if (null === $news) {
+        if (null === ($news = $this->framework->getAdapter(NewsModel::class)->findBy(['addYoutube = 1', 'youtube != ""'], null, ['order' => 'headline']))) {
             return $options;
         }
 
