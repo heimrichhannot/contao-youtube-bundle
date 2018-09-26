@@ -25,7 +25,10 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(HeimrichHannotContaoYoutubeBundle::class)->setLoadAfter([ContaoCoreBundle::class, 'multi_column_editor']),
+            BundleConfig::create(HeimrichHannotContaoYoutubeBundle::class)->setLoadAfter([
+                ContaoCoreBundle::class,
+                'multi_column_editor',
+            ]),
         ];
     }
 
@@ -45,18 +48,6 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface
             $extensionName,
             $extensionConfigs,
             __DIR__.'/../Resources/config/config_encore.yml'
-        );
-        $extensionConfigs = ContainerUtil::mergeConfigFile(
-            'huh_list',
-            $extensionName,
-            $extensionConfigs,
-            __DIR__.'/../Resources/config/huh_list.yml'
-        );
-        $extensionConfigs = ContainerUtil::mergeConfigFile(
-            'huh_reader',
-            $extensionName,
-            $extensionConfigs,
-            __DIR__.'/../Resources/config/huh_reader.yml'
         );
 
         return $extensionConfigs;

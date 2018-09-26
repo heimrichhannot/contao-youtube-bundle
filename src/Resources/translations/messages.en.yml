@@ -14,21 +14,3 @@ huh.youtube:
     play: Play video
     window: Open video in new window
     article: video post
-
-# DCA
-huh.list:
-  tl_list_config_element.field:
-    typeSelectorField.youtube:
-      name: YouTube selector element
-      desc: Choose the field containing the boolean selector for the youtube field.
-    typeField.youtube:
-      name: YouTube field
-      desc: Choose the field containing the Youtube Video ID.
-huh.reader:
-  tl_reader_config_element.field:
-    typeSelectorField.youtube:
-      name: YouTube selector element
-      desc: Choose the field containing the boolean selector for the youtube field.
-    typeField.youtube:
-      name: YouTube field
-      desc: Choose the field containing the Youtube Video ID.

@@ -145,7 +145,7 @@ trait YoutubeVideoTemplateDataTrait
         try {
             $response = json_decode($result);
 
-            if ($response->error || !is_array($response->items) || empty($response->items)) {
+            if ($response->error || !\is_array($response->items) || empty($response->items)) {
                 return '';
             }
 

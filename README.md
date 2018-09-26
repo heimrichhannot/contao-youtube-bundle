@@ -1,4 +1,4 @@
-# YouTube
+huh.list.backend.module# YouTube
 
 [![](https://img.shields.io/packagist/v/heimrichhannot/contao-youtube-bundle.svg)](https://packagist.org/packages/heimrichhannot/contao-youtube-bundle)
 [![](https://img.shields.io/packagist/dt/heimrichhannot/contao-youtube-bundle.svg)](https://packagist.org/packages/heimrichhannot/contao-youtube-bundle)
@@ -25,6 +25,10 @@ It provides support for content elements and news items.
 ![alt privacy modal](./docs/img/privacy_modal.jpg)
 
 ## Technical instruction
+
+### Upgrade major version or from heimrichhannot/contao-youtube
+
+See [Upgrade.md](UPGRADE.md)
 
 ### Add to list and reader item templates
 
@@ -66,9 +70,5 @@ Youtube videos can be added to news templates with ease. Just add the following 
 
 To use preview images from youtube, you have to generate an API key (https://developers.google.com/youtube/v3/getting-started) and place it in the contao settings.
 
-## Upgrade notice from heimrichhannot/contao-youtube
-
-- After update, save your root-pages in back end mode again to update template names
-- Declare an Youtube-API Key in tl_settings or tl_page (otherwise preview image download wont work)
-- The modal windows for privacy dialog or modalvideo require additional css, that is not delivered by the bundle. Markup fits [Bootstrap](http://getbootstrap.com/) modal window css, so you are well-advised to use the css from that framework.
-- If you were using custom youtube `.html5` templates, migrate them to `.html.twig` templates, if you need help: check the default templates
+## Integrations/Extension
+- Integration with [Contao Reader Bundle](https://github.com/heimrichhannot/contao-reader-bundle): [Contao Youtube Reader Bundle](https://github.com/heimrichhannot/contao-youtube-reader-bundle)
