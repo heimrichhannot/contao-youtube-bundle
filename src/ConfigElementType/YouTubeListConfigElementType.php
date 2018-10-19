@@ -32,22 +32,22 @@ class YouTubeListConfigElementType implements ConfigElementType
 
     public function addToItemData(ItemInterface $item, ListConfigElementModel $listConfigElement)
     {
-        if (!$item->getRawValue($listConfigElement->typeSelectorField)) {
+        if (!$item->getRawValue($listConfigElement->youtubeSelectorField)) {
             return;
         }
-        if ((!$typeData = $item->getRawValue($listConfigElement->typeField)) || empty($typeData)) {
+        if ((!$youtubeData = $item->getRawValue($listConfigElement->youtubeField)) || empty($youtubeData)) {
             return;
         }
         $configData = [
             'type' => 'youtube',
             'addYouTube' => true,
-            'youtube' => $typeData,
+            'youtube' => $youtubeData,
         ];
 
         $video = System::getContainer()->get('huh.youtube.videocreator')->createVideo(ConfigFactory::CONTEXT_LIST_BUNDLE, array_merge($item->getRaw(), $configData));
         $template = new FrontendTemplate();
         $video->addToTemplate($template);
         $templateData = $template->getData();
-        $item->setFormattedValue('youtubeVideos', [$listConfigElement->typeField => (array) $templateData['youtube']]);
+        $item->setFormattedValue('youtubeVideos', [$listConfigElement->youtubeField => (array) $templateData['youtube']]);
     }
 }

@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.2] - 2018-10-19
+
+#### Fixed
+- youtube config element for list and reader
+
 ## [2.1.1] - 2018-09-11
 
 #### Fixed

@@ -32,16 +32,16 @@ class YoutubeReaderConfigElementType implements ConfigElementType
 
     public function addToItemData(ItemInterface $item, ReaderConfigElementModel $readerConfigElement)
     {
-        if (!$item->getRawValue($readerConfigElement->typeSelectorField)) {
+        if (!$item->getRawValue($readerConfigElement->youtubeSelectorField)) {
             return;
         }
-        if ((!$typeData = $item->getRawValue($readerConfigElement->typeField)) || empty($typeData)) {
+        if ((!$youtubeData = $item->getRawValue($readerConfigElement->youtubeField)) || empty($youtubeData)) {
             return;
         }
         $configData = [
             'type' => 'youtube',
             'addYouTube' => true,
-            'youtube' => $typeData,
+            'youtube' => $youtubeData,
             'autoplay' => $readerConfigElement->autoplay,
         ];
 
@@ -49,6 +49,6 @@ class YoutubeReaderConfigElementType implements ConfigElementType
         $template = new FrontendTemplate();
         $video->addToTemplate($template);
         $templateData = $template->getData();
-        $item->setFormattedValue('youtubeVideos', [$readerConfigElement->typeField => (array) $templateData['youtube']]);
+        $item->setFormattedValue('youtubeVideos', [$readerConfigElement->youtubeField => (array) $templateData['youtube']]);
     }
 }

@@ -5,7 +5,7 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
     $dca = &$GLOBALS['TL_DCA'][$table];
     
     $dca['palettes'][\HeimrichHannot\YoutubeBundle\ConfigElementType\YoutubeReaderConfigElementType::TYPE] =
-        '{title_type_legend},title,type;{config_legend},typeSelectorField,typeField,autoplay;';
+        '{title_type_legend},title,type;{config_legend},youtubeSelectorField,youtubeField,autoplay;';
     
     $fields = [
         'autoplay' => [
@@ -14,7 +14,27 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
             'inputType' => 'checkbox',
             'eval'      => ['tl_class' => 'w50 m12'],
             'sql'       => "char(1) NOT NULL default ''"
-        ]
+        ],
+        'youtubeSelectorField'     => [
+            'label'            => &$GLOBALS['TL_LANG']['tl_list_config_element']['youtubeSelectorField'],
+            'inputType'        => 'select',
+            'options_callback' => function (DataContainer $dc) {
+                return \HeimrichHannot\ListBundle\Util\ListConfigElementHelper::getCheckboxFields($dc);
+            },
+            'exclude'          => true,
+            'eval'             => ['includeBlankOption' => true, 'tl_class' => 'w50 autoheight'],
+            'sql'              => "varchar(64) NOT NULL default ''",
+        ],
+        'youtubeField'             => [
+            'label'            => &$GLOBALS['TL_LANG']['tl_list_config_element']['youtubeField'],
+            'inputType'        => 'select',
+            'options_callback' => function (DataContainer $dc) {
+                return \HeimrichHannot\ListBundle\Util\ListConfigElementHelper::getFields($dc);
+            },
+            'exclude'          => true,
+            'eval'             => ['includeBlankOption' => true, 'mandatory' => true, 'chosen' => true, 'tl_class' => 'w50 autoheight'],
+            'sql'              => "varchar(64) NOT NULL default ''",
+        ],
     ];
     
     $dca['fields'] = array_merge($dca['fields'],$fields);
