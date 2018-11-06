@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.3] - 2018-10-19
+
+#### Fixed
+- translation for `tl_reader_config_element` reference could not be extended by other modules
+
 ## [2.1.2] - 2018-10-19
 
 #### Fixed
