@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - 2018-12-19
+
+#### Added
+- refactoring of javascript to be one code base for modern and legacy environments (EcmaScript modules and vanilla)
+
+#### Removed
+- bootbox.js as it requires jQuery
+
 ## [2.1.3] - 2018-10-19
 
 #### Fixed

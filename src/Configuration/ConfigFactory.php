@@ -41,6 +41,7 @@ class ConfigFactory
             case static::CONTEXT_READER_BUNDLE:
             case static::CONTEXT_LIST_BUNDLE:
                 return new YoutubeTwigConfig($this->framework, $config);
+
             case static::CONTEXT_CONTENT_ELEMENT:
             case static::CONTEXT_FRONTEND_MODULE:
             default:

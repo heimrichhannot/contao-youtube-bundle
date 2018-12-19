@@ -12,8 +12,6 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('Resources')
     ->exclude('Fixtures')
     ->in([__DIR__.'/src', __DIR__.'/tests'])
-    ->exclude('vendor')
-    ->in([__DIR__])
 ;
 
 return PhpCsFixer\Config::create()
@@ -38,6 +36,7 @@ return PhpCsFixer\Config::create()
             'expectedException',
             'expectedExceptionMessage',
         ],
+        'blank_line_before_statement' => ['statements' => ['break', 'case', 'continue', 'declare', 'default', 'die', 'do', 'exit', 'for', 'foreach', 'goto', 'if', 'include', 'include_once', 'require', 'require_once', 'return', 'switch', 'throw', 'try', 'while', 'yield']]
     ])
     ->setFinder($finder)
     ->setRiskyAllowed(true)

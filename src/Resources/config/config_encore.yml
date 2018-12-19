@@ -1,11 +1,12 @@
 huh:
   encore:
     entries:
-    - { name: contao-youtube-bundle, file: "vendor/heimrichhannot/contao-youtube-bundle/src/Resources/public/js/contao-youtube-bundle.es6.js" , requiresCss: true }
+      - { name: contao-youtube-bundle, file: "vendor/heimrichhannot/contao-youtube-bundle/src/Resources/assets/js/contao-youtube-bundle.js" }
+      - { name: contao-youtube-bundle-theme, requiresCss: true, file: "vendor/heimrichhannot/contao-youtube-bundle/src/Resources/public/js/contao-youtube-bundle.js" }
     legacy:
       js:
-      - contao-youtube-bundle
-      - umbrellajs
-      - bootbox
+        - contao-youtube-bundle
+        - umbrellajs
+        - bootbox
       css:
-      - contao-youtube-bundle
+        - contao-youtube-bundle

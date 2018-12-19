@@ -35,6 +35,7 @@ class YoutubeReaderConfigElementType implements ConfigElementType
         if (!$item->getRawValue($readerConfigElement->youtubeSelectorField)) {
             return;
         }
+
         if ((!$youtubeData = $item->getRawValue($readerConfigElement->youtubeField)) || empty($youtubeData)) {
             return;
         }

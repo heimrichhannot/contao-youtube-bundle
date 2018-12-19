@@ -35,6 +35,7 @@ class YouTubeListConfigElementType implements ConfigElementType
         if (!$item->getRawValue($listConfigElement->youtubeSelectorField)) {
             return;
         }
+
         if ((!$youtubeData = $item->getRawValue($listConfigElement->youtubeField)) || empty($youtubeData)) {
             return;
         }

@@ -51,6 +51,7 @@ class News
         }
 
         $dc = &$GLOBALS['TL_DCA']['tl_news'];
+
         if (!$news->addPreviewImage) {
             $dc['subpalettes']['addYouTube'] =
                 str_replace('imgHeader,imgPreview,addPlayButton,', '', $dc['subpalettes']['addYouTube']);

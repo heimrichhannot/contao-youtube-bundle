@@ -83,6 +83,7 @@ class YoutubeVideo implements YoutubeVideoInterface
         $this->templateUtil = $templateUtil;
         $this->classUtil = $classUtil;
         $this->request = $request;
+
         if ($config) {
             $this->setConfig($config);
         }

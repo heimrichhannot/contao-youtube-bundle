@@ -52,6 +52,6 @@
     "foxy": true
   },
   "suggest": {
-    "heimrichhannot/contao-encore-bundle": "Provide webpack encore asset support."
+    "heimrichhannot/contao-encore-bundle": "Manage dependencies with Symfony Webpack Encore."
   }
 }

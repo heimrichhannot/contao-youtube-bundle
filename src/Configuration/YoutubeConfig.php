@@ -138,6 +138,7 @@ class YoutubeConfig implements YoutubeConfigInterface
     public function __construct(ContaoFrameworkInterface $framework, array $config = null)
     {
         $this->framework = $framework;
+
         if ($config) {
             $this->setData($config);
         }
@@ -154,33 +155,52 @@ class YoutubeConfig implements YoutubeConfigInterface
         switch ($key) {
             case 'imgSize':
                 $key = 'size';
+
                 break;
+
             case 'ytShowRelated':
                 $key = 'showRelated';
+
                 break;
+
             case 'ytModestBranding':
                 $key = 'modestBranding';
+
                 break;
+
             case 'ytShowInfo':
                 $key = 'ytShowInfo';
+
                 break;
+
             case 'youtubeFullsize':
                 $key = 'fullSize';
+
                 break;
+
             case 'youtubeLinkText':
                 $key = 'linkText';
+
                 break;
+
             case 'posterSRC':
                 $key = 'previewImage';
+
                 break;
+
             case 'youtube_template':
                 $key = 'template';
+
                 break;
+
             case 'youtube_modal_template':
                 $key = 'modalTemplate';
+
                 break;
+
             case 'youtubePrivacyTemplate':
                 $key = 'privacyTemplate';
+
                 break;
         }
 

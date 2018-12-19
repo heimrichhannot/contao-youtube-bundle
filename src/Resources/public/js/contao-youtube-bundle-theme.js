@@ -1,0 +1,1 @@
+"use strict";require("../scss/contao-youtube-bundle.scss");
