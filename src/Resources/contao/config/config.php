@@ -19,8 +19,6 @@ $GLOBALS['TL_CTE']['media']['youtube'] = 'HeimrichHannot\YoutubeBundle\ContentEl
  * Assets
  */
 if (System::getContainer()->get('huh.utils.container')->isFrontend()) {
-    $GLOBALS['TL_JAVASCRIPT']['umbrellajs']            = '/assets/umbrellajs/js/umbrella.min.js|static';
-    $GLOBALS['TL_JAVASCRIPT']['bootbox']               = '/assets/bootbox/js/bootbox.min.js|static';
     $GLOBALS['TL_JAVASCRIPT']['contao-youtube-bundle'] = 'bundles/heimrichhannotcontaoyoutube/js/contao-youtube-bundle.js|static';
     $GLOBALS['TL_CSS']['contao-youtube-bundle']        = 'bundles/heimrichhannotcontaoyoutube/css/contao-youtube-bundle.min.css|static';
 }

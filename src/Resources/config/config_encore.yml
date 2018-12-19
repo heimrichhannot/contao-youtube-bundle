@@ -6,7 +6,5 @@ huh:
     legacy:
       js:
         - contao-youtube-bundle
-        - umbrellajs
-        - bootbox
       css:
         - contao-youtube-bundle

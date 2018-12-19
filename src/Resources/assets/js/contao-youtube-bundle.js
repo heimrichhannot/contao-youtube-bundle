@@ -53,28 +53,22 @@ class YouTubeBundle {
             }
 
             import(/* webpackChunkName: "alertifyjs" */ 'alertifyjs').then(alertify => {
-                let dialog = alertify.alert();
+                let dialog = alertify.confirm(
+                    '&nbsp;',
+                    el.getAttribute('data-privacy-html').replace(/\\"/g, '"'),
+                    function() {
+                        if (dialog.elements.content.querySelector('[name=' + YouTubeBundle.getConfig().privacyAutoFieldName + ']').checked) {
+                            YouTubeBundle.setPrivacyAuto();
+                        }
 
-                dialog.set({
-                    onshow: function() {
-                        console.log(dialog);
-                        return;
-                        dialog.find('form').on('submit', function (e) {
-                            e.preventDefault();
+                        iframe.setAttribute('src', iframe.getAttribute('data-src'));
 
-                            if (u(this).find('[name=' + YouTubeBundle.getConfig().privacyAutoFieldName + ']').is(':checked')) {
-                                YouTubeBundle.setPrivacyAuto();
-                            }
-
-                            iframe.attr('src', iframe.data('src'));
-
-                            showVideo();
-
-                            dialog.modal('hide');
-                        });
+                        showVideo();
                     },
-                    content: el.getAttribute('data-privacy-html').replace(/\\"/g, '"')
-                }).show();
+                    function() {
+
+                    }
+                );
             });
 
             return false;

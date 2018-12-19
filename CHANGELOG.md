@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 #### Added
 - refactoring of javascript to be one code base for modern and legacy environments (EcmaScript modules and vanilla)
+- alertifyjs as dialog lib
 
 #### Removed
 - bootbox.js as it requires jQuery

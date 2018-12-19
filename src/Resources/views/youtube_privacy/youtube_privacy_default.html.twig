@@ -2,13 +2,10 @@
     <h4>{{ 'huh.youtube.title.privacy'|trans }}</h4>
 
     <p>{{ 'huh.youtube.text.privacy'|trans }}</p>
-    <form>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="youtubePrivacyAuto"> {{ 'huh.youtube.label.privacy.autoplay'|trans({'%host%': host}) }}
-            </label>
-        </div>
 
-        <button type="submit" class="btn btn-primary">{{ 'huh.youtube.title.play'|trans }}</button>
-    </form>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="youtubePrivacyAuto"> {{ 'huh.youtube.label.privacy.autoplay'|trans({'%host%': host}) }}
+        </label>
+    </div>
 </div>

@@ -2,12 +2,8 @@
     <h4>{{ 'huh.youtube.title.privacy'|trans }}</h4>
 
     <p>{{ 'huh.youtube.text.privacy'|trans }}</p>
-    <form>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="youtubePrivacyAuto" id="youtubePrivacyAuto_{{ count }}" class="custom-control-input checkbox"> <label for="youtubePrivacyAuto_{{ count }}" class="custom-control-label checkbox-inline">{{ 'huh.youtube.label.privacy.autoplay'|trans({'%host%': host}) }}</label>
-        </div>
 
-        <button type="submit" class="btn btn-primary">{{ 'huh.youtube.title.play'|trans }}</button>
-        <button type="button" class="btn btn-link" data-dismiss="modal" aria-label="{{ 'huh.youtube.button.privacy.cancel'|trans }}">{{ 'huh.youtube.button.privacy.cancel'|trans }}</button>
-    </form>
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" name="youtubePrivacyAuto" id="youtubePrivacyAuto_{{ count }}" class="custom-control-input checkbox"> <label for="youtubePrivacyAuto_{{ count }}" class="custom-control-label checkbox-inline">{{ 'huh.youtube.label.privacy.autoplay'|trans({'%host%': host}) }}</label>
+    </div>
 </div>
