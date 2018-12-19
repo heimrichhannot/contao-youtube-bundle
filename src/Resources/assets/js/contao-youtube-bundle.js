@@ -1,4 +1,4 @@
-import u from './node_modules/umbrellajs';
+import u from '../../../../node_modules/umbrellajs';
 
 class YouTubeBundle {
     static getConfig() {
