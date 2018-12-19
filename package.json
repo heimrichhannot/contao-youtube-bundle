@@ -10,10 +10,10 @@
   "devDependencies": {
     "@babel/cli": "^7.2",
     "@babel/core": "^7.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2",
     "@babel/preset-env": "^7.2",
     "babel-minify": "^0.5",
-    "babel-plugin-transform-remove-import": "^1.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.2"
+    "babel-plugin-transform-remove-import": "^1.0"
   },
   "scripts": {
     "build": "babel src/Resources/assets/js --out-dir src/Resources/public/js"

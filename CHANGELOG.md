@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.0.1] - 2018-12-19
+
+#### Fixed
+- dynamic imports
+
 ## [3.0.0] - 2018-12-19
 
 #### Added

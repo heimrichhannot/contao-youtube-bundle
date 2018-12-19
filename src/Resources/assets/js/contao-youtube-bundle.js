@@ -1,3 +1,6 @@
+import utilsBundle from 'contao-utils-bundle';
+import alertify from 'alertifyjs';
+
 class YouTubeBundle {
     static getConfig() {
         return {
@@ -21,10 +24,8 @@ class YouTubeBundle {
         });
 
         // handle click event
-        import(/* webpackChunkName: "contao-utils-bundle" */ 'contao-utils-bundle').then(utilsBundle => {
-            utilsBundle.events.addDynamicEventListener('click', '[data-media="youtube"]', function(target) {
-                YouTubeBundle.initVideo(target);
-            });
+        utilsBundle.events.addDynamicEventListener('click', '[data-media="youtube"]', function(target) {
+            YouTubeBundle.initVideo(target);
         });
     }
 
@@ -33,10 +34,8 @@ class YouTubeBundle {
             iframe = video.querySelector('iframe');
 
         // stop playing video on closing any modal window
-        import(/* webpackChunkName: "contao-utils-bundle" */ 'contao-utils-bundle').then(utilsBundle => {
-            utilsBundle.events.addDynamicEventListener('click', '[data-dismiss="modal"]', function(target) {
-                iframe.setAttribute('src', iframe.getAttribute('data-src'));
-            });
+        utilsBundle.events.addDynamicEventListener('click', '[data-dismiss="modal"]', function(target) {
+            iframe.setAttribute('src', iframe.getAttribute('data-src'));
         });
 
         // stop playing video on closing any bootstrap modal
@@ -52,24 +51,22 @@ class YouTubeBundle {
                 return false;
             }
 
-            import(/* webpackChunkName: "alertifyjs" */ 'alertifyjs').then(alertify => {
-                let dialog = alertify.confirm(
-                    '&nbsp;',
-                    el.getAttribute('data-privacy-html').replace(/\\"/g, '"'),
-                    function() {
-                        if (dialog.elements.content.querySelector('[name=' + YouTubeBundle.getConfig().privacyAutoFieldName + ']').checked) {
-                            YouTubeBundle.setPrivacyAuto();
-                        }
-
-                        iframe.setAttribute('src', iframe.getAttribute('data-src'));
-
-                        showVideo();
-                    },
-                    function() {
-
+            let dialog = alertify.confirm(
+                '&nbsp;',
+                el.getAttribute('data-privacy-html').replace(/\\"/g, '"'),
+                function() {
+                    if (dialog.elements.content.querySelector('[name=' + YouTubeBundle.getConfig().privacyAutoFieldName + ']').checked) {
+                        YouTubeBundle.setPrivacyAuto();
                     }
-                );
-            });
+
+                    iframe.setAttribute('src', iframe.getAttribute('data-src'));
+
+                    showVideo();
+                },
+                function() {
+
+                }
+            );
 
             return false;
         }
