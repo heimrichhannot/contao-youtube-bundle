@@ -1,5 +1,3 @@
-import u from '../../../../node_modules/umbrellajs';
-
 class YouTubeBundle {
     static getConfig() {
         return {
@@ -16,85 +14,91 @@ class YouTubeBundle {
 
     static onReady() {
         // autoplay videos
-        u('[data-media="youtube"]').each(function (node,i) {
-            if (u(node).data('autoplay')) {
-                YouTubeBundle.initVideo(node);
+        document.querySelectorAll('[data-media="youtube"]').forEach(function(item) {
+            if (item.getAttribute('data-autoplay')) {
+                YouTubeBundle.initVideo(item);
             }
         });
 
         // handle click event
-        u('body').on('click', '[data-media="youtube"]', function () {
-            YouTubeBundle.initVideo(this);
+        import(/* webpackChunkName: "contao-utils-bundle" */ 'contao-utils-bundle').then(utilsBundle => {
+            utilsBundle.events.addDynamicEventListener('click', '[data-media="youtube"]', function(target) {
+                YouTubeBundle.initVideo(target);
+            });
         });
     }
 
     static initVideo(el) {
-        let $this = u(el),
-            $video = $this.parent().find('.video-container'),
-            $iframe = $video.find('iframe');
+        let video = el.parentNode.querySelector('.video-container'),
+            iframe = video.querySelector('iframe');
 
         // stop playing video on closing any modal window
-        u('body').on('click', '[data-dismiss="modal"]', function () {
-            $iframe.attr('src', $iframe.data('src'));
+        import(/* webpackChunkName: "contao-utils-bundle" */ 'contao-utils-bundle').then(utilsBundle => {
+            utilsBundle.events.addDynamicEventListener('click', '[data-dismiss="modal"]', function(target) {
+                iframe.setAttribute('src', iframe.getAttribute('data-src'));
+            });
         });
 
         // stop playing video on closing any bootstrap modal
-        u('body').on('hidden.bs.modal', function (e) {
-            $iframe.attr('src', $iframe.data('src'));
+        document.addEventListener('hidden.bs.modal', function (e) {
+            iframe.setAttribute('src', iframe.getAttribute('data-src'));
         });
 
-        if ($this.data('privacy')) {
+        if (el.getAttribute('data-privacy')) {
             // auto load privacy videos if set within cookie
             if (YouTubeBundle.getPrivacyAuto() == YouTubeBundle.getConfig().cookies.privacy.value) {
-                $iframe.attr('src', $iframe.data('src'));
+                iframe.setAttribute('src', iframe.getAttribute('data-src'));
                 showVideo();
                 return false;
             }
 
-            // import(/* webpackChunkName: "bootbox" */ 'bootbox').then(bootbox => {
-            //     var dialog = bootbox.dialog({
-            //         message: $this.data('privacy-html').replace(/\\"/g, '"')
-            //     });
-            //
-            //     dialog.init(function () {
-            //         dialog.find('form').on('submit', function (e) {
-            //             e.preventDefault();
-            //
-            //             if (u(this).find('[name=' + YouTubeBundle.getConfig().privacyAutoFieldName + ']').is(':checked')) {
-            //                 YouTubeBundle.setPrivacyAuto();
-            //             }
-            //
-            //             $iframe.attr('src', $iframe.data('src'));
-            //
-            //             showVideo();
-            //
-            //             dialog.modal('hide');
-            //         });
-            //     });
-            // });
+            import(/* webpackChunkName: "alertifyjs" */ 'alertifyjs').then(alertify => {
+                let dialog = alertify.alert();
+
+                dialog.set({
+                    onshow: function() {
+                        console.log(dialog);
+                        return;
+                        dialog.find('form').on('submit', function (e) {
+                            e.preventDefault();
+
+                            if (u(this).find('[name=' + YouTubeBundle.getConfig().privacyAutoFieldName + ']').is(':checked')) {
+                                YouTubeBundle.setPrivacyAuto();
+                            }
+
+                            iframe.attr('src', iframe.data('src'));
+
+                            showVideo();
+
+                            dialog.modal('hide');
+                        });
+                    },
+                    content: el.getAttribute('data-privacy-html').replace(/\\"/g, '"')
+                }).show();
+            });
 
             return false;
         }
 
-        $iframe.attr('src', $iframe.data('src'));
+        iframe.setAttribute('src', iframe.getAttribute('data-src'));
 
         showVideo();
 
         function showVideo() {
-            $this.addClass('initialize');
-            $video.addClass('initialize');
-            $iframe.attr('src', $iframe.attr('src') + '&autoplay=1');
-            $this.removeClass(['initialize', 'video-hidden']);
-            $video.removeClass(['initialize', 'video-hidden']);
+            el.classList.add('initialize');
+            video.classList.add('initialize');
+            iframe.setAttribute('src', iframe.getAttribute('src') + '&autoplay=1');
+            el.classList.remove('initialize', 'video-hidden');
+            video.classList.remove('initialize', 'video-hidden');
         }
     }
 
     static setPrivacyAuto() {
-        this.createCookie(YouTubeBundle.getConfig().cookies.privacy.name, YouTubeBundle.getConfig().cookies.privacy.value, YouTubeBundle.getConfig().cookies.privacy.expire);
+        YouTubeBundle.createCookie(YouTubeBundle.getConfig().cookies.privacy.name, YouTubeBundle.getConfig().cookies.privacy.value, YouTubeBundle.getConfig().cookies.privacy.expire);
     }
 
     static getPrivacyAuto() {
-        return this.readCookie(YouTubeBundle.getConfig().cookies.privacy.name);
+        return YouTubeBundle.readCookie(YouTubeBundle.getConfig().cookies.privacy.name);
     }
 
     static createCookie(name, value, days) {
@@ -108,12 +112,14 @@ class YouTubeBundle {
         else {
             expires = '';
         }
+
         document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=/';
     }
 
     static readCookie(name) {
         let nameEQ = encodeURIComponent(name) + '=';
         let ca = document.cookie.split(';');
+
         for (let i = 0; i < ca.length; i++) {
             let c = ca[i];
             while (c.charAt(0) === ' ') {
@@ -123,11 +129,12 @@ class YouTubeBundle {
                 return decodeURIComponent(c.substring(nameEQ.length, c.length));
             }
         }
+
         return null;
     }
 
     static eraseCookie(name) {
-        this.createCookie(name, '', -1);
+        YouTubeBundle.createCookie(name, '', -1);
     }
 }
 

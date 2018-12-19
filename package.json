@@ -5,8 +5,7 @@
   "author": "Heimrich & Hannot GmbH <digitales@heimrich-hannot.de>",
   "license": "LGPL-3.0-or-later",
   "dependencies": {
-    "umbrellajs": "^3.0",
-    "bootbox": "^4.4.0"
+    "alertifyjs": "^1.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.2",
