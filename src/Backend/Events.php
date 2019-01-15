@@ -8,12 +8,12 @@
 
 namespace HeimrichHannot\YoutubeBundle\Backend;
 
+use Contao\CalendarEventsModel;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\DataContainer;
-use Contao\NewsModel;
 use Contao\System;
 
-class News
+class Events
 {
     /**
      * The contao framework.
@@ -46,37 +46,15 @@ class News
             return;
         }
 
-        if (null === ($news = $this->framework->getAdapter(NewsModel::class)->findById($id))) {
+        if (null === ($event = $this->framework->getAdapter(CalendarEventsModel::class)->findById($id))) {
             return;
         }
 
-        $dc = &$GLOBALS['TL_DCA']['tl_news'];
+        $dc = &$GLOBALS['TL_DCA']['tl_calendar_events'];
 
-        if (!$news->addPreviewImage) {
+        if (!$event->addPreviewImage) {
             $dc['subpalettes']['addYouTube'] =
                 str_replace('imgHeader,imgPreview,addPlayButton,', '', $dc['subpalettes']['addYouTube']);
         }
-    }
-
-    /**
-     * Get a list of related news that have a youtube video.
-     *
-     * @param \Contao\DataContainer $dc
-     *
-     * @return array List of related youtube news
-     */
-    public function getRelatedYoutubeNews(\Contao\DataContainer $dc)
-    {
-        $options = [];
-
-        if (null === ($news = $this->framework->getAdapter(NewsModel::class)->findBy(['addYoutube = 1', 'youtube != ""'], null, ['order' => 'headline']))) {
-            return $options;
-        }
-
-        while ($news->next()) {
-            $options[$news->id] = $news->headline.' [ID: '.$news->id.']';
-        }
-
-        return $options;
     }
 }

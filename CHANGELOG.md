@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.1.0] - 2018-01-15
+
+#### Added
+- `tl_calendar_events` support
+
+#### Fixed
+- `heimrichhannot/contao-reader-bundle` config element type implementation
+- translations
+
 ## [3.0.1] - 2018-12-19
 
 #### Fixed

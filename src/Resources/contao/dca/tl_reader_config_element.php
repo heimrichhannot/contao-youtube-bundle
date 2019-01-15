@@ -16,20 +16,20 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
             'sql'       => "char(1) NOT NULL default ''"
         ],
         'youtubeSelectorField'     => [
-            'label'            => &$GLOBALS['TL_LANG']['tl_list_config_element']['youtubeSelectorField'],
+            'label'            => &$GLOBALS['TL_LANG']['tl_reader_config_element']['youtubeSelectorField'],
             'inputType'        => 'select',
             'options_callback' => function (DataContainer $dc) {
-                return \HeimrichHannot\ListBundle\Util\ListConfigElementHelper::getCheckboxFields($dc);
+                return System::getContainer()->get('huh.reader.util.reader-config-element-util')->getCheckboxFields($dc);
             },
             'exclude'          => true,
             'eval'             => ['includeBlankOption' => true, 'tl_class' => 'w50 autoheight'],
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
         'youtubeField'             => [
-            'label'            => &$GLOBALS['TL_LANG']['tl_list_config_element']['youtubeField'],
+            'label'            => &$GLOBALS['TL_LANG']['tl_reader_config_element']['youtubeField'],
             'inputType'        => 'select',
             'options_callback' => function (DataContainer $dc) {
-                return \HeimrichHannot\ListBundle\Util\ListConfigElementHelper::getFields($dc);
+                return System::getContainer()->get('huh.reader.util.reader-config-element-util')->getFields($dc);
             },
             'exclude'          => true,
             'eval'             => ['includeBlankOption' => true, 'mandatory' => true, 'chosen' => true, 'tl_class' => 'w50 autoheight'],

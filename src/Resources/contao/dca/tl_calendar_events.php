@@ -1,23 +1,12 @@
 <?php
-
-/**
- * Contao Open Source CMS
- *
- * Copyright (c) 2015 Heimrich & Hannot GmbH
- *
- * @package youtube
- * @author  Rico Kaltofen <r.kaltofen@heimrich-hannot.de>
- * @license http://www.gnu.org/licences/lgpl-3.0.html LGPL
- */
-
-$dc = &$GLOBALS['TL_DCA']['tl_news'];
+$dc = &$GLOBALS['TL_DCA']['tl_calendar_events'];
 
 \Controller::loadDataContainer('tl_content');
 
 /**
  * Palettes
  */
-$dc['palettes']['default']        = str_replace('{image_legend}', '{youtube_legend},addYouTube,relatedYoutubeNews;{image_legend}', $dc['palettes']['default']);
+$dc['palettes']['default']        = str_replace('{image_legend}', '{youtube_legend},addYouTube;{image_legend}', $dc['palettes']['default']);
 $dc['subpalettes']['addYouTube']  =
     'youtube,autoplay,videoDuration,youtubeFullsize,youtubeLinkText,addPreviewImage,posterSRC,addPlayButton';
 $dc['palettes']['__selector__'][] = 'addYouTube';
@@ -26,7 +15,7 @@ $dc['palettes']['__selector__'][] = 'addYouTube';
  * Callbacks
  */
 
-$dc['config']['onload_callback'][] = ['huh.youtube.backend.news', 'modifyPalettes'];
+$dc['config']['onload_callback'][] = ['huh.youtube.backend.events', 'modifyPalettes'];
 
 /**
  * Fields
@@ -46,17 +35,7 @@ $arrFields = [
     'youtubeFullsize'    => &$GLOBALS['TL_DCA']['tl_content']['fields']['youtubeFullsize'],
     'youtubeLinkText'    => &$GLOBALS['TL_DCA']['tl_content']['fields']['youtubeLinkText'],
     'videoDuration'      => &$GLOBALS['TL_DCA']['tl_content']['fields']['videoDuration'],
-    'addPlayButton'      => &$GLOBALS['TL_DCA']['tl_content']['fields']['addPlayButton'],
-    'relatedYoutubeNews' => [
-        'label'            => &$GLOBALS['TL_LANG']['tl_news']['relatedYoutubeNews'],
-        'exclude'          => true,
-        'inputType'        => 'tagsinput',
-        'options_callback' => ['huh.youtube.backend.news', 'getRelatedYoutubeNews'],
-        'sql'              => "int(10) unsigned NOT NULL default '0'",
-        'eval'             => [
-            'placeholder' => &$GLOBALS['TL_LANG']['tl_news']['placeholder']['relatedYoutubeNews'],
-        ],
-    ],
+    'addPlayButton'      => &$GLOBALS['TL_DCA']['tl_content']['fields']['addPlayButton']
 ];
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);

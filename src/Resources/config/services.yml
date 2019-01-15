@@ -16,3 +16,8 @@ services:
         arguments:
           - "@contao.framework"
         public: true
+    huh.youtube.backend.events:
+        class: HeimrichHannot\YoutubeBundle\Backend\Events
+        arguments:
+            - "@contao.framework"
+        public: true
