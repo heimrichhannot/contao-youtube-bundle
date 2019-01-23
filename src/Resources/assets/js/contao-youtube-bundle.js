@@ -1,4 +1,4 @@
-import utilsBundle from 'contao-utils-bundle';
+import { utilsBundle } from '@hundh/contao-utils-bundle';
 import alertify from 'alertifyjs';
 
 class YouTubeBundle {
@@ -24,7 +24,7 @@ class YouTubeBundle {
         });
 
         // handle click event
-        utilsBundle.events.addDynamicEventListener('click', '[data-media="youtube"]', function(target) {
+        utilsBundle.event.addDynamicEventListener('click', '[data-media="youtube"]', function(target) {
             YouTubeBundle.initVideo(target);
         });
     }
@@ -34,7 +34,7 @@ class YouTubeBundle {
             iframe = video.querySelector('iframe');
 
         // stop playing video on closing any modal window
-        utilsBundle.events.addDynamicEventListener('click', '[data-dismiss="modal"]', function(target) {
+        utilsBundle.event.addDynamicEventListener('click', '[data-dismiss="modal"]', function(target) {
             iframe.setAttribute('src', iframe.getAttribute('data-src'));
         });
 

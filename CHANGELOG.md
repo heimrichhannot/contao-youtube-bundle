@@ -1,7 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [3.1.0] - 2018-01-15
+## [3.1.1] - 2018-01-15
+
+#### Added
+- `@hundh/contao-utils-bundle`
+
+## [3.1.0] - 2019-01-15
 
 #### Added
 - `tl_calendar_events` support
