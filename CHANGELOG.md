@@ -1,7 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [3.1.1] - 2018-01-15
+## [3.1.2] - 2019-01-23
+
+#### Fixed
+- issue https://github.com/heimrichhannot/contao-youtube-bundle/issues/2
+
+## [3.1.1] - 2019-01-23
 
 #### Added
 - `@hundh/contao-utils-bundle`
