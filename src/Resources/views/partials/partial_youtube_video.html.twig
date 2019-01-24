@@ -30,9 +30,9 @@
         {% endif %}
         <div class="video-container{% if hasPreviewImage|default() %} video-hidden{% endif %}">
             {% if hasPreviewImage|default() %}
-                <iframe src="about:blank" data-src="{{ src }}" allowfullscreen frameborder="0"></iframe>
+                <iframe src="about:blank" data-src="{{ src }}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             {% else %}
-                <iframe src="{{ src }}" allowfullscreen frameborder="0"></iframe>
+                <iframe src="{{ src }}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             {% endif %}
         </div>
     </div>

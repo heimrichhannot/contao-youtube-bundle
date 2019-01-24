@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.2.0] - 2019-01-24
+
+### Fixed
+- dropped `frameborder="0"` from iframe as it is no longer allowed in html5
+
+### Added
+- `allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"` to iframe in order to handle cross site scripting iframe permission
+
 ## [3.1.2] - 2019-01-23
 
 #### Fixed
