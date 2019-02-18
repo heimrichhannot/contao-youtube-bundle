@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.2.1] - 2019-02-18
+
+### Fixed
+- contao 4.6 compatibility (dropped `symfony/framework-bundle` requirement from composer.json)
+
 ## [3.2.0] - 2019-01-24
 
 ### Fixed
