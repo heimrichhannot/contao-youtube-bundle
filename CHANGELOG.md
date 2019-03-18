@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.3.0] - 2019-03-18
+
+### Fixed
+- js handling -> js is now a separate node module importable in other modules
+- alertify issue for non webpack/encore environments
+
 ## [3.2.1] - 2019-02-18
 
 ### Fixed

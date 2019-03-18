@@ -3,9 +3,10 @@ Thumbs.db
 .DS_Store
 .sass-cache
 /vendor
-/component
 composer.lock
 composer.json~
-/lib
-node_modules
-package-lock.json
+composer.phar
+yarn.lock
+yarn-error.log
+src/Resources/public/js/entrypoints.json
+src/Resources/public/js/manifest.json

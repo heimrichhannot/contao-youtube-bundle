@@ -19,9 +19,13 @@ $GLOBALS['TL_CTE']['media']['youtube'] = 'HeimrichHannot\YoutubeBundle\ContentEl
  * Assets
  */
 if (System::getContainer()->get('huh.utils.container')->isFrontend()) {
+    $GLOBALS['TL_CSS']['alertifyjs']            = 'assets/alertifyjs/alertifyjs/css/alertify.min.css|static';
+    $GLOBALS['TL_CSS']['contao-youtube-bundle'] = 'bundles/heimrichhannotcontaoyoutube/css/contao-youtube-bundle.min.css|static';
+
+    $GLOBALS['TL_JAVASCRIPT']['alertifyjs']            = 'assets/alertifyjs/alertifyjs/alertify.min.js|static';
     $GLOBALS['TL_JAVASCRIPT']['contao-youtube-bundle'] = 'bundles/heimrichhannotcontaoyoutube/js/contao-youtube-bundle.js|static';
-    $GLOBALS['TL_CSS']['contao-youtube-bundle']        = 'bundles/heimrichhannotcontaoyoutube/css/contao-youtube-bundle.min.css|static';
 }
+
 
 /**
  * Hooks
