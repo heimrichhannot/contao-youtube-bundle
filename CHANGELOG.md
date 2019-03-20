@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.3.1] - 2019-03-20
+
+### Fixed
+- translation for the new behavior for the "rel" embed parameter
+- showInfo is now passed correctly to the template
+
 ## [3.3.0] - 2019-03-18
 
 ### Fixed

@@ -169,7 +169,7 @@ class YoutubeConfig implements YoutubeConfigInterface
                 break;
 
             case 'ytShowInfo':
-                $key = 'ytShowInfo';
+                $key = 'showInfo';
 
                 break;
 

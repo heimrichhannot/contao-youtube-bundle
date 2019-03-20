@@ -18,7 +18,7 @@ $GLOBALS['TL_LANG']['tl_content']['addPlayButton']   = ['Play-Button hinzufügen
 
 $GLOBALS['TL_LANG']['tl_content']['videoId']                = ['Video-Id', 'Geben Sie hier die ID des YouTube-Videos ein.'];
 $GLOBALS['TL_LANG']['tl_content']['videoDuration']          = ['Länge', 'Geben Sie hier die Dauer des YouTube-Videos ein.'];
-$GLOBALS['TL_LANG']['tl_content']['ytShowRelated']          = ['Ähnliche Videos anzeigen', 'Wählen Sie diese Option, wenn nach dem Abspielen des Videos ähnliche Videos angezeigt werden sollen.'];
+$GLOBALS['TL_LANG']['tl_content']['ytShowRelated']          = ['Auch ähnliche Videos anderer Kanälen zulassen ("rel")', 'Wählen Sie diese Option, wenn nach dem Abspielen auch ähnliche Videos anderer Kanäle angezeigt werden dürfen.'];
 $GLOBALS['TL_LANG']['tl_content']['ytModestBranding']       = ['YouTube-Branding ausblenden', 'Wählen Sie diese Option, wenn YouTube-Branding-Infos ausgeblendet werden sollen.'];
 $GLOBALS['TL_LANG']['tl_content']['ytShowInfo']             = ['Video-Infos anzeigen', 'Wählen Sie diese Option, wenn Infos zum Video angezeit werden sollen.'];
 $GLOBALS['TL_LANG']['tl_content']['youtubeFullsize']        = ['Großansicht/Neues Fenster', 'Großansicht des Videos in einer Lightbox bzw. den Link in einem neuem Browserfenster öffnen.'];
