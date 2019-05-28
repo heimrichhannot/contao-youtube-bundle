@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.3.3] - 2019-05-28
+
+### Fixed
+- `heimrichhannot/contao-reader-bundle` and `heimrichhannot/contao-list-bundle` support, fix contao manager plugin loading order (otherwise dca fields wont be registered properly, or deleted if already existing) 
+
 ## [3.3.2] - 2019-03-20
 
 ### Fixed

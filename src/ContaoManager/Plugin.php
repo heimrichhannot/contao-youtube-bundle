@@ -26,8 +26,20 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface
      */
     public function getBundles(ParserInterface $parser)
     {
+        $loadAfter = [ContaoCoreBundle::class, 'multi_column_editor', ContaoNewsBundle::class, ContaoCalendarBundle::class];
+
+        // add heimrichhannot/contao-list-bundle support
+        if (class_exists('HeimrichHannot\ListBundle\HeimrichHannotContaoListBundle')) {
+            $loadAfter[] = 'HeimrichHannot\ListBundle\HeimrichHannotContaoListBundle';
+        }
+
+        // add heimrichhannot/contao-reader-bundle support
+        if (class_exists('HeimrichHannot\ReaderBundle\HeimrichHannotContaoReaderBundle')) {
+            $loadAfter[] = 'HeimrichHannot\ReaderBundle\HeimrichHannotContaoReaderBundle';
+        }
+
         return [
-            BundleConfig::create(HeimrichHannotContaoYoutubeBundle::class)->setLoadAfter([ContaoCoreBundle::class, 'multi_column_editor', ContaoNewsBundle::class, ContaoCalendarBundle::class]),
+            BundleConfig::create(HeimrichHannotContaoYoutubeBundle::class)->setLoadAfter($loadAfter),
         ];
     }
 

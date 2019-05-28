@@ -3,19 +3,19 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
     $table = 'tl_reader_config_element';
     \Contao\Controller::loadDataContainer($table);
     $dca = &$GLOBALS['TL_DCA'][$table];
-    
+
     $dca['palettes'][\HeimrichHannot\YoutubeBundle\ConfigElementType\YoutubeReaderConfigElementType::TYPE] =
         '{title_type_legend},title,type;{config_legend},youtubeSelectorField,youtubeField,autoplay;';
-    
+
     $fields = [
-        'autoplay' => [
+        'autoplay'             => [
             'label'     => &$GLOBALS['TL_LANG']['tl_module']['autoplay'],
             'exclude'   => true,
             'inputType' => 'checkbox',
             'eval'      => ['tl_class' => 'w50 m12'],
             'sql'       => "char(1) NOT NULL default ''"
         ],
-        'youtubeSelectorField'     => [
+        'youtubeSelectorField' => [
             'label'            => &$GLOBALS['TL_LANG']['tl_reader_config_element']['youtubeSelectorField'],
             'inputType'        => 'select',
             'options_callback' => function (DataContainer $dc) {
@@ -25,7 +25,7 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
             'eval'             => ['includeBlankOption' => true, 'tl_class' => 'w50 autoheight'],
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
-        'youtubeField'             => [
+        'youtubeField'         => [
             'label'            => &$GLOBALS['TL_LANG']['tl_reader_config_element']['youtubeField'],
             'inputType'        => 'select',
             'options_callback' => function (DataContainer $dc) {
@@ -36,6 +36,6 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
     ];
-    
-    $dca['fields'] = array_merge($dca['fields'],$fields);
+
+    $dca['fields'] = array_merge(is_array($dca['fields']) ? $dca['fields'] : [], $fields);
 }
