@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.4.0] - 2019-06-12
+
+### Added
+- `ce_youtube_bs4.html5` template in order to work together with `heimrichhannot/contao-twig-templates-bundle`
+
 ## [3.3.4] - 2019-05-29
 
 ### Added

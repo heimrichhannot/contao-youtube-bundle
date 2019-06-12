@@ -1,0 +1,9 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<?php if($this->youtube && $this->youtube->video): ?>
+	<?= $this->youtube->video; ?>
+<?php endif; ?>
+
+<?php $this->endblock(); ?>
