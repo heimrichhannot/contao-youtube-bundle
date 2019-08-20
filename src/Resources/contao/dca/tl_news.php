@@ -52,7 +52,7 @@ $arrFields = [
         'exclude'          => true,
         'inputType'        => 'tagsinput',
         'options_callback' => ['huh.youtube.backend.news', 'getRelatedYoutubeNews'],
-        'sql'              => "int(10) unsigned NOT NULL default '0'",
+        'sql'              => "varchar(32) NOT NULL default ''",
         'eval'             => [
             'placeholder' => &$GLOBALS['TL_LANG']['tl_news']['placeholder']['relatedYoutubeNews'],
         ],

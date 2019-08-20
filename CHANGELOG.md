@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.4.1] - 2019-08-20
+
+### Fixed
+- relatedYoutubeNews tagsinput issue
+
 ## [3.4.0] - 2019-06-12
 
 ### Added
