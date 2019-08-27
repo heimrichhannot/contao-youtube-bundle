@@ -1,23 +1,27 @@
 services:
-    huh.youtube.configurator:
-        class: HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory
-        autowire: true
-    huh.youtube.videocreator:
-        class: HeimrichHannot\YoutubeBundle\Video\VideoFactory
-        autowire: true
-        public: true
-    huh.youtube.backend.content:
-        class: HeimrichHannot\YoutubeBundle\Backend\Content
-        arguments:
-          - "@contao.framework"
-        public: true
-    huh.youtube.backend.news:
-        class: HeimrichHannot\YoutubeBundle\Backend\News
-        arguments:
-          - "@contao.framework"
-        public: true
-    huh.youtube.backend.events:
-        class: HeimrichHannot\YoutubeBundle\Backend\Events
-        arguments:
-            - "@contao.framework"
-        public: true
+  huh.youtube.configurator:
+    class: HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory
+    autowire: true
+  huh.youtube.videocreator:
+    class: HeimrichHannot\YoutubeBundle\Video\VideoFactory
+    autowire: true
+    public: true
+  huh.youtube.backend.content:
+    class: HeimrichHannot\YoutubeBundle\Backend\Content
+    arguments:
+      - "@contao.framework"
+    public: true
+  huh.youtube.backend.news:
+    class: HeimrichHannot\YoutubeBundle\Backend\News
+    arguments:
+      - "@contao.framework"
+    public: true
+  huh.youtube.backend.events:
+    class: HeimrichHannot\YoutubeBundle\Backend\Events
+    arguments:
+      - "@contao.framework"
+    public: true
+
+  huh.twig.extension.youtube:
+    class: HeimrichHannot\YouTubeBundle\Twig\YouTubeExtension
+    tags: [twig.extension]
