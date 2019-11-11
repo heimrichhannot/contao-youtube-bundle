@@ -1,9 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.5.2] - 2019-11-11
+
+- fixed translations for privacy modal buttons
+- updated js
+- integrated node module in bundle repo
+
 ## [3.5.1] - 2019-11-11
 
-### Added
 - translations for privacy modal buttons
 
 ## [3.5.0] - 2019-08-27

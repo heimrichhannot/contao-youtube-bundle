@@ -1,0 +1,13 @@
+{
+  "name": "@hundh/contao-youtube-bundle",
+  "version": "1.0.4",
+  "description": "This package contains the frontend assets of the composer bundle heimrichhannot/contao-youtube-bundle.",
+  "main": "js/contao-youtube-bundle.js",
+  "repository": "git@github.com:heimrichhannot/contao-youtube-bundle.git",
+  "author": "Heimrich & Hannot <digitales@heimrich-hannot.de>",
+  "license": "MIT",
+  "dependencies": {
+    "@hundh/contao-utils-bundle": "^1.6",
+    "alertifyjs": "^1.11"
+  }
+}
