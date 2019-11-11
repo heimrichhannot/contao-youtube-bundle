@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.5.1] - 2019-11-11
+
+### Added
+- translations for privacy modal buttons
+
 ## [3.5.0] - 2019-08-27
 
 ### Added
