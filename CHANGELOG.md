@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [3.6.0] - 2019-11-22
+## [3.6.1] - 2019-12-03
+- updated service definitons for symfony 4 (#6)
+
+## [3.6.0] - 2019-12-03
 - refactored dialog creation of an alertify modal dialog
 - added CustomEvent 'huh.youtube.event.alertify.onshow' to interact with alertifyjs 'onshow' event
 - added CustomEvent 'huh.youtube.event.alertify.onfocus' to interact with alertifyjs 'onfocus' event
