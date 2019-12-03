@@ -51,8 +51,33 @@ class YouTubeBundle {
                 return false;
             }
 
-            let dialog = alertify.confirm(
-                '&nbsp;',
+            let dialog = alertify.confirm().set({
+                labels: {
+                    ok: el.getAttribute('data-btn-privacy-ok') !== null ? el.getAttribute('data-btn-privacy-ok') : 'OK' ,
+                    cancel: el.getAttribute('data-btn-privacy-cancel') !== null ? el.getAttribute('data-btn-privacy-cancel') : 'Cancel'
+                },
+                onshow: function() {
+                    document.dispatchEvent(new CustomEvent('huh.youtube.event.alertify.onshow', {
+                        bubbles: true,
+                        cancelable: true,
+                        detail: {
+                            elements: dialog.elements
+                        }
+                    }));
+                },
+                defaultFocusOff: true,
+                onfocus: function() {
+                    document.dispatchEvent(new CustomEvent('huh.youtube.event.alertify.onfocus', {
+                        bubbles: true,
+                        cancelable: true,
+                        detail: {
+                            elements: dialog.elements
+                        }
+                    }));
+                }
+            });
+
+            alertify.confirm('&nbsp;',
                 el.getAttribute('data-privacy-html').replace(/\\"/g, '"'),
                 function() {
                     if (dialog.elements.content.querySelector('[name=' + YouTubeBundle.getConfig().privacyAutoFieldName + ']').checked) {
@@ -64,12 +89,7 @@ class YouTubeBundle {
                     showVideo();
                 },
                 function() {
-
-                }
-            ).set('labels', {
-                ok: el.getAttribute('data-btn-privacy-ok') !== null ? el.getAttribute('data-btn-privacy-ok') : 'OK' ,
-                cancel: el.getAttribute('data-btn-privacy-cancel') !== null ? el.getAttribute('data-btn-privacy-cancel') : 'Cancel'
-            });
+                });
 
             return false;
         }

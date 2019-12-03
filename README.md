@@ -66,6 +66,15 @@ Youtube videos can be added to news templates with ease. Just add the following 
 
 To use preview images from youtube, you have to generate an API key (https://developers.google.com/youtube/v3/getting-started) and place it in the contao settings.
 
+## Developers
+
+### Events
+
+Event | Event ID
+----- | ---------
+Event to interact with AlertifyJs 'onshow' event | `huh.youtube.event.alertify.onshow`
+Event to interact with AlertifyJs 'onfocus' event | `huh.youtube.event.alertify.onfocus`
+
 ## Upgrade notice from heimrichhannot/contao-youtube
 
 - After update, save your root-pages in back end mode again to update template names

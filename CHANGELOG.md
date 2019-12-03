@@ -1,14 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [3.5.2] - 2019-11-11
+## [3.6.0] - 2019-11-22
+- refactored dialog creation of an alertify modal dialog
+- added CustomEvent 'huh.youtube.event.alertify.onshow' to interact with alertifyjs 'onshow' event
+- added CustomEvent 'huh.youtube.event.alertify.onfocus' to interact with alertifyjs 'onfocus' event
 
+## [3.5.2] - 2019-11-11
 - fixed translations for privacy modal buttons
 - updated js
 - integrated node module in bundle repo
 
 ## [3.5.1] - 2019-11-11
-
 - translations for privacy modal buttons
 
 ## [3.5.0] - 2019-08-27
