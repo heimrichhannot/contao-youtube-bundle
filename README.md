@@ -66,6 +66,37 @@ Youtube videos can be added to news templates with ease. Just add the following 
 
 To use preview images from youtube, you have to generate an API key (https://developers.google.com/youtube/v3/getting-started) and place it in the contao settings.
 
+### Commands
+
+#### Migration Command
+
+```
+Usage:
+  huh:youtube:migration [options]
+
+Options:
+      --dry-run              Performs a run without writing to database.
+      --migration=MIGRATION  Do migration directly without interrupt. Options: module, database, both, none
+  -h, --help                 Display this help message
+  -q, --quiet                Do not output any message
+  -V, --version              Display this application version
+      --ansi                 Force ANSI output
+      --no-ansi              Disable ANSI output
+  -n, --no-interaction       Do not ask any interactive question
+  -e, --env=ENV              The Environment name. [default: "prod"]
+      --no-debug             Switches off debug mode.
+  -v|vv|vvv, --verbose       Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Help:
+  This command provide migration scripts to migrate from heimrichhannot/contao-youtube to heimrichhannot/contao-youtube-bundle.
+  
+  Available migrations:
+    'module' updates default template names and field values
+    'database' updates database fields that can't be updated by the contao install tool.
+    'both' will run 'module' and 'database' migrations.
+```
+
+
 ## Developers
 
 ### Events
@@ -77,7 +108,7 @@ Event to interact with AlertifyJs 'onfocus' event | `huh.youtube.event.alertify.
 
 ## Upgrade notice from heimrichhannot/contao-youtube
 
-- After update, save your root-pages in back end mode again to update template names
+- Use `huh:youtube:migration` command to migrated the default template settings in root pages and relatedYoutubeNews database field
 - Declare an Youtube-API Key in tl_settings or tl_page (otherwise preview image download wont work)
 - The modal windows for privacy dialog or modalvideo require additional css, that is not delivered by the bundle. Markup fits [Bootstrap](http://getbootstrap.com/) modal window css, so you are well-advised to use the css from that framework.
 - If you were using custom youtube `.html5` templates, migrate them to `.html.twig` templates, if you need help: check the default templates

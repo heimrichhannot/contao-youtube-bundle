@@ -31,3 +31,7 @@ services:
     class: HeimrichHannot\YouTubeBundle\Twig\YouTubeExtension
     tags: [twig.extension]
   HeimrichHannot\YouTubeBundle\Twig\YouTubeExtension: '@huh.twig.extension.youtube'
+
+  HeimrichHannot\YoutubeBundle\Command\MigrationCommand:
+    autoconfigure: true
+    autowire: true

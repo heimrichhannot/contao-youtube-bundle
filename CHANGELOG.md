@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.7.0] - 2019-12-19
+- added migration command
+
 ## [3.6.1] - 2019-12-03
 - updated service definitons for symfony 4 (#6)
 
