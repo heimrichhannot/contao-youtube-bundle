@@ -36,7 +36,7 @@ $arrFields = [
     ],
     'youtube_template'       => [
         'label'            => &$GLOBALS['TL_LANG']['tl_module']['youtube_template'],
-        'default'          => 'youtube_default',
+        'default'          => 'youtube_video_default',
         'exclude'          => true,
         'inputType'        => 'select',
         'options_callback' => function (\Contao\DataContainer $dc) {
