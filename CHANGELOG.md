@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.7.3] - 2020-03-31
+- replaced non-working PaletteManipulator with str_replace
+
 ## [3.7.2] - 2020-03-31
 - fixed default youtube template name
 
