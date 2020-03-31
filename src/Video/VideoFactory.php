@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2019 Heimrich & Hannot GmbH
+ * Copyright (c) 2020 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -55,9 +55,6 @@ class VideoFactory
     /**
      * Create a video instance
      * Config is created if content and config is given.
-     *
-     * @param string|null $context
-     * @param array|null  $configData
      *
      * @return YoutubeVideoInterface
      */

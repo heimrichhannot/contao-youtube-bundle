@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2019 Heimrich & Hannot GmbH
+ * Copyright (c) 2020 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -24,8 +24,6 @@ class News
 
     /**
      * Constructor.
-     *
-     * @param ContaoFrameworkInterface $framework
      */
     public function __construct(ContaoFrameworkInterface $framework)
     {
@@ -60,8 +58,6 @@ class News
 
     /**
      * Get a list of related news that have a youtube video.
-     *
-     * @param \Contao\DataContainer $dc
      *
      * @return array List of related youtube news
      */

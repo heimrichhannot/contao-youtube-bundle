@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2019 Heimrich & Hannot GmbH
+ * Copyright (c) 2020 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -68,13 +68,6 @@ class YoutubeVideo implements YoutubeVideoInterface
 
     /**
      * Constructor.
-     *
-     * @param ContaoFrameworkInterface    $framework
-     * @param Twig_Environment            $twig
-     * @param Request                     $request
-     * @param TemplateUtil                $templateUtil
-     * @param ClassUtil                   $classUtil
-     * @param YoutubeConfigInterface|null $config
      */
     public function __construct(ContaoFrameworkInterface $framework, Twig_Environment $twig, Request $request, TemplateUtil $templateUtil, ClassUtil $classUtil, YoutubeConfigInterface $config = null)
     {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2019 Heimrich & Hannot GmbH
+ * Copyright (c) 2020 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -43,8 +43,6 @@ trait YoutubeVideoTemplateDataTrait
 
     /**
      * Add preview image.
-     *
-     * @return bool
      */
     public function hasPreviewImage(): bool
     {
@@ -114,8 +112,6 @@ trait YoutubeVideoTemplateDataTrait
      * Get the preview image from youtube.
      *
      * @param bool $cache Enable/disable image caching
-     *
-     * @return string
      */
     public function getYoutubePreviewImage(bool $cache = true): string
     {
@@ -187,8 +183,6 @@ trait YoutubeVideoTemplateDataTrait
      * @throws \Twig_Error_Loader  When the template cannot be found
      * @throws \Twig_Error_Syntax  When an error occurred during compilation
      * @throws \Twig_Error_Runtime When an error occurred during rendering
-     *
-     * @return string
      */
     public function getPrivacy(): string
     {
@@ -209,8 +203,6 @@ trait YoutubeVideoTemplateDataTrait
 
     /**
      * Check add play button.
-     *
-     * @return bool
      */
     public function hasPlayButton(): bool
     {

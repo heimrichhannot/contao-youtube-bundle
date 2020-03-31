@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2019 Heimrich & Hannot GmbH
+ * Copyright (c) 2020 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -28,8 +28,6 @@ interface YoutubeVideoInterface
 
     /**
      * Add youtube to given template.
-     *
-     * @param Template $template
      */
     public function addToTemplate(Template $template): void;
 
@@ -42,15 +40,11 @@ interface YoutubeVideoInterface
 
     /**
      * Get current config.
-     *
-     * @return YoutubeConfigInterface
      */
     public function getConfig(): YoutubeConfigInterface;
 
     /**
      * Check if current video should start by checking request params for example.
-     *
-     * @return bool
      */
     public function startPlay(): bool;
 }

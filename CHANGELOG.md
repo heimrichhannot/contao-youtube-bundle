@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.7.1] - 2020-03-31
+- fixed issue with contao 4.9 rootfallback palette
+
 ## [3.7.0] - 2019-12-19
 - added migration command
 

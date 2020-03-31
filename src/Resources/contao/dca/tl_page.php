@@ -19,9 +19,23 @@ $arrDca['palettes']['__selector__'][] = 'youtubePrivacy';
 /**
  * Palettes
  */
-$replace = 'adminEmail;{youtube_legend},youtube_template,youtube_modal_template,youtubePrivacy,overrideYoutubeApiKey,overrideYoutubeSkipImageCaching;';
+//$replace = 'adminEmail;{youtube_legend},youtube_template,youtube_modal_template,youtubePrivacy,overrideYoutubeApiKey,overrideYoutubeSkipImageCaching;';
+//
+//$arrDca['palettes']['root'] = str_replace('adminEmail;', $replace, $arrDca['palettes']['root']);
 
-$arrDca['palettes']['root'] = str_replace('adminEmail;', $replace, $arrDca['palettes']['root']);
+$paletteManipulator = \Contao\CoreBundle\DataContainer\PaletteManipulator::create();
+$paletteManipulator->addLegend('youtube_legend', 'global_legend')
+    ->addField('youtube_template', 'youtube_legend')
+    ->addField('youtube_modal_template', 'youtube_legend')
+    ->addField('youtubePrivacy', 'youtube_legend')
+    ->addField('overrideYoutubeApiKey', 'youtube_legend')
+    ->addField('overrideYoutubeSkipImageCaching', 'youtube_legend')
+    ->applyToPalette('root', 'tl_page');
+
+if (array_key_exists('rootfallback', $arrDca['palettes'])) {
+    $paletteManipulator->applyToPalette('rootfallback', 'tl_page');
+}
+
 
 /**
  * Subpalettes
