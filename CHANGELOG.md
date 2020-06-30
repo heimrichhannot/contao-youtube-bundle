@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [3.7.4] - 2020-06-30
+## [3.7.6] - 2020-06-30
 - add some translations 
 
 ## [3.7.3] - 2020-03-31
