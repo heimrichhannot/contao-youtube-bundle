@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.7.7] - 2020-06-30
+- ie11 compatibility issue
+
 ## [3.7.6] - 2020-06-30
 - add some translations 
 

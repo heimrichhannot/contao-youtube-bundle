@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2020-06-30
+
+### Fixed
+- ie11 compatibility issue
+
 ## [1.0.3] - 2019-03-20
 
 ### Fixed

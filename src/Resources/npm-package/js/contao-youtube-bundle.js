@@ -102,8 +102,10 @@ class YouTubeBundle {
             el.classList.add('initialize');
             video.classList.add('initialize');
             iframe.setAttribute('src', iframe.getAttribute('src') + '&autoplay=1');
-            el.classList.remove('initialize', 'video-hidden');
-            video.classList.remove('initialize', 'video-hidden');
+            el.classList.remove('initialize');
+            el.classList.remove('video-hidden');
+            video.classList.remove('initialize');
+            video.classList.remove('video-hidden');
         }
     }
 
