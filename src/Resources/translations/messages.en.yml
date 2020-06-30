@@ -6,7 +6,8 @@ huh.youtube:
   label.privacy.autoplay: Save this decision for using YouTube video on %host% permanently.
   button:
     privacy.cancel: cancel
-    modal.close: Close
+    privacy.ok: accept
+    modal.close: close
 
 # modal link text
   modal.link:
