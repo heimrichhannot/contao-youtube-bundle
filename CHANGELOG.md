@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.7.8] - 2020-06-30
+- fixed `autoplay` field dca configuration
+
 ## [3.7.7] - 2020-06-30
 - ie11 compatibility issue
 

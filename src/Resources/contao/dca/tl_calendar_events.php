@@ -29,7 +29,14 @@ $arrFields = [
         'sql'       => "char(1) NOT NULL default ''"
     ],
     'youtube'            => &$GLOBALS['TL_DCA']['tl_content']['fields']['youtube'],
-    'autoplay'           => &$GLOBALS['TL_DCA']['tl_content']['fields']['autoplay'],
+    'autoplay' => array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['autoplay'],
+        'exclude'                 => true,
+        'inputType'               => 'checkbox',
+        'eval'                    => array('tl_class'=>'w50 m12'),
+        'sql'                     => "char(1) NOT NULL default ''"
+    ),
     'addPreviewImage'    => &$GLOBALS['TL_DCA']['tl_content']['fields']['addPreviewImage'],
     'posterSRC'          => &$GLOBALS['TL_DCA']['tl_content']['fields']['posterSRC'],
     'youtubeFullsize'    => &$GLOBALS['TL_DCA']['tl_content']['fields']['youtubeFullsize'],
