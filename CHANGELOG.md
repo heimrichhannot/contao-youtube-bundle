@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [3.7.8] - 2020-06-30
+## [3.7.9] - 2020-07-13
+- fixed dca fields taken from core tl_content(replaced with full configuration)
+
+## [3.7.8] - 2020-07-13
 - fixed `autoplay` field dca configuration
 
 ## [3.7.7] - 2020-06-30

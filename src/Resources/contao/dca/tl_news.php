@@ -39,7 +39,19 @@ $arrFields = [
         'eval'      => ['submitOnChange' => true],
         'sql'       => "char(1) NOT NULL default ''"
     ],
-    'youtube'            => &$GLOBALS['TL_DCA']['tl_content']['fields']['youtube'],
+    'youtube' => array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['youtube'],
+        'exclude'                 => true,
+        'search'                  => true,
+        'inputType'               => 'text',
+        'eval'                    => array('mandatory'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50'),
+        'save_callback' => array
+        (
+            array('tl_content', 'extractYouTubeId')
+        ),
+        'sql'                     => "varchar(16) NOT NULL default ''"
+    ),
     'autoplay' => array
     (
         'label'                   => &$GLOBALS['TL_LANG']['tl_content']['autoplay'],
@@ -49,7 +61,14 @@ $arrFields = [
         'sql'                     => "char(1) NOT NULL default ''"
     ),
     'addPreviewImage'    => &$GLOBALS['TL_DCA']['tl_content']['fields']['addPreviewImage'],
-    'posterSRC'          => &$GLOBALS['TL_DCA']['tl_content']['fields']['posterSRC'],
+    'posterSRC' => array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['posterSRC'],
+        'exclude'                 => true,
+        'inputType'               => 'fileTree',
+        'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio'),
+        'sql'                     => "binary(16) NULL"
+    ),
     'youtubeFullsize'    => &$GLOBALS['TL_DCA']['tl_content']['fields']['youtubeFullsize'],
     'youtubeLinkText'    => &$GLOBALS['TL_DCA']['tl_content']['fields']['youtubeLinkText'],
     'videoDuration'      => &$GLOBALS['TL_DCA']['tl_content']['fields']['videoDuration'],
