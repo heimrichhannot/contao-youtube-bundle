@@ -3,7 +3,7 @@ huh.youtube:
     play: Video abspielen
     privacy: Datenschutzhinweis
   text.privacy: Wenn Sie unsere YouTube-Videos abspielen, werden Informationen über Ihre Nutzung von YouTube an den Betreiber in den USA übertragen und unter Umständen gespeichert.
-  label.privacy.autoplay: Diese Entscheidung für die Nutzung von Youtube-Videos auf %host% dauerhaft speichern.
+  label.privacy.autoplay: Diese Entscheidung für die Nutzung von YouTube-Videos auf %host% dauerhaft speichern.
   button:
     privacy.cancel: Ablehnen
     privacy.ok: Bestätigen

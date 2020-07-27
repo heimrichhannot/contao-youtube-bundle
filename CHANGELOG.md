@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.7.10] - 2020-07-27
+- fix typo
+
 ## [3.7.9] - 2020-07-13
 - fixed dca fields taken from core tl_content(replaced with full configuration)
 
