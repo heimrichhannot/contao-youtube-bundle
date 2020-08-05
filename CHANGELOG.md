@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.8.0] - 2020-08-05
+- added logic to obtain youtube-video thumbnail if API-key is not set
+- added preview_fallback image if preview image is not set
+- fixed template to show privacy-message if preview Image is not set
+
 ## [3.7.10] - 2020-07-27
 - fix typo
 

@@ -115,13 +115,7 @@ trait YoutubeVideoTemplateDataTrait
      */
     public function getYoutubePreviewImage(bool $cache = true): string
     {
-        if (!($apiKey = System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeApiKey', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]))) {
-            if (BackendUser::getInstance()->isAdmin) {
-                throw new InvalidYoutubeApiKeyException('Please specify your API key in the settings if you want to retrieve youtube thumbnails.');
-            }
-
-            System::getContainer()->get('monolog.logger.contao')->log(LogLevel::ERROR, 'Please specify your API key in the settings if you want to retrieve youtube thumbnails.', ['contao' => new ContaoContext(__METHOD__, TL_ERROR)]);
-
+        if (!$this->getConfig()->isAddPreviewImage()) {
             return '';
         }
 
@@ -134,12 +128,46 @@ trait YoutubeVideoTemplateDataTrait
             return $cachePath;
         }
 
-        $url = sprintf(static::VIDEO_IMAGE_URL, $this->config->getYoutube(), $apiKey);
+        if (!($apiKey = System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeApiKey', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]))) {
+            $result = [];
 
-        $result = System::getContainer()->get('huh.utils.request.curl')->request($url);
+            foreach (['maxres' => 'maxresdefault', 'standard' => 'default', 'high' => 'hqdefault', 'medium' => 'mqdefault', 'default' => 'default'] as $quality => $name ) {
+                $url = sprintf(static::YOUTUBE_IMAGE_URL, $this->config->getYoutube(), $name . '.jpg' );
+                $response = System::getContainer()->get('huh.utils.request.curl')->request($url, [], true);
+                if ($response[0]['http_code'] === 200) {
+                    $result[] = [$quality => [
+                        'url' => $url,
+                        'width' => '',
+                        'height' => ''
+                    ]];
+                }
+            }
+
+            if (empty($result)) {
+                if (!($apiKey = System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeApiKey', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]))) {
+                    if (BackendUser::getInstance()->isAdmin) {
+                        throw new InvalidYoutubeApiKeyException('Please specify your API key in the settings if you want to retrieve youtube thumbnails.');
+                    }
+
+                    System::getContainer()->get('monolog.logger.contao')->log(LogLevel::ERROR, 'Please specify your API key in the settings if you want to retrieve youtube thumbnails.', ['contao' => new ContaoContext(__METHOD__, TL_ERROR)]);
+
+                    return '';
+                }
+            }
+
+        } else {
+
+            $url = sprintf(static::VIDEO_IMAGE_URL, $this->config->getYoutube(), $apiKey);
+
+            $result = System::getContainer()->get('huh.utils.request.curl')->request($url);
+        }
+
 
         try {
-            $response = json_decode($result);
+
+            if (!is_array($result)) {
+                $response = json_decode($result, true);
+            }
 
             if ($response->error || !\is_array($response->items) || empty($response->items)) {
                 return '';

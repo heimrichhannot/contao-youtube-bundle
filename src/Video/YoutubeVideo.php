@@ -29,6 +29,8 @@ class YoutubeVideo implements YoutubeVideoInterface
     const VIDEO_IMAGE_CACHE_DIR = 'files/media/youtube';
     const VIDEO_IMAGE_CACHE_EXPIRE = 604800; // 7 days
 
+    const YOUTUBE_IMAGE_URL = 'https://img.youtube.com/vi/%s/%s';
+
     /**
      * Current template data.
      *
