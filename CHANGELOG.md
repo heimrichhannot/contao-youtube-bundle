@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.1] - 2020-10-20
+- removed span from play-button
+- added aria-label to play-button
+
 ## [3.9.0] - 2020-10-20
 - fixed play button to be html button element
 - added translated text to play button with sr-only class
