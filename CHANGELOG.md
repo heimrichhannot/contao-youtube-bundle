@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.0] - 2020-10-20
+- fixed play button to be html button element
+- added translated text to play button with sr-only class
+
 ## [3.8.0] - 2020-08-05
 - added logic to obtain youtube-video thumbnail if API-key is not set
 - added preview_fallback image if preview image is not set
