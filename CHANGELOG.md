@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.2] - 2020-11-06
+- fixed play button to be html  button when preview image is not set
+
 ## [3.9.1] - 2020-10-20
 - removed span from play-button
 - added aria-label to play-button

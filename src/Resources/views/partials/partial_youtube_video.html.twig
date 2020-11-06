@@ -53,7 +53,7 @@
                         </span>
                     {% endif %}
                     {% if playButton|default() %}
-                        <span class="play-button"></span>
+                        <button class="play-button" tabindex="0" aria-label="{{ 'huh.youtube.title.play'|trans }}{% if text|default() %}: {{ text|raw }}{% endif %}"></button>
                     {% endif %}
                 </figure>
             </div>
