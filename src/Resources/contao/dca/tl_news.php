@@ -17,10 +17,16 @@ $dc = &$GLOBALS['TL_DCA']['tl_news'];
 /**
  * Palettes
  */
-$dc['palettes']['default']        = str_replace('{image_legend}', '{youtube_legend},addYouTube,relatedYoutubeNews;{image_legend}', $dc['palettes']['default']);
-$dc['subpalettes']['addYouTube']  =
-    'youtube,autoplay,videoDuration,youtubeFullsize,youtubeLinkText,addPreviewImage,posterSRC,addPlayButton';
 $dc['palettes']['__selector__'][] = 'addYouTube';
+$dc['palettes']['__selector__'][] = 'addPreviewImage';
+
+$dc['palettes']['default']        = str_replace('{image_legend}', '{youtube_legend},addYouTube,relatedYoutubeNews;{image_legend}', $dc['palettes']['default']);
+
+/**
+ * Subpalettes
+ */
+$dc['subpalettes']['addYouTube']  = 'youtube,autoplay,videoDuration,youtubeFullsize,youtubeLinkText,addPreviewImage,addPlayButton';
+$dc['subpalettes']['addPreviewImage']  = 'posterSRC';
 
 /**
  * Callbacks

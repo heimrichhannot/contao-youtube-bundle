@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.3] - 2021-02-04
+- fixed preview image generation
+- fixed palette handling in tl_news and tl_calendar_events
+
 ## [3.9.2] - 2020-11-06
 - fixed play button to be html  button when preview image is not set
 

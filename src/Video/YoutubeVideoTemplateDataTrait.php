@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2020 Heimrich & Hannot GmbH
+ * Copyright (c) 2021 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -72,6 +72,7 @@ trait YoutubeVideoTemplateDataTrait
             }
         } else {
             $cache = false === (bool) System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeSkipImageCaching', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]);
+
             $path = $this->getYoutubePreviewImage($cache);
         }
 
@@ -129,17 +130,22 @@ trait YoutubeVideoTemplateDataTrait
         }
 
         if (!($apiKey = System::getContainer()->get('huh.utils.dca')->getOverridableProperty('youtubeApiKey', [(object) $GLOBALS['TL_CONFIG'], $this->config->getRootPage()]))) {
-            $result = [];
+            $result = [
+                'items' => [
+                    0 => [],
+                ],
+            ];
 
-            foreach (['maxres' => 'maxresdefault', 'standard' => 'default', 'high' => 'hqdefault', 'medium' => 'mqdefault', 'default' => 'default'] as $quality => $name ) {
-                $url = sprintf(static::YOUTUBE_IMAGE_URL, $this->config->getYoutube(), $name . '.jpg' );
+            foreach (['maxres' => 'maxresdefault', 'standard' => 'default', 'high' => 'hqdefault', 'medium' => 'mqdefault', 'default' => 'default'] as $quality => $name) {
+                $url = sprintf(static::YOUTUBE_IMAGE_URL, $this->config->getYoutube(), $name.'.jpg');
                 $response = System::getContainer()->get('huh.utils.request.curl')->request($url, [], true);
-                if ($response[0]['http_code'] === 200) {
-                    $result[] = [$quality => [
+
+                if (200 === $response[0]['http_code']) {
+                    $result['items'][0]['snippet']['thumbnails'][$quality] = [
                         'url' => $url,
                         'width' => '',
-                        'height' => ''
-                    ]];
+                        'height' => '',
+                    ];
                 }
             }
 
@@ -154,34 +160,30 @@ trait YoutubeVideoTemplateDataTrait
                     return '';
                 }
             }
-
         } else {
-
             $url = sprintf(static::VIDEO_IMAGE_URL, $this->config->getYoutube(), $apiKey);
 
             $result = System::getContainer()->get('huh.utils.request.curl')->request($url);
         }
 
-
         try {
-
-            if (!is_array($result)) {
-                $response = json_decode($result, true);
+            if (!\is_array($result)) {
+                $result = json_decode($result, true);
             }
 
-            if ($response->error || !\is_array($response->items) || empty($response->items)) {
+            if ($result['error'] || !\is_array($result['items']) || empty($result['items'])) {
                 return '';
             }
 
-            foreach (['maxres', 'standard', 'high', 'medium', 'default'] as $quality) {
-                if (property_exists($response->items[0]->snippet->thumbnails, $quality)) {
-                    $image = System::getContainer()->get('huh.utils.request.curl')->request($response->items[0]->snippet->thumbnails->{$quality}->url);
+            foreach (['maxres', 'high', 'standard', 'medium', 'default'] as $quality) {
+                if (isset($result['items'][0]['snippet']['thumbnails'][$quality])) {
+                    $image = System::getContainer()->get('huh.utils.request.curl')->request($result['items'][0]['snippet']['thumbnails'][$quality]['url']);
 
                     if (!$image) {
                         return '';
                     }
 
-                    $type = pathinfo($response->items[0]->snippet->thumbnails->{$quality}->url, PATHINFO_EXTENSION);
+                    $type = pathinfo($result['items'][0]['snippet']['thumbnails'][$quality]['url'], PATHINFO_EXTENSION);
 
                     if ($cache) {
                         if (!file_exists($cacheDirAbs)) {
