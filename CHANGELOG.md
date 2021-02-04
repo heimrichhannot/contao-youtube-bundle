@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.4] - 2021-02-04
+- packagist error
+
 ## [3.9.3] - 2021-02-04
 - fixed preview image generation
 - fixed palette handling in tl_news and tl_calendar_events
