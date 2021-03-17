@@ -5,6 +5,8 @@
 [![Build Status](https://travis-ci.org/heimrichhannot/contao-youtube-bundle.svg?branch=master)](https://travis-ci.org/heimrichhannot/contao-youtube-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/heimrichhannot/contao-youtube-bundle/badge.svg?branch=master)](https://coveralls.io/github/heimrichhannot/contao-youtube-bundle?branch=master)
 
+> YouTube-Bundle is not actively maintained anymore, as we developed a successor bundle: [Video Bundle](https://github.com/heimrichhannot/contao-video-bundle).
+
 YouTube bundle aims responsive youtube videos with preview images and better privacy control.
 It provides support for content elements and news items.
 
