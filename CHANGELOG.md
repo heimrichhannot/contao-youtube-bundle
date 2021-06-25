@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.5] - 2021-06-25
+- fixes for latest webpack-encore
+
 ## [3.9.4] - 2021-02-04
 - packagist error
 

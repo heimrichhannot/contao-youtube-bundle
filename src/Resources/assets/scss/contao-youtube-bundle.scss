@@ -43,7 +43,7 @@ $play-button-height: 48px;
       display: inline-block;
 
       .play-button {
-        background: url(/bundles/heimrichhannotcontaoyoutube/img/yt_icon_mono_light.svg) no-repeat 50% 50%;
+        background: url(../img/yt_icon_mono_light.svg) no-repeat 50% 50%;
         background-size: cover;
         position: absolute;
         left: 50%;
@@ -78,7 +78,7 @@ $play-button-height: 48px;
       .image_container {
         .play-button {
           opacity: 1;
-          background-image: url(/bundles/heimrichhannotcontaoyoutube/img/yt_icon_rgb.svg);
+          background-image: url(../img/yt_icon_rgb.svg);
         }
       }
     }
