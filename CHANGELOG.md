@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.6] - 2022-01-11
+- Fixed: empty element if previewImage option is set but preview image not found (shows now a placeholder image)
+
 ## [3.9.5] - 2021-06-25
 - fixes for latest webpack-encore
 
