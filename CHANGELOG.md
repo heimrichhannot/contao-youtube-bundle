@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.7] - 2022-01-11
+- Fixed: issues with usercentrics
+
 ## [3.9.6] - 2022-01-11
 - Fixed: empty element if previewImage option is set but preview image not found (shows now a placeholder image)
 

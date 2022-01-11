@@ -35,12 +35,16 @@ class YouTubeBundle {
 
         // stop playing video on closing any modal window
         utilsBundle.event.addDynamicEventListener('click', '[data-dismiss="modal"]', function(target) {
-            iframe.setAttribute('src', iframe.getAttribute('data-src'));
+            if (null !== iframe) {
+                iframe.setAttribute('src', iframe.getAttribute('data-src'));
+            }
         });
 
         // stop playing video on closing any bootstrap modal
         document.addEventListener('hidden.bs.modal', function(e) {
-            iframe.setAttribute('src', iframe.getAttribute('data-src'));
+            if (null !== iframe) {
+                iframe.setAttribute('src', iframe.getAttribute('data-src'));
+            }
         });
 
         if (el.getAttribute('data-privacy')) {
@@ -94,14 +98,18 @@ class YouTubeBundle {
             return false;
         }
 
-        iframe.setAttribute('src', iframe.getAttribute('data-src'));
+        if (null !== iframe) {
+            iframe.setAttribute('src', iframe.getAttribute('data-src'));
+        }
 
         showVideo();
 
         function showVideo() {
             el.classList.add('initialize');
             video.classList.add('initialize');
-            iframe.setAttribute('src', iframe.getAttribute('src') + '&autoplay=1');
+            if (null !== iframe) {
+                iframe.setAttribute('src', iframe.getAttribute('src') + '&autoplay=1');
+            }
             el.classList.remove('initialize');
             el.classList.remove('video-hidden');
             video.classList.remove('initialize');
