@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2021 Heimrich & Hannot GmbH
+ * Copyright (c) 2022 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -16,7 +16,7 @@ use HeimrichHannot\UtilsBundle\Classes\ClassUtil;
 use HeimrichHannot\UtilsBundle\Template\TemplateUtil;
 use HeimrichHannot\YoutubeBundle\Configuration\YoutubeConfigInterface;
 use HeimrichHannot\YoutubeBundle\Exception\InvalidVideoConfigException;
-use Twig_Environment;
+use Twig\Environment;
 
 class YoutubeVideo implements YoutubeVideoInterface
 {
@@ -52,7 +52,7 @@ class YoutubeVideo implements YoutubeVideoInterface
      */
     private $framework;
     /**
-     * @var Twig_Environment
+     * @var Environment
      */
     private $twig;
     /**
@@ -71,7 +71,7 @@ class YoutubeVideo implements YoutubeVideoInterface
     /**
      * Constructor.
      */
-    public function __construct(ContaoFrameworkInterface $framework, Twig_Environment $twig, Request $request, TemplateUtil $templateUtil, ClassUtil $classUtil, YoutubeConfigInterface $config = null)
+    public function __construct(ContaoFrameworkInterface $framework, Environment $twig, Request $request, TemplateUtil $templateUtil, ClassUtil $classUtil, YoutubeConfigInterface $config = null)
     {
         $this->framework = $framework;
         $this->twig = $twig;

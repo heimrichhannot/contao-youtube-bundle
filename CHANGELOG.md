@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.8] - 2022-05-05
+- Fixed: twig integration
+
 ## [3.9.7] - 2022-01-11
 - Fixed: issues with usercentrics
 
