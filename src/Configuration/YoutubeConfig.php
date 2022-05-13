@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2021 Heimrich & Hannot GmbH
+ * Copyright (c) 2022 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -229,16 +229,8 @@ class YoutubeConfig implements YoutubeConfigInterface
         $this->rootPage = $root;
 
         // array_filter() : do not overwrite empty values
-        $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, function ($value) {
-            try {
-                if ((string) $value) {
-                    return true;
-                }
-
-                return false;
-            } catch (\Exception $e) {
-                return false;
-            }
+        $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, function ($var) {
+            return null === $var || is_scalar($var) || (\is_object($var) && method_exists($var, '__toString'));
         }));
 
         foreach ($data as $key => $default) {
