@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.10] - 2022-05-13
+- Fixed: type issue
+
 ## [3.9.9] - 2022-05-13
 - Fixed: exception ins some cases (invalid stringable check)
 

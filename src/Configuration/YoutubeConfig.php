@@ -234,7 +234,7 @@ class YoutubeConfig implements YoutubeConfigInterface
         }));
 
         foreach ($data as $key => $default) {
-            $this->{$key} = $data[$key] ?? $default;
+            $this->{$key} = (string) $data[$key] ?? (string) $default;
         }
 
         return $this;
@@ -397,7 +397,7 @@ class YoutubeConfig implements YoutubeConfigInterface
      */
     public function getText(): string
     {
-        return $this->text;
+        return \is_string($this->text) ? $this->text : '';
     }
 
     /**
