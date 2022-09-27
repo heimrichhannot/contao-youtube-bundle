@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.9.11] - 2022-09-27
+- Fixed: warning if contao calendar bundle is not installed
+
 ## [3.9.10] - 2022-05-13
 - Fixed: type issue
 
