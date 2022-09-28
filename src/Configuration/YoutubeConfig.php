@@ -226,8 +226,6 @@ class YoutubeConfig implements YoutubeConfigInterface
             return $this;
         }
 
-        $this->rootPage = $root;
-
         // array_filter() : do not overwrite empty values
         $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, function ($var) {
             return null === $var || is_scalar($var) || (\is_object($var) && method_exists($var, '__toString'));
@@ -236,6 +234,8 @@ class YoutubeConfig implements YoutubeConfigInterface
         foreach ($data as $key => $default) {
             $this->{$key} = (string) $data[$key] ?? (string) $default;
         }
+
+        $this->rootPage = $root;
 
         return $this;
     }
