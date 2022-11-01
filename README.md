@@ -20,6 +20,7 @@ It provides support for content elements and news items.
 * Preview image for youtube videos
     * If no custom image is given, the preview image will be loaded from youtube and saved under 'files/media/youtube/' 
 * ConfigElements for [List-](https://github.com/heimrichhannot/contao-list-bundle) and [Readerbundle](https://github.com/heimrichhannot/contao-reader-bundle).
+* [Encore Bundle](https://github.com/heimrichhannot/contao-encore-bundle) support
 * Privacy mode 
     * In privacy mode the video is displayed, after the user accepted a privacy advice within a modal prompt
     * The user can mark his selection as permanent with a checkbox (state will be saved in a cookie)
