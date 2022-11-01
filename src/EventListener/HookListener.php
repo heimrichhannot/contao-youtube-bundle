@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2021 Heimrich & Hannot GmbH
+ * Copyright (c) 2022 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -13,6 +13,7 @@ use Contao\Date;
 use Contao\Module;
 use Contao\NewsModel;
 use Contao\Template;
+use HeimrichHannot\YoutubeBundle\Asset\FrontendAsset;
 use HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory;
 use HeimrichHannot\YoutubeBundle\Video\VideoFactory;
 
@@ -30,15 +31,17 @@ class HookListener
      * @var VideoFactory
      */
     private $videoFactory;
+    private FrontendAsset $frontendAsset;
 
     /**
      * Constructor.
      */
-    public function __construct(ContaoFrameworkInterface $framework, VideoFactory $videoFactory, ConfigFactory $configFactory)
+    public function __construct(ContaoFrameworkInterface $framework, VideoFactory $videoFactory, ConfigFactory $configFactory, FrontendAsset $frontendAsset)
     {
         $this->framework = $framework;
         $this->configFactory = $configFactory;
         $this->videoFactory = $videoFactory;
+        $this->frontendAsset = $frontendAsset;
     }
 
     public function parseNewsArticlesHook(Template $template, array $news, Module $module)
@@ -84,8 +87,9 @@ class HookListener
         $data['addPreviewImage'] = $news['addPreviewImage'];
         $data['posterSRC'] = $news['posterSRC'];
         $data['addPlayButton'] = $news['addPlayButton'];
-
         $this->videoFactory->createVideo(ConfigFactory::CONTEXT_FRONTEND_MODULE, $data)
             ->addToTemplate($template);
+
+        $this->frontendAsset->addAssets();
     }
 }
