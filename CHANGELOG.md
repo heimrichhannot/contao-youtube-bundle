@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.10.1] - 2023-09-08
+- Fixed: missing dependency
+
 ## [3.10.0] - 2022-11-01
 - Added: encore contracts support ([#10])
 - Changed: raised contao and php dependencies ([#10])
