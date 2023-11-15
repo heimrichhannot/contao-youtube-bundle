@@ -215,6 +215,27 @@ class YoutubeConfig implements YoutubeConfigInterface
     }
 
     /**
+     * Checks if `$var` can be cast to string, either with `strval($var)` or `(string) $var`.
+     * This is the case if one of the following conditions is true.
+     */
+    private static function canCastToString($var): bool {
+        return null === $var || is_scalar($var) || (is_object($var) && method_exists($var, '__toString'));
+    }
+
+    private static function getDataValue(array $data, mixed $key, mixed $default): mixed
+    {
+        if (array_key_exists($key, $data) && self::canCastToString($data[$key])) {
+            return (string) $data[$key];
+        }
+
+        if (self::canCastToString($default)) {
+            return (string) $default;
+        }
+
+        return $default;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setData(array $data = []): YoutubeConfigInterface
@@ -227,12 +248,23 @@ class YoutubeConfig implements YoutubeConfigInterface
         }
 
         // array_filter() : do not overwrite empty values
-        $data = array_merge(array_filter($root->row(), 'strval'), array_filter($data, function ($var) {
-            return null === $var || is_scalar($var) || (\is_object($var) && method_exists($var, '__toString'));
-        }));
+
+        $filteredRows = array_filter($root->row(), function ($var) {
+            /**
+             * Checks if the string value of `$var` is truthy.
+             * Note: `strval(array())` will return `string(5) "Array"` and is therefore considered true.
+             */
+            return @strval($var);
+        });
+
+        $filteredData = array_filter($data, function ($var) {
+            return self::canCastToString($var);
+        });
+
+        $mergedData = array_merge($filteredRows, $filteredData);
 
         foreach ($data as $key => $default) {
-            $this->{$key} = (string) $data[$key] ?? (string) $default;
+            $this->{$key} = self::getDataValue($mergedData, $key, $default);
         }
 
         $this->rootPage = $root;
