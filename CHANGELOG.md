@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.10.2] - 2023-11-23
+- Fixed: php8 warning
+
 ## [3.10.1] - 2023-09-08
 - Fixed: missing dependency
 
