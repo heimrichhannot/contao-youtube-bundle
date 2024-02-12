@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.10.3] - 2024-02-12
+- Fixed: php 7.4 compatibility
+
 ## [3.10.2] - 2023-11-23
 - Fixed: php8 warning
 

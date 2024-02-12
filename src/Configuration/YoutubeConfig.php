@@ -222,7 +222,13 @@ class YoutubeConfig implements YoutubeConfigInterface
         return null === $var || is_scalar($var) || (is_object($var) && method_exists($var, '__toString'));
     }
 
-    private static function getDataValue(array $data, mixed $key, mixed $default): mixed
+    /**
+     * @param array $data
+     * @param mixed $key
+     * @param mixed $default
+     * @return mixed
+     */
+    private static function getDataValue(array $data, $key, $default)
     {
         if (array_key_exists($key, $data) && self::canCastToString($data[$key])) {
             return (string) $data[$key];
