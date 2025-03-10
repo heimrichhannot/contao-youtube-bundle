@@ -13,6 +13,7 @@ use Contao\ContentElement;
 use Contao\System;
 use HeimrichHannot\YoutubeBundle\Asset\FrontendAsset;
 use HeimrichHannot\YoutubeBundle\Configuration\ConfigFactory;
+use HeimrichHannot\YoutubeBundle\Exception\InvalidVideoConfigException;
 
 class ContentYouTube extends ContentElement
 {
@@ -42,8 +43,14 @@ class ContentYouTube extends ContentElement
     {
         System::getContainer()->get(FrontendAsset::class)->addAssets();
 
-        System::getContainer()->get('huh.youtube.videocreator')
-            ->createVideo(ConfigFactory::CONTEXT_CONTENT_ELEMENT, $this->objModel->row())
-            ->addToTemplate($this->Template);
+        try {
+            System::getContainer()->get('huh.youtube.videocreator')
+                ->createVideo(ConfigFactory::CONTEXT_CONTENT_ELEMENT, $this->objModel->row())
+                ->addToTemplate($this->Template);
+        } catch (InvalidVideoConfigException $e) {
+            if (System::getContainer()->get('huh.utils.container')->isDev()) {
+                throw $e;
+            }
+        }
     }
 }

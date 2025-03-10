@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.10.4] - 2025-03-10
+- Fixed: exception in content element when no video id is set (is now thrown only in dev mode)
+
 ## [3.10.3] - 2024-02-12
 - Fixed: php 7.4 compatibility
 
